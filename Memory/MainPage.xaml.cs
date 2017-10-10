@@ -7,11 +7,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 
 namespace Memory
@@ -46,7 +42,8 @@ namespace Memory
                 for (int j = 0; j < 4; j++)
                 {
                     ButtonArray[i].Button = new Button() { Content = i + j, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255,155,155,155)),  Width = 125, Height = 125, };
-                    
+                    ButtonArray[i].Button.Click += new RoutedEventHandler(this.ClickedCard);
+
                     ButtonArray[i].Type = Types[i + j];
                     ButtonArray[i].Button.Content = i;
                     Memory_Grid.Children.Add(ButtonArray[i].Button);
@@ -55,6 +52,11 @@ namespace Memory
                     Grid.SetColumn(ButtonArray[i].Button, j);
                 }
             }
+        }
+
+        public void ClickedCard(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
