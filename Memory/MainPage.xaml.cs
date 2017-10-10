@@ -16,10 +16,12 @@ namespace Memory
     {
         private const int MemoryItems = 16;
         MemoryButton[] ButtonArray = new MemoryButton[MemoryItems];
+       
         MemoryType[] Types = new MemoryType[MemoryItems];
-
+       
         public MainPage()
         {
+
             this.InitializeComponent();
  
             for(int i =0; i < MemoryItems; i++)
@@ -32,7 +34,10 @@ namespace Memory
                 }
             }
 
-            for(int i = 0; i < ButtonArray.Length; i++)
+            Random rnd = new Random();
+            Types = Types.OrderBy(x => rnd.Next()).ToArray();
+
+            for (int i = 0; i < ButtonArray.Length; i++)
             {
                 ButtonArray[i] = new MemoryButton();
             }
@@ -41,14 +46,15 @@ namespace Memory
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
-                {                    
+                {
+                  
                     ButtonArray[num].Button = new Button() { Content = num,
                         Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255,155,155,155)),
                         Width = 125, Height = 125, };
 
                     ButtonArray[num].Button.Click += new RoutedEventHandler(this.ClickedCard);
 
-                    Random rnd = new Random(); // maak het type nog nog ff random
+                     // maak het type nog nog ff random
                     
                     ButtonArray[num].Type = Types[num];
                     Memory_Grid.Children.Add(ButtonArray[num].Button);
