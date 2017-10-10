@@ -24,7 +24,11 @@ namespace Memory
 
             this.InitializeComponent();
  
-            for(int i =0; i < MemoryItems; i++)
+            StartGameButton.Click += new RoutedEventHandler(this.StartGame);
+            BackButton.Click += new RoutedEventHandler(this.Back);
+
+
+            for (int i =0; i < MemoryItems; i++)
             {
                 
                 Types[i] = (MemoryType)i;
@@ -67,11 +71,21 @@ namespace Memory
             }
         }
 
+        public void StartGame(object sender, RoutedEventArgs e)
+        {
+            MainPanel.Visibility = Visibility.Collapsed;
+        }
+
+        public void Back(object sender, RoutedEventArgs e)
+        {
+            MainPanel.Visibility = Visibility.Visible;
+        }
+
         public void ClickedCard(object sender, RoutedEventArgs e)
         {
             for (int i = 0; i < MemoryItems; i++)
             {
-                if(sender == ButtonArray[i].Button)
+                if (sender == ButtonArray[i].Button)
                 {
                     ButtonArray[i].Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 255, 76, 103));
                     ButtonArray[i].Button.Content = ButtonArray[i].Type;
