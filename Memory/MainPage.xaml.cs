@@ -14,7 +14,7 @@ namespace Memory
 {
     public sealed partial class MainPage : Page
     {
-        private const int MemoryItems = 12;
+        private const int MemoryItems = 17;
         MemoryButton[] ButtonArray = new MemoryButton[MemoryItems];
         MemoryType[] Types = new MemoryType[MemoryItems];
 
@@ -29,7 +29,6 @@ namespace Memory
                 {
                     Types[i] = (MemoryType)i - MemoryItems/2;
                 }
-                System.Diagnostics.Debug.WriteLine(Types[i]);
             }
 
             for(int i = 0; i < ButtonArray.Length; i++)
@@ -37,26 +36,32 @@ namespace Memory
                 ButtonArray[i] = new MemoryButton();
             }
 
+            int num = 0;
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
-                {
-                    ButtonArray[i+j].Button = new Button() { Content = i + j, Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255,155,155,155)),  Width = 125, Height = 125, };
-                    ButtonArray[i+j].Button.Click += new RoutedEventHandler(this.ClickedCard);
+                {                    
+                    System.Diagnostics.Debug.WriteLine(num++);
 
-                    ButtonArray[i+j].Type = Types[i + j];
-                    ButtonArray[i+j].Button.Content = i;
-                    Memory_Grid.Children.Add(ButtonArray[i+j].Button);
+                    ButtonArray[num].Button = new Button() { Content = num,
+                        Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255,155,155,155)),
+                        Width = 125, Height = 125, };
 
-                    Grid.SetRow(ButtonArray[i].Button, i);
-                    Grid.SetColumn(ButtonArray[i].Button, j);
+                    ButtonArray[num].Button.Click += new RoutedEventHandler(this.ClickedCard);
+
+                    ButtonArray[i*j].Type = Types[i + j];
+                    Memory_Grid.Children.Add(ButtonArray[num].Button);
+
+                    Grid.SetRow(ButtonArray[num].Button, i);
+                    Grid.SetColumn(ButtonArray[num].Button, j);
                 }
+                
             }
         }
 
         public void ClickedCard(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i < MemoryItems; i++)
             {
                 if(sender == ButtonArray[i].Button)
                 {
