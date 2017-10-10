@@ -25,7 +25,7 @@ namespace Memory
             for(int i =0; i < MemoryItems; i++)
             {
                 Types[i] = (MemoryType)i;
-                if (i >= 6)
+                if (i >= 8)
                 {
                     Types[i] = (MemoryType)i - MemoryItems/2;
                 }
@@ -49,7 +49,8 @@ namespace Memory
 
                     ButtonArray[num].Button.Click += new RoutedEventHandler(this.ClickedCard);
 
-                    ButtonArray[i*j].Type = Types[i + j];
+                    Random rnd = new Random(); // maak het type nog nog ff random
+                    ButtonArray[num].Type = Types[num];
                     Memory_Grid.Children.Add(ButtonArray[num].Button);
 
                     Grid.SetRow(ButtonArray[num].Button, i);
@@ -66,6 +67,7 @@ namespace Memory
                 if(sender == ButtonArray[i].Button)
                 {
                     ButtonArray[i].Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 255, 76, 103));
+                    ButtonArray[i].Button.Content = ButtonArray[i].Type;
                     return;
                 }
             }
