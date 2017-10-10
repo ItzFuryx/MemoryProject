@@ -14,7 +14,7 @@ namespace Memory
 {
     public sealed partial class MainPage : Page
     {
-        private const int MemoryItems = 17;
+        private const int MemoryItems = 16;
         MemoryButton[] ButtonArray = new MemoryButton[MemoryItems];
         MemoryType[] Types = new MemoryType[MemoryItems];
 
@@ -41,8 +41,6 @@ namespace Memory
             {
                 for (int j = 0; j < 4; j++)
                 {                    
-                    System.Diagnostics.Debug.WriteLine(num++);
-
                     ButtonArray[num].Button = new Button() { Content = num,
                         Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255,155,155,155)),
                         Width = 125, Height = 125, };
@@ -55,6 +53,7 @@ namespace Memory
 
                     Grid.SetRow(ButtonArray[num].Button, i);
                     Grid.SetColumn(ButtonArray[num].Button, j);
+                    num++;
                 }
                 
             }
