@@ -21,9 +21,10 @@ namespace Memory
         public MainPage()
         {
             this.InitializeComponent();
-
+ 
             for(int i =0; i < MemoryItems; i++)
             {
+                
                 Types[i] = (MemoryType)i;
                 if (i >= 8)
                 {
@@ -48,6 +49,7 @@ namespace Memory
                     ButtonArray[num].Button.Click += new RoutedEventHandler(this.ClickedCard);
 
                     Random rnd = new Random(); // maak het type nog nog ff random
+                    
                     ButtonArray[num].Type = Types[num];
                     Memory_Grid.Children.Add(ButtonArray[num].Button);
 

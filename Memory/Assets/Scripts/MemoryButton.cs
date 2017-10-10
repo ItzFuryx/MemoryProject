@@ -10,12 +10,15 @@ namespace Memory
 {
     public enum MemoryType
     {
-        Jos = 0,
-        Clive = 1,
+        Harro = 0,
+        Bart = 1,
         Kevin = 2,
         Pim = 3,
         Keanu = 4,
-        Casper = 5
+        Casper = 5,
+        hoi = 6,
+        fghh = 7,
+        asldkfj = 8
     }
 
     class MemoryButton
