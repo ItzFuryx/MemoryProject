@@ -52,7 +52,7 @@ namespace Memory
             {
                 for (int j = 0; j < 4; j++)
                 {
-                  ButtonArray[num].Button = new Button() { Content = num,
+                  ButtonArray[num].Button = new Button() { Content = null,
 
                         Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255,155,155,155)),
                         Width = 125, Height = 125, };
@@ -87,27 +87,31 @@ namespace Memory
                 {
                     ButtonArray[i].Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 255, 76, 103));
                     ButtonArray[i].Button.Content = ButtonArray[i].Type;
-
-                    if(FirstButton == null)
+                    
+                    if (FirstButton == null)
                     {
                         FirstButton = ButtonArray[i];
                     }
                     else if(FirstButton != null)
                     {
+                      
                         MemoryButton secondButton = ButtonArray[i];
                         if(FirstButton.Type == secondButton.Type)
                         {
                             FirstButton.Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 244, 206, 66));
                             secondButton.Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 244, 206, 66));
-
+                          
                         }
                         else
                         {
-                            ButtonArray[i].Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 255, 76, 103));
-                            ButtonArray[i].Button.Content = ButtonArray[i].Type;
+                            FirstButton.Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 155, 155, 155));
+                            FirstButton.Button.Content = null;
+                            secondButton.Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 155, 155, 155));
+                            secondButton.Button.Content = null;
+
                         }
+                        FirstButton = null;
                     }
-                    
                     return;
                 }
             }
