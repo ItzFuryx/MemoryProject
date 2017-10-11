@@ -55,14 +55,9 @@ namespace Memory
                     ButtonArray[num].Button = new Button() { Content = num,
                         Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255,155,155,155)),
                         Width = 125, Height = 125, };
-
                     ButtonArray[num].Button.Click += new RoutedEventHandler(this.ClickedCard);
-
-                     // maak het type nog nog ff random
-                    
                     ButtonArray[num].Type = Types[num];
                     Memory_Grid.Children.Add(ButtonArray[num].Button);
-
                     Grid.SetRow(ButtonArray[num].Button, i);
                     Grid.SetColumn(ButtonArray[num].Button, j);
                     num++;
@@ -81,6 +76,8 @@ namespace Memory
             MainPanel.Visibility = Visibility.Visible;
         }
 
+
+        //bart
         public void ClickedCard(object sender, RoutedEventArgs e)
         {
             for (int i = 0; i < MemoryItems; i++)
@@ -89,6 +86,9 @@ namespace Memory
                 {
                     ButtonArray[i].Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 255, 76, 103));
                     ButtonArray[i].Button.Content = ButtonArray[i].Type;
+
+                   
+                    
                     return;
                 }
             }
