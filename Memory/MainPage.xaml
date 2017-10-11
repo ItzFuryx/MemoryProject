@@ -26,7 +26,8 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
         </Grid>
-        
+        <TextBlock x:Name="SetsLabel" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="swek" VerticalAlignment="Top" Width="62" Margin="144,101,-144,-101"/>
+
         <Button x:Name="BackButton" Content="Back" HorizontalAlignment="Left" Height="66" VerticalAlignment="Top" Width="155" Margin="10,0,0,0" Background="#33FFFFFF" FontSize="24"/>
 
         <RelativePanel x:Name="MainPanel" HorizontalAlignment="Left" Height="720" VerticalAlignment="Top" Width="1280" Background="Black">
@@ -34,7 +35,7 @@
             <Button x:Name="LoadGameButton" Content="Load Game" HorizontalAlignment="Left" Height="66" VerticalAlignment="Top" Width="155" Margin="522,185,-612,-219" Background="#33FFFFFF" FontSize="24"/>
             <Button x:Name="HighscoresButton" Content="Highscores" HorizontalAlignment="Left" Height="66" VerticalAlignment="Top" Width="155" Margin="522,288,-612,-322" Background="#33FFFFFF" FontSize="24"/>
             <Button x:Name="ExitGameButton" Content="Exit Game" HorizontalAlignment="Left" Height="66" VerticalAlignment="Top" Width="155" Margin="522,402,-612,-436" Background="#33FFFFFF" FontSize="24"/>
-         </RelativePanel>
+        </RelativePanel>
  
     </Grid>
 </Page>
