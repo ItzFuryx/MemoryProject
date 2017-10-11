@@ -97,8 +97,7 @@ namespace Memory
                         if(FirstButton.Type == secondButton.Type)
                         {
                             FirstButton.Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 244, 206, 66));
-                            secondButton.Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 244, 206, 66));
-                            
+                            secondButton.Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 244, 206, 66)); 
                         }
                         else
                         {
