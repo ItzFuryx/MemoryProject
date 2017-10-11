@@ -1,1 +1,0 @@
-C:\Users\keanu\Documents\Visual Studio 2017\Projects\Memory\Memory\Memory.csproj;x86
