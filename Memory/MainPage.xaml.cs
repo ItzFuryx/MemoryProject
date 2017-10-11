@@ -16,7 +16,9 @@ namespace Memory
     {
         private const int MemoryItems = 16;
         MemoryButton[] ButtonArray = new MemoryButton[MemoryItems];
-       
+
+        MemoryButton FirstButton;
+        
         MemoryType[] Types = new MemoryType[MemoryItems];
        
         public MainPage()
@@ -51,8 +53,8 @@ namespace Memory
             {
                 for (int j = 0; j < 4; j++)
                 {
-                  
-                    ButtonArray[num].Button = new Button() { Content = num,
+                  ButtonArray[num].Button = new Button() { Content = num,
+
                         Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255,155,155,155)),
                         Width = 125, Height = 125, };
                     ButtonArray[num].Button.Click += new RoutedEventHandler(this.ClickedCard);
@@ -87,7 +89,25 @@ namespace Memory
                     ButtonArray[i].Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 255, 76, 103));
                     ButtonArray[i].Button.Content = ButtonArray[i].Type;
 
-                   
+                    if(FirstButton == null)
+                    {
+                        FirstButton = ButtonArray[i];
+                    }
+                    else if(FirstButton != null)
+                    {
+                        MemoryButton secondButton = ButtonArray[i];
+                        if(FirstButton.Type == secondButton.Type)
+                        {
+                            FirstButton.Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 244, 206, 66));
+                            secondButton.Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 244, 206, 66));
+
+                        }
+                        else
+                        {
+                            ButtonArray[i].Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 255, 76, 103));
+                            ButtonArray[i].Button.Content = ButtonArray[i].Type;
+                        }
+                    }
                     
                     return;
                 }
