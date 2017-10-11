@@ -9,16 +9,15 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 
-
 namespace Memory
 {
     public sealed partial class MainPage : Page
     {
         private const int MemoryItems = 16;
-        MemoryButton[] ButtonArray = new MemoryButton[MemoryItems];
 
+        MemoryButton[] ButtonArray = new MemoryButton[MemoryItems];
         MemoryButton FirstButton;
-        
+                
         MemoryType[] Types = new MemoryType[MemoryItems];
        
         public MainPage()
