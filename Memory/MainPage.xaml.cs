@@ -103,12 +103,13 @@ namespace Memory
                         else
                         {
                             FirstButton.Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 155, 155, 155));
-                            FirstButton.Button.Content = (Sets+1)/2;
+                            FirstButton.Button.Content = null;
                             secondButton.Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 155, 155, 155));
                             secondButton.Button.Content = null;
                         }
                         FirstButton = null;
                     }
+                    SetsLabel.Text = Convert.ToString((Sets+1)/2);
                     Sets++;
                     return;
                 }
