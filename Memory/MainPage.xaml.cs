@@ -14,15 +14,14 @@ namespace Memory
     public sealed partial class MainPage : Page
     {
         private const int MemoryItems = 16;
-
+        public int Sets = 0;
         MemoryButton[] ButtonArray = new MemoryButton[MemoryItems];
         MemoryButton FirstButton;
-                
+        
         MemoryType[] Types = new MemoryType[MemoryItems];
        
         public MainPage()
         {
-
             this.InitializeComponent();
  
             StartGameButton.Click += new RoutedEventHandler(this.StartGame);
@@ -62,8 +61,7 @@ namespace Memory
                     Grid.SetRow(ButtonArray[num].Button, i);
                     Grid.SetColumn(ButtonArray[num].Button, j);
                     num++;
-                }
-                
+                }  
             }
         }
 
@@ -81,6 +79,7 @@ namespace Memory
         //bart
         public void ClickedCard(object sender, RoutedEventArgs e)
         {
+         
             for (int i = 0; i < MemoryItems; i++)
             {
                 if (sender == ButtonArray[i].Button)
@@ -94,24 +93,23 @@ namespace Memory
                     }
                     else if(FirstButton != null)
                     {
-                      
                         MemoryButton secondButton = ButtonArray[i];
                         if(FirstButton.Type == secondButton.Type)
                         {
                             FirstButton.Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 244, 206, 66));
                             secondButton.Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 244, 206, 66));
-                          
+                            
                         }
                         else
                         {
                             FirstButton.Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 155, 155, 155));
-                            FirstButton.Button.Content = null;
+                            FirstButton.Button.Content = (Sets+1)/2;
                             secondButton.Button.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 155, 155, 155));
                             secondButton.Button.Content = null;
-
                         }
                         FirstButton = null;
                     }
+                    Sets++;
                     return;
                 }
             }
