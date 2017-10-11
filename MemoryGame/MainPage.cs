@@ -64,11 +64,13 @@ namespace MemoryGame
         public void StartGame(object sender, EventArgs e)
         {
             MainPanel.Visible  = false;
+            SetsLabel.Visible = true;
         }
 
         public void Back(object sender, EventArgs e)
         {
             MainPanel.Visible = true;
+            SetsLabel.Visible = false;
         }
         
         //bart
@@ -78,7 +80,7 @@ namespace MemoryGame
             {
                 if (sender == ButtonArray[i].Button)
                 {
-                    ButtonArray[i].Button.BackColor = Color.Red;
+                    ButtonArray[i].Button.BackColor = Color.MediumVioletRed;
                     ButtonArray[i].Button.Text = ButtonArray[i].Type.ToString();
                     
                     if (FirstButton == null)
@@ -88,7 +90,9 @@ namespace MemoryGame
                     else if(FirstButton != null)
                     {
                         MemoryButton secondButton = ButtonArray[i];
-                        if(FirstButton.Type == secondButton.Type)
+
+                        System.Threading.Thread.Sleep(1000);
+                        if (FirstButton.Type == secondButton.Type)
                         {
                             FirstButton.Button.BackColor = Color.Yellow;
                             secondButton.Button.BackColor = Color.Yellow;                            
@@ -96,14 +100,16 @@ namespace MemoryGame
                         else
                         {
                             FirstButton.Button.BackColor = Color.Gray;
-                            FirstButton.Button.Text = ((Sets+1)/2).ToString();
+                            FirstButton.Button.Text = null;
                             secondButton.Button.BackColor = Color.Gray;
                             secondButton.Button.Text = null;
                         }
+                        
                         FirstButton = null;
                     }
+                    SetsLabel.Text = ((Sets+1)/2).ToString();
                     Sets++;
-                    return;
+                     break;
                 }
             }
             
@@ -117,6 +123,6 @@ namespace MemoryGame
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-        }
+        } 
     }
 }

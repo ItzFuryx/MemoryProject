@@ -32,30 +32,34 @@
             this.StartGameButton = new System.Windows.Forms.Button();
             this.BackButton = new System.Windows.Forms.Button();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.SetsLabel = new System.Windows.Forms.Label();
             this.MainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // GridPanel
             // 
-            this.GridPanel.Location = new System.Drawing.Point(396, 65);
+            this.GridPanel.Location = new System.Drawing.Point(594, 100);
+            this.GridPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GridPanel.Name = "GridPanel";
-            this.GridPanel.Size = new System.Drawing.Size(541, 585);
+            this.GridPanel.Size = new System.Drawing.Size(812, 900);
             this.GridPanel.TabIndex = 0;
             // 
             // StartGameButton
             // 
-            this.StartGameButton.Location = new System.Drawing.Point(493, 161);
+            this.StartGameButton.Location = new System.Drawing.Point(740, 248);
+            this.StartGameButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.StartGameButton.Name = "StartGameButton";
-            this.StartGameButton.Size = new System.Drawing.Size(148, 58);
+            this.StartGameButton.Size = new System.Drawing.Size(222, 89);
             this.StartGameButton.TabIndex = 1;
             this.StartGameButton.Text = "Start Game";
             this.StartGameButton.UseVisualStyleBackColor = true;
             // 
             // BackButton
             // 
-            this.BackButton.Location = new System.Drawing.Point(184, 65);
+            this.BackButton.Location = new System.Drawing.Point(276, 100);
+            this.BackButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BackButton.Name = "BackButton";
-            this.BackButton.Size = new System.Drawing.Size(148, 58);
+            this.BackButton.Size = new System.Drawing.Size(222, 89);
             this.BackButton.TabIndex = 2;
             this.BackButton.Text = "Back";
             this.BackButton.UseVisualStyleBackColor = true;
@@ -64,24 +68,38 @@
             // 
             this.MainPanel.BackColor = System.Drawing.SystemColors.ControlDark;
             this.MainPanel.Controls.Add(this.StartGameButton);
-            this.MainPanel.Location = new System.Drawing.Point(0, 0);
+            this.MainPanel.Location = new System.Drawing.Point(13, 14);
+            this.MainPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(1267, 720);
-            this.MainPanel.TabIndex = 2;
+            this.MainPanel.Size = new System.Drawing.Size(1900, 1108);
+            this.MainPanel.TabIndex = 9;
+            // 
+            // SetsLabel
+            // 
+            this.SetsLabel.AutoSize = true;
+            this.SetsLabel.Location = new System.Drawing.Point(404, 235);
+            this.SetsLabel.Name = "SetsLabel";
+            this.SetsLabel.Size = new System.Drawing.Size(18, 20);
+            this.SetsLabel.TabIndex = 5;
+            this.SetsLabel.Text = "0";
+            this.SetsLabel.Visible = false;
             // 
             // MainPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.ClientSize = new System.Drawing.Size(1896, 1028);
+            this.Controls.Add(this.SetsLabel);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.BackButton);
             this.Controls.Add(this.GridPanel);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainPage";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -90,7 +108,8 @@
         private System.Windows.Forms.FlowLayoutPanel GridPanel;
         private System.Windows.Forms.Button StartGameButton;
         private System.Windows.Forms.Button BackButton;
-        private System.Windows.Forms.Panel MainPanel;
+        private System.Windows.Forms.Label SetsLabel;
+        public System.Windows.Forms.Panel MainPanel;
     }
 }
 
