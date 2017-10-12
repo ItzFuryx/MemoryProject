@@ -32,18 +32,18 @@
             this.StartGameButton = new System.Windows.Forms.Button();
             this.BackToMainButton03 = new System.Windows.Forms.Button();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.MainLabelText = new System.Windows.Forms.Label();
             this.LoadGameButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
             this.OptionsButton = new System.Windows.Forms.Button();
             this.HighscoresButton = new System.Windows.Forms.Button();
             this.SetsLabel = new System.Windows.Forms.Label();
             this.HighscoresPanel = new System.Windows.Forms.Panel();
-            this.BackToMainButton01 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.BackToMainButton01 = new System.Windows.Forms.Button();
             this.OptionsPanel = new System.Windows.Forms.Panel();
             this.OptionsLabel = new System.Windows.Forms.Label();
             this.BackToMainButton02 = new System.Windows.Forms.Button();
-            this.MainLabelText = new System.Windows.Forms.Label();
             this.MainPanel.SuspendLayout();
             this.HighscoresPanel.SuspendLayout();
             this.OptionsPanel.SuspendLayout();
@@ -89,6 +89,16 @@
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(1267, 720);
             this.MainPanel.TabIndex = 9;
+            // 
+            // MainLabelText
+            // 
+            this.MainLabelText.AutoSize = true;
+            this.MainLabelText.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainLabelText.Location = new System.Drawing.Point(522, 50);
+            this.MainLabelText.Name = "MainLabelText";
+            this.MainLabelText.Size = new System.Drawing.Size(191, 31);
+            this.MainLabelText.TabIndex = 6;
+            this.MainLabelText.Text = "Memory Game";
             // 
             // LoadGameButton
             // 
@@ -153,16 +163,6 @@
             this.HighscoresPanel.TabIndex = 10;
             this.HighscoresPanel.Visible = false;
             // 
-            // BackToMainButton01
-            // 
-            this.BackToMainButton01.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BackToMainButton01.Location = new System.Drawing.Point(18, 17);
-            this.BackToMainButton01.Name = "BackToMainButton01";
-            this.BackToMainButton01.Size = new System.Drawing.Size(148, 58);
-            this.BackToMainButton01.TabIndex = 3;
-            this.BackToMainButton01.Text = "Back";
-            this.BackToMainButton01.UseVisualStyleBackColor = true;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -172,6 +172,16 @@
             this.label1.Size = new System.Drawing.Size(121, 26);
             this.label1.TabIndex = 4;
             this.label1.Text = "Highscores";
+            // 
+            // BackToMainButton01
+            // 
+            this.BackToMainButton01.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BackToMainButton01.Location = new System.Drawing.Point(18, 17);
+            this.BackToMainButton01.Name = "BackToMainButton01";
+            this.BackToMainButton01.Size = new System.Drawing.Size(148, 58);
+            this.BackToMainButton01.TabIndex = 3;
+            this.BackToMainButton01.Text = "Back";
+            this.BackToMainButton01.UseVisualStyleBackColor = true;
             // 
             // OptionsPanel
             // 
@@ -205,21 +215,11 @@
             this.BackToMainButton02.Text = "Back";
             this.BackToMainButton02.UseVisualStyleBackColor = true;
             // 
-            // MainLabelText
-            // 
-            this.MainLabelText.AutoSize = true;
-            this.MainLabelText.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MainLabelText.Location = new System.Drawing.Point(522, 50);
-            this.MainLabelText.Name = "MainLabelText";
-            this.MainLabelText.Size = new System.Drawing.Size(191, 31);
-            this.MainLabelText.TabIndex = 6;
-            this.MainLabelText.Text = "Memory Game";
-            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 668);
+            this.ClientSize = new System.Drawing.Size(1264, 667);
             this.Controls.Add(this.OptionsPanel);
             this.Controls.Add(this.HighscoresPanel);
             this.Controls.Add(this.SetsLabel);

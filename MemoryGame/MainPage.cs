@@ -31,11 +31,11 @@ namespace MemoryGame
             SoundPlayer = new SoundPlayer(Properties.Resources.ClickButton);
             //SoundPlayer.Load();
             //SoundPlayer.Play();
-
             MainPanel.Location = new Point(0, 0);
             StartGameButton.Click += new EventHandler(this.StartGame);
             HighscoresButton.Click += new EventHandler(this.OpenHighScores);
             OptionsButton.Click += new EventHandler(this.OpenOptions);
+            ExitButton.Click += new EventHandler(this.QuitGame);
 
             BackToMainButton01.Click += new EventHandler(this.Back);
             BackToMainButton02.Click += new EventHandler(this.Back);
@@ -110,6 +110,11 @@ namespace MemoryGame
             MainPanel.Visible = true;
             MainPanel.Location = new Point(0, 0);
         }
+
+        public void QuitGame()
+        {
+            Application.Exit();
+        }
         
         public void ClickedCard(object sender, EventArgs e)
         {      
@@ -160,7 +165,6 @@ namespace MemoryGame
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
 
         private void StartGameButton_Click(object sender, EventArgs e)
