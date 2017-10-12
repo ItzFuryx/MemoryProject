@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Media;
 using System.Windows.Forms;
 
 namespace MemoryGame
@@ -19,13 +20,25 @@ namespace MemoryGame
         internal MemoryButton FirstButton;
         
         internal MemoryType[] Types = new MemoryType[MemoryItems];
+        internal SoundPlayer SoundPlayer;
 
         public MainPage()
         {
-            InitializeComponent();       
+            InitializeComponent();
+            
 
+            SoundPlayer = new SoundPlayer(Properties.Resources.ClickButton);
+            SoundPlayer.Load();
+            SoundPlayer.Play();
+
+            MainPanel.Location = new Point(0, 0);
             StartGameButton.Click += new EventHandler(this.StartGame);
-            BackButton.Click += new EventHandler(this.Back);
+            HighscoresButton.Click += new EventHandler(this.OpenHighScores);
+            OptionsButton.Click += new EventHandler(this.OpenOptions);
+
+            BackToMainButton01.Click += new EventHandler(this.Back);
+            BackToMainButton02.Click += new EventHandler(this.Back);
+            BackToMainButton03.Click += new EventHandler(this.Back);
 
             for (int i =0; i < MemoryItems; i++)
             {
@@ -62,6 +75,22 @@ namespace MemoryGame
             }    
         }
 
+        public void OpenHighScores(object sender, EventArgs e)
+        {
+            SoundPlayer.Play();
+            MainPanel.Visible = false;
+            HighscoresPanel.Visible = true;
+            HighscoresPanel.Location = new Point(0, 0);
+        }
+
+        public void OpenOptions(object sender, EventArgs e)
+        {
+            SoundPlayer.Play();
+            MainPanel.Visible = false;
+            OptionsPanel.Visible = true;
+            OptionsPanel.Location = new Point(0, 0);
+        }
+
         public void StartGame(object sender, EventArgs e)
         {
             MainPanel.Visible  = false;
@@ -70,8 +99,14 @@ namespace MemoryGame
 
         public void Back(object sender, EventArgs e)
         {
-            MainPanel.Visible = true;
+            SoundPlayer = new SoundPlayer(Properties.Resources.ClickButton);
+            SoundPlayer.Load();
+            SoundPlayer.Play();
+            HighscoresPanel.Visible = false;
             SetsLabel.Visible = false;
+            OptionsPanel.Visible = false;
+            MainPanel.Visible = true;
+            MainPanel.Location = new Point(0, 0);
         }
         
         public void ClickedCard(object sender, EventArgs e)
@@ -121,5 +156,6 @@ namespace MemoryGame
         {
 
         }
+
     }
 }

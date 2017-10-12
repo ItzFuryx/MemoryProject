@@ -30,74 +30,211 @@
         {
             this.GridPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.StartGameButton = new System.Windows.Forms.Button();
-            this.BackButton = new System.Windows.Forms.Button();
+            this.BackToMainButton03 = new System.Windows.Forms.Button();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.LoadGameButton = new System.Windows.Forms.Button();
+            this.ExitButton = new System.Windows.Forms.Button();
+            this.OptionsButton = new System.Windows.Forms.Button();
+            this.HighscoresButton = new System.Windows.Forms.Button();
             this.SetsLabel = new System.Windows.Forms.Label();
+            this.HighscoresPanel = new System.Windows.Forms.Panel();
+            this.BackToMainButton01 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.OptionsPanel = new System.Windows.Forms.Panel();
+            this.OptionsLabel = new System.Windows.Forms.Label();
+            this.BackToMainButton02 = new System.Windows.Forms.Button();
+            this.MainLabelText = new System.Windows.Forms.Label();
             this.MainPanel.SuspendLayout();
+            this.HighscoresPanel.SuspendLayout();
+            this.OptionsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // GridPanel
             // 
-            this.GridPanel.Location = new System.Drawing.Point(594, 100);
-            this.GridPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GridPanel.Location = new System.Drawing.Point(396, 65);
             this.GridPanel.Name = "GridPanel";
-            this.GridPanel.Size = new System.Drawing.Size(812, 900);
+            this.GridPanel.Size = new System.Drawing.Size(541, 585);
             this.GridPanel.TabIndex = 0;
             // 
             // StartGameButton
             // 
-            this.StartGameButton.Location = new System.Drawing.Point(740, 248);
-            this.StartGameButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.StartGameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StartGameButton.Location = new System.Drawing.Point(538, 124);
             this.StartGameButton.Name = "StartGameButton";
-            this.StartGameButton.Size = new System.Drawing.Size(222, 89);
+            this.StartGameButton.Size = new System.Drawing.Size(148, 58);
             this.StartGameButton.TabIndex = 1;
             this.StartGameButton.Text = "Start Game";
             this.StartGameButton.UseVisualStyleBackColor = true;
             // 
-            // BackButton
+            // BackToMainButton03
             // 
-            this.BackButton.Location = new System.Drawing.Point(276, 100);
-            this.BackButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.BackButton.Name = "BackButton";
-            this.BackButton.Size = new System.Drawing.Size(222, 89);
-            this.BackButton.TabIndex = 2;
-            this.BackButton.Text = "Back";
-            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackToMainButton03.Location = new System.Drawing.Point(184, 65);
+            this.BackToMainButton03.Name = "BackToMainButton03";
+            this.BackToMainButton03.Size = new System.Drawing.Size(148, 58);
+            this.BackToMainButton03.TabIndex = 2;
+            this.BackToMainButton03.Text = "Back";
+            this.BackToMainButton03.UseVisualStyleBackColor = true;
             // 
             // MainPanel
             // 
-            this.MainPanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.MainPanel.BackColor = System.Drawing.Color.DimGray;
+            this.MainPanel.BackgroundImage = global::MemoryGame.Properties.Resources.StarWars_Background;
+            this.MainPanel.Controls.Add(this.MainLabelText);
+            this.MainPanel.Controls.Add(this.LoadGameButton);
+            this.MainPanel.Controls.Add(this.ExitButton);
+            this.MainPanel.Controls.Add(this.OptionsButton);
+            this.MainPanel.Controls.Add(this.HighscoresButton);
             this.MainPanel.Controls.Add(this.StartGameButton);
-            this.MainPanel.Location = new System.Drawing.Point(13, 14);
-            this.MainPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MainPanel.Location = new System.Drawing.Point(432, 23);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(1900, 1108);
+            this.MainPanel.Size = new System.Drawing.Size(1267, 720);
             this.MainPanel.TabIndex = 9;
+            // 
+            // LoadGameButton
+            // 
+            this.LoadGameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoadGameButton.Location = new System.Drawing.Point(538, 188);
+            this.LoadGameButton.Name = "LoadGameButton";
+            this.LoadGameButton.Size = new System.Drawing.Size(148, 58);
+            this.LoadGameButton.TabIndex = 5;
+            this.LoadGameButton.Text = "Load Game";
+            this.LoadGameButton.UseVisualStyleBackColor = true;
+            // 
+            // ExitButton
+            // 
+            this.ExitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExitButton.Location = new System.Drawing.Point(538, 380);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(148, 58);
+            this.ExitButton.TabIndex = 4;
+            this.ExitButton.Text = "Exit";
+            this.ExitButton.UseVisualStyleBackColor = true;
+            // 
+            // OptionsButton
+            // 
+            this.OptionsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OptionsButton.Location = new System.Drawing.Point(538, 316);
+            this.OptionsButton.Name = "OptionsButton";
+            this.OptionsButton.Size = new System.Drawing.Size(148, 58);
+            this.OptionsButton.TabIndex = 3;
+            this.OptionsButton.Text = "Options";
+            this.OptionsButton.UseVisualStyleBackColor = true;
+            // 
+            // HighscoresButton
+            // 
+            this.HighscoresButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HighscoresButton.Location = new System.Drawing.Point(538, 252);
+            this.HighscoresButton.Name = "HighscoresButton";
+            this.HighscoresButton.Size = new System.Drawing.Size(148, 58);
+            this.HighscoresButton.TabIndex = 2;
+            this.HighscoresButton.Text = "Highscores";
+            this.HighscoresButton.UseVisualStyleBackColor = true;
             // 
             // SetsLabel
             // 
             this.SetsLabel.AutoSize = true;
-            this.SetsLabel.Location = new System.Drawing.Point(404, 235);
+            this.SetsLabel.Location = new System.Drawing.Point(269, 153);
+            this.SetsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SetsLabel.Name = "SetsLabel";
-            this.SetsLabel.Size = new System.Drawing.Size(18, 20);
+            this.SetsLabel.Size = new System.Drawing.Size(13, 13);
             this.SetsLabel.TabIndex = 5;
             this.SetsLabel.Text = "0";
             this.SetsLabel.Visible = false;
             // 
+            // HighscoresPanel
+            // 
+            this.HighscoresPanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.HighscoresPanel.BackgroundImage = global::MemoryGame.Properties.Resources.StarWars_Background;
+            this.HighscoresPanel.Controls.Add(this.label1);
+            this.HighscoresPanel.Controls.Add(this.BackToMainButton01);
+            this.HighscoresPanel.Location = new System.Drawing.Point(272, 292);
+            this.HighscoresPanel.Name = "HighscoresPanel";
+            this.HighscoresPanel.Size = new System.Drawing.Size(1267, 720);
+            this.HighscoresPanel.TabIndex = 10;
+            this.HighscoresPanel.Visible = false;
+            // 
+            // BackToMainButton01
+            // 
+            this.BackToMainButton01.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BackToMainButton01.Location = new System.Drawing.Point(18, 17);
+            this.BackToMainButton01.Name = "BackToMainButton01";
+            this.BackToMainButton01.Size = new System.Drawing.Size(148, 58);
+            this.BackToMainButton01.TabIndex = 3;
+            this.BackToMainButton01.Text = "Back";
+            this.BackToMainButton01.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(527, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(121, 26);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Highscores";
+            // 
+            // OptionsPanel
+            // 
+            this.OptionsPanel.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.OptionsPanel.BackgroundImage = global::MemoryGame.Properties.Resources.StarWars_Background;
+            this.OptionsPanel.Controls.Add(this.OptionsLabel);
+            this.OptionsPanel.Controls.Add(this.BackToMainButton02);
+            this.OptionsPanel.Location = new System.Drawing.Point(164, 433);
+            this.OptionsPanel.Name = "OptionsPanel";
+            this.OptionsPanel.Size = new System.Drawing.Size(1267, 720);
+            this.OptionsPanel.TabIndex = 11;
+            this.OptionsPanel.Visible = false;
+            // 
+            // OptionsLabel
+            // 
+            this.OptionsLabel.AutoSize = true;
+            this.OptionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OptionsLabel.Location = new System.Drawing.Point(527, 31);
+            this.OptionsLabel.Name = "OptionsLabel";
+            this.OptionsLabel.Size = new System.Drawing.Size(87, 26);
+            this.OptionsLabel.TabIndex = 4;
+            this.OptionsLabel.Text = "Options";
+            // 
+            // BackToMainButton02
+            // 
+            this.BackToMainButton02.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BackToMainButton02.Location = new System.Drawing.Point(18, 17);
+            this.BackToMainButton02.Name = "BackToMainButton02";
+            this.BackToMainButton02.Size = new System.Drawing.Size(148, 58);
+            this.BackToMainButton02.TabIndex = 3;
+            this.BackToMainButton02.Text = "Back";
+            this.BackToMainButton02.UseVisualStyleBackColor = true;
+            // 
+            // MainLabelText
+            // 
+            this.MainLabelText.AutoSize = true;
+            this.MainLabelText.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainLabelText.Location = new System.Drawing.Point(522, 50);
+            this.MainLabelText.Name = "MainLabelText";
+            this.MainLabelText.Size = new System.Drawing.Size(191, 31);
+            this.MainLabelText.TabIndex = 6;
+            this.MainLabelText.Text = "Memory Game";
+            // 
             // MainPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1896, 1028);
+            this.ClientSize = new System.Drawing.Size(1264, 668);
+            this.Controls.Add(this.OptionsPanel);
+            this.Controls.Add(this.HighscoresPanel);
             this.Controls.Add(this.SetsLabel);
             this.Controls.Add(this.MainPanel);
-            this.Controls.Add(this.BackButton);
+            this.Controls.Add(this.BackToMainButton03);
             this.Controls.Add(this.GridPanel);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainPage";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MainPanel.ResumeLayout(false);
+            this.MainPanel.PerformLayout();
+            this.HighscoresPanel.ResumeLayout(false);
+            this.HighscoresPanel.PerformLayout();
+            this.OptionsPanel.ResumeLayout(false);
+            this.OptionsPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -107,9 +244,20 @@
 
         private System.Windows.Forms.FlowLayoutPanel GridPanel;
         private System.Windows.Forms.Button StartGameButton;
-        private System.Windows.Forms.Button BackButton;
+        private System.Windows.Forms.Button BackToMainButton03;
         private System.Windows.Forms.Label SetsLabel;
         public System.Windows.Forms.Panel MainPanel;
+        private System.Windows.Forms.Button LoadGameButton;
+        private System.Windows.Forms.Button ExitButton;
+        private System.Windows.Forms.Button OptionsButton;
+        private System.Windows.Forms.Button HighscoresButton;
+        public System.Windows.Forms.Panel HighscoresPanel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button BackToMainButton01;
+        public System.Windows.Forms.Panel OptionsPanel;
+        private System.Windows.Forms.Label OptionsLabel;
+        private System.Windows.Forms.Button BackToMainButton02;
+        private System.Windows.Forms.Label MainLabelText;
     }
 }
 
