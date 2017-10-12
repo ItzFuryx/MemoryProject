@@ -68,7 +68,7 @@ namespace MemoryGame
                     ButtonArray[num].Button = new Button() { Text = null,
                         BackColor = Color.Gray,
                         BackgroundImage = Properties.Resources.BS,
-                        Width = 125, Height = 125, };
+                        Width = 100, Height = 150 };
                         ButtonArray[num].Button.Click += new EventHandler(this.ClickedCard);
                         ButtonArray[num].Type = Types[num];
 

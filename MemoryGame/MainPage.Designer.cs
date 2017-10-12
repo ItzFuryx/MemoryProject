@@ -51,9 +51,9 @@
             // 
             // GridPanel
             // 
-            this.GridPanel.Location = new System.Drawing.Point(396, 65);
+            this.GridPanel.Location = new System.Drawing.Point(396, 12);
             this.GridPanel.Name = "GridPanel";
-            this.GridPanel.Size = new System.Drawing.Size(541, 585);
+            this.GridPanel.Size = new System.Drawing.Size(495, 657);
             this.GridPanel.TabIndex = 0;
             // 
             // StartGameButton
@@ -85,7 +85,7 @@
             this.MainPanel.Controls.Add(this.OptionsButton);
             this.MainPanel.Controls.Add(this.HighscoresButton);
             this.MainPanel.Controls.Add(this.StartGameButton);
-            this.MainPanel.Location = new System.Drawing.Point(432, 23);
+            this.MainPanel.Location = new System.Drawing.Point(1045, 46);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(1267, 720);
             this.MainPanel.TabIndex = 9;
@@ -219,7 +219,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 667);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.OptionsPanel);
             this.Controls.Add(this.HighscoresPanel);
             this.Controls.Add(this.SetsLabel);
