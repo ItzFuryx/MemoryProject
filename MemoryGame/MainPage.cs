@@ -17,7 +17,6 @@ namespace MemoryGame
         internal int Sets = 0;
         internal MemoryButton[] ButtonArray = new MemoryButton[MemoryItems];
         internal MemoryButton FirstButton;
-        internal MemoryButton SecondButton;
         
         internal MemoryType[] Types = new MemoryType[MemoryItems];
 
@@ -90,36 +89,32 @@ namespace MemoryGame
                     }
                     else if(FirstButton != null)
                     {
-                        SecondButton = ButtonArray[i];
-
+                        MemoryButton secondButton = ButtonArray[i];
                         var t = Task.Run(async delegate
-                                {
-                                    await Task.Delay(1000);
-                                    FixCards();
-                                });
+                        {
+                            await Task.Delay(TimeSpan.FromSeconds(1));
+                        });
+                        t.Wait();
+
+                        if (FirstButton.Type == secondButton.Type)
+                        {
+                            FirstButton.Button.BackColor = Color.Yellow;
+                            secondButton.Button.BackColor = Color.Yellow;
+                        }
+                        else
+                        {
+                            secondButton.Button.BackColor = Color.Gray;
+                            secondButton.Button.Text = string.Empty;
+                            FirstButton.Button.BackColor = Color.Gray;
+                            FirstButton.Button.Text = string.Empty;
+                        }
+                        FirstButton = null;
                     }
                     SetsLabel.Text = ((Sets+1)/2).ToString();
                     Sets++;
-                     break;
+                    break;
                 }
             }            
-        }
-
-        void FixCards()
-        {
-            if (FirstButton.Type == SecondButton.Type)
-            {
-                FirstButton.Button.BackColor = Color.Yellow;
-                SecondButton.Button.BackColor = Color.Yellow;
-            }
-            else
-            {
-                SecondButton.Button.BackColor = Color.Gray;
-                SecondButton.Button.Text = string.Empty;
-                FirstButton.Button.BackColor = Color.Gray;
-                FirstButton.Button.Text = string.Empty;
-            }
-            FirstButton = null;
         }
 
         private void Form1_Load(object sender, EventArgs e)
