@@ -145,7 +145,9 @@ namespace MemoryGame
                         if (FirstButton.Type == secondButton.Type)
                         {
                             FirstButton.Button.BackColor = Color.Yellow;
+                            FirstButton.Button = null;
                             secondButton.Button.BackColor = Color.Yellow;
+                            secondButton.Button = null;
                         }
                         else
                         {
@@ -171,5 +173,6 @@ namespace MemoryGame
         {
 
         }
+       
     }
 }
