@@ -22,14 +22,15 @@ namespace MemoryGame
         internal MemoryType[] Types = new MemoryType[MemoryItems];
         internal SoundPlayer SoundPlayer;
 
+        int num = 0;
+
         public MainPage()
         {
             InitializeComponent();
             
-
             SoundPlayer = new SoundPlayer(Properties.Resources.ClickButton);
-            SoundPlayer.Load();
-            SoundPlayer.Play();
+            //SoundPlayer.Load();
+            //SoundPlayer.Play();
 
             MainPanel.Location = new Point(0, 0);
             StartGameButton.Click += new EventHandler(this.StartGame);
@@ -40,13 +41,15 @@ namespace MemoryGame
             BackToMainButton02.Click += new EventHandler(this.Back);
             BackToMainButton03.Click += new EventHandler(this.Back);
 
-            for (int i =0; i < MemoryItems; i++)
+            for (int i = 0; i < MemoryItems; i++)
             {
-                
-                Types[i] = (MemoryType)i;
-                if (i >= 8)
+                if (i < 8)
                 {
-                    Types[i] = (MemoryType)i - MemoryItems/2;
+                    Types[i] = (MemoryType)i;
+                }
+                else
+                {
+                    Types[i] = (MemoryType)i - MemoryItems / 2;
                 }
             }
 
@@ -57,8 +60,7 @@ namespace MemoryGame
             {
                 ButtonArray[i] = new MemoryButton();
             }
-
-            int num = 0;
+           
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
@@ -100,7 +102,7 @@ namespace MemoryGame
         public void Back(object sender, EventArgs e)
         {
             SoundPlayer = new SoundPlayer(Properties.Resources.ClickButton);
-            SoundPlayer.Load();
+            //SoundPlayer.Load();
             SoundPlayer.Play();
             HighscoresPanel.Visible = false;
             SetsLabel.Visible = false;
@@ -113,6 +115,10 @@ namespace MemoryGame
         {      
             for (int i = 0; i < MemoryItems; i++)
             {
+                if(FirstButton != null)
+                    if(sender == FirstButton.Button)
+                        break;
+
                 if (sender == ButtonArray[i].Button)
                 {
                     ButtonArray[i].Button.BackColor = Color.MediumVioletRed;
@@ -157,5 +163,9 @@ namespace MemoryGame
 
         }
 
+        private void StartGameButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
