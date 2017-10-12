@@ -111,7 +111,7 @@ namespace MemoryGame
             MainPanel.Location = new Point(0, 0);
         }
 
-        public void QuitGame()
+        public void QuitGame(object sender, EventArgs e)
         {
             Application.Exit();
         }
