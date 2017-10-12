@@ -91,5 +91,8 @@
   <ItemGroup>
     <None Include="Assets\Art\20151222_starwarsTFA_splash.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Art\BS.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -117,12 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="BS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Art\BS.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ClickButton" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAEAQAAABZTeXN0ZW0uSU8uTWVtb3J5U3RyZWFtCgAAAAdfYnVmZmVyB19v
         cmlnaW4JX3Bvc2l0aW9uB19sZW5ndGgJX2NhcGFjaXR5C19leHBhbmRhYmxlCV93cml0YWJsZQpfZXhw
         b3NhYmxlB19pc09wZW4dTWFyc2hhbEJ5UmVmT2JqZWN0K19faWRlbnRpdHkHAAAAAAAAAAACAggICAgB
-        AQEBCQIAAAAAAAAAAAAAAPw4AwD8OAMAAAEAAQoPAgAAAPw4AwACUklGRvQ4AwBXQVZFZm10IBoAAAAB
+        AQEBCQIAAAAAAAAA/DgDAPw4AwD8OAMAAAEAAQoPAgAAAPw4AwACUklGRvQ4AwBXQVZFZm10IBoAAAAB
         AAIARKwAABCxAgAEABAACAAIBwkgMRIBIGRhdGFsNwMAv/q/+nXsdeyR35HfANUA1YPNg82kyaTJq8mr
         yZXNlc0c1RzVud+536bspuzz+vP6mwmbCZUXlRffI98jly2XLQo0CjTDNsM2kDWQNYcwhzAEKAQooxyj
         HDUPNQ+rAKsAF/IX8obkhuTt2O3YH9Af0L7KvsouyS7JjMuMy6zRrNEd2x3bM+cz5w/1D/W0A7QDFRIV

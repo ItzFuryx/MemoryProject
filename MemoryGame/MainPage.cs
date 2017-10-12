@@ -65,8 +65,9 @@ namespace MemoryGame
             {
                 for (int j = 0; j < 4; j++)
                 {
-                  ButtonArray[num].Button = new Button() { Text = null,
+                    ButtonArray[num].Button = new Button() { Text = null,
                         BackColor = Color.Gray,
+                        BackgroundImage = Properties.Resources.BS,
                         Width = 125, Height = 125, };
                         ButtonArray[num].Button.Click += new EventHandler(this.ClickedCard);
                         ButtonArray[num].Type = Types[num];
@@ -104,6 +105,7 @@ namespace MemoryGame
             SoundPlayer = new SoundPlayer(Properties.Resources.ClickButton);
             //SoundPlayer.Load();
             SoundPlayer.Play();
+
             HighscoresPanel.Visible = false;
             SetsLabel.Visible = false;
             OptionsPanel.Visible = false;
