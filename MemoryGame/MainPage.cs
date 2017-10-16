@@ -181,6 +181,7 @@ namespace MemoryGame
                 ButtonArray[count].Button.BackColor = Color.Gray;
                 ButtonArray[count].Button.Text = null;
                 Sets = 0;
+                SetsLabel.Text = "0";
             }
         }
     }
