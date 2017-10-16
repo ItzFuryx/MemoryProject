@@ -15,14 +15,18 @@ namespace MemoryGame
     public partial class MainPage : Form
     {
         internal const int MemoryItems = 16;
-        internal int Sets = 0;
-        internal MemoryButton[] ButtonArray = new MemoryButton[MemoryItems];
-        internal MemoryButton FirstButton;
+
+        #region private VARS
+        private MemoryButton[] ButtonArray = new MemoryButton[MemoryItems];       
+        private MemoryType[] Types = new MemoryType[MemoryItems];
+        private MemoryButton FirstButton;        
         
-        internal MemoryType[] Types = new MemoryType[MemoryItems];
-        internal SoundPlayer SoundPlayer;
-        int Win = 0;
-        int Num = 0;
+        private int Sets = 0;
+        private int WinCondition = 0;
+        private int Num = 0;
+
+        private SoundPlayer SoundPlayer;
+#endregion
 
         public MainPage()
         {
@@ -78,49 +82,6 @@ namespace MemoryGame
             }    
         }
 
-        public void OpenHighScores(object sender, EventArgs e)
-        {
-            SoundPlayer.Play();
-            MainPanel.Visible = false;
-            HighscoresPanel.Visible = true;
-            HighscoresPanel.Location = new Point(0, 0);
-        }
-
-        public void OpenOptions(object sender, EventArgs e)
-        {
-            SoundPlayer.Play();
-            MainPanel.Visible = false;
-            OptionsPanel.Visible = true;
-            OptionsPanel.Location = new Point(0, 0);
-        }
-
-        public void StartGame(object sender, EventArgs e)
-        {
-            MainPanel.Visible  = false;
-            SetsLabel.Visible = true;
-            UsernameLabel.Visible = true;
-            resetbutton.Visible = true;
-        }
-
-        public void Back(object sender, EventArgs e)
-        {
-            SoundPlayer = new SoundPlayer(Properties.Resources.ClickButton);
-            //SoundPlayer.Load();
-            SoundPlayer.Play();
-            resetbutton.Visible = false;
-            HighscoresPanel.Visible = false;
-            SetsLabel.Visible = false;
-            OptionsPanel.Visible = false;
-            UsernameLabel.Visible = false;
-            MainPanel.Visible = true;
-            MainPanel.Location = new Point(0, 0);
-        }
-
-        public void QuitGame(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-        
         public void ClickedCard(object sender, EventArgs e)
         {      
             for (int i = 0; i < MemoryItems; i++)
@@ -179,7 +140,7 @@ namespace MemoryGame
                             FirstButton.Succes = true;
                             secondButton.Succes = true;
                             //word nog veranderen bij lan
-                            Win++;
+                            WinCondition++;
                         }
                         else
                         {
@@ -190,36 +151,86 @@ namespace MemoryGame
                     }
                     SetsLabel.Text = ((Sets+1)/2).ToString();
                     Sets++;
-                    if (Win == 8)
+                    if (WinCondition == 8)
                     {
-                        //wat er gebeurt als je hebt gewonnen
-                        Win = 0;
+                        OnGameCompleted();
                     }
                     break;
                 }
-            } 
-           
-        }
-        
-        
+            }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
         }
 
-        private void resetbutton_Click(object sender, EventArgs e)
+        private void Reset(object sender, EventArgs e)
         {
-            for(int count = 0; count < 16; count++)
+            for (int i = 0; i < MemoryItems; i++)
             {
-                ButtonArray[count].Button.BackgroundImage = Properties.Resources.BS;
+                ButtonArray[i].Button.BackgroundImage = Properties.Resources.BS;
+                ButtonArray[i].Succes = false;
                 Sets = 0;
                 SetsLabel.Text = "0";
             }
         }
 
-        private void FirstUsernameBox_TextChanged(object sender, EventArgs e)
+        private void OnGameCompleted()
+        {
+            WinCondition = 0;
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+        }
+
+
+        #region Menu Functions
+
+        public void OpenHighScores(object sender, EventArgs e)
+        {
+            SoundPlayer.Play();
+            MainPanel.Visible = false;
+            HighscoresPanel.Visible = true;
+            HighscoresPanel.Location = new Point(0, 0);
+        }
+
+        public void OpenOptions(object sender, EventArgs e)
+        {
+            SoundPlayer.Play();
+            MainPanel.Visible = false;
+            OptionsPanel.Visible = true;
+            OptionsPanel.Location = new Point(0, 0);
+        }
+
+        public void StartGame(object sender, EventArgs e)
+        {
+            MainPanel.Visible = false;
+            SetsLabel.Visible = true;
+            UsernameLabel.Visible = true;
+            ResetButton.Visible = true;
+        }
+
+        public void Back(object sender, EventArgs e)
+        {
+            SoundPlayer = new SoundPlayer(Properties.Resources.ClickButton);
+            //SoundPlayer.Load();
+            SoundPlayer.Play();
+            ResetButton.Visible = false;
+            HighscoresPanel.Visible = false;
+            SetsLabel.Visible = false;
+            OptionsPanel.Visible = false;
+            UsernameLabel.Visible = false;
+            MainPanel.Visible = true;
+            MainPanel.Location = new Point(0, 0);
+        }
+
+        public void QuitGame(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void SetUsername(object sender, EventArgs e)
         {
             UsernameLabel.Text = FirstUsernameBox.Text;
         }
+        #endregion
     }
 }

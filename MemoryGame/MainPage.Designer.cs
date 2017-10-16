@@ -32,6 +32,8 @@
             this.StartGameButton = new System.Windows.Forms.Button();
             this.BackToMainButton03 = new System.Windows.Forms.Button();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.FirstUsernameBox = new System.Windows.Forms.TextBox();
             this.MainLabelText = new System.Windows.Forms.Label();
             this.LoadGameButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
@@ -44,9 +46,7 @@
             this.OptionsPanel = new System.Windows.Forms.Panel();
             this.OptionsLabel = new System.Windows.Forms.Label();
             this.BackToMainButton02 = new System.Windows.Forms.Button();
-            this.resetbutton = new System.Windows.Forms.Button();
-            this.FirstUsernameBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.ResetButton = new System.Windows.Forms.Button();
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.MainPanel.SuspendLayout();
             this.HighscoresPanel.SuspendLayout();
@@ -95,6 +95,25 @@
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(1267, 720);
             this.MainPanel.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(173, 67);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(119, 26);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Username:";
+            // 
+            // FirstUsernameBox
+            // 
+            this.FirstUsernameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FirstUsernameBox.Location = new System.Drawing.Point(173, 124);
+            this.FirstUsernameBox.Name = "FirstUsernameBox";
+            this.FirstUsernameBox.Size = new System.Drawing.Size(119, 32);
+            this.FirstUsernameBox.TabIndex = 7;
+            this.FirstUsernameBox.TextChanged += new System.EventHandler(this.SetUsername);
             // 
             // MainLabelText
             // 
@@ -221,35 +240,16 @@
             this.BackToMainButton02.Text = "Back";
             this.BackToMainButton02.UseVisualStyleBackColor = true;
             // 
-            // resetbutton
+            // ResetButton
             // 
-            this.resetbutton.Location = new System.Drawing.Point(184, 189);
-            this.resetbutton.Name = "resetbutton";
-            this.resetbutton.Size = new System.Drawing.Size(148, 58);
-            this.resetbutton.TabIndex = 12;
-            this.resetbutton.Text = "Reset";
-            this.resetbutton.UseVisualStyleBackColor = true;
-            this.resetbutton.Visible = false;
-            this.resetbutton.Click += new System.EventHandler(this.resetbutton_Click);
-            // 
-            // FirstUsernameBox
-            // 
-            this.FirstUsernameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FirstUsernameBox.Location = new System.Drawing.Point(173, 124);
-            this.FirstUsernameBox.Name = "FirstUsernameBox";
-            this.FirstUsernameBox.Size = new System.Drawing.Size(119, 32);
-            this.FirstUsernameBox.TabIndex = 7;
-            this.FirstUsernameBox.TextChanged += new System.EventHandler(this.FirstUsernameBox_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(173, 67);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 26);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Username:";
+            this.ResetButton.Location = new System.Drawing.Point(184, 189);
+            this.ResetButton.Name = "ResetButton";
+            this.ResetButton.Size = new System.Drawing.Size(148, 58);
+            this.ResetButton.TabIndex = 12;
+            this.ResetButton.Text = "Reset";
+            this.ResetButton.UseVisualStyleBackColor = true;
+            this.ResetButton.Visible = false;
+            this.ResetButton.Click += new System.EventHandler(this.Reset);
             // 
             // UsernameLabel
             // 
@@ -268,7 +268,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.UsernameLabel);
-            this.Controls.Add(this.resetbutton);
+            this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.OptionsPanel);
             this.Controls.Add(this.HighscoresPanel);
             this.Controls.Add(this.SetsLabel);
@@ -307,7 +307,7 @@
         private System.Windows.Forms.Label OptionsLabel;
         private System.Windows.Forms.Button BackToMainButton02;
         private System.Windows.Forms.Label MainLabelText;
-        private System.Windows.Forms.Button resetbutton;
+        private System.Windows.Forms.Button ResetButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox FirstUsernameBox;
         private System.Windows.Forms.Label UsernameLabel;
