@@ -98,6 +98,7 @@ namespace MemoryGame
         {
             MainPanel.Visible  = false;
             SetsLabel.Visible = true;
+            resetbutton.Visible = true;
         }
 
         public void Back(object sender, EventArgs e)
@@ -105,7 +106,7 @@ namespace MemoryGame
             SoundPlayer = new SoundPlayer(Properties.Resources.ClickButton);
             //SoundPlayer.Load();
             SoundPlayer.Play();
-
+            resetbutton.Visible = false;
             HighscoresPanel.Visible = false;
             SetsLabel.Visible = false;
             OptionsPanel.Visible = false;
@@ -175,6 +176,14 @@ namespace MemoryGame
         {
 
         }
-       
+
+        private void resetbutton_Click(object sender, EventArgs e)
+        {
+            for(int count = 0; count < 16; count++)
+            {
+                ButtonArray[count].Button.BackColor = Color.Gray;
+                ButtonArray[count].Button.Text = null;
+            }
+        }
     }
 }

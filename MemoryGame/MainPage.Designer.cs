@@ -44,6 +44,7 @@
             this.OptionsPanel = new System.Windows.Forms.Panel();
             this.OptionsLabel = new System.Windows.Forms.Label();
             this.BackToMainButton02 = new System.Windows.Forms.Button();
+            this.resetbutton = new System.Windows.Forms.Button();
             this.MainPanel.SuspendLayout();
             this.HighscoresPanel.SuspendLayout();
             this.OptionsPanel.SuspendLayout();
@@ -215,11 +216,23 @@
             this.BackToMainButton02.Text = "Back";
             this.BackToMainButton02.UseVisualStyleBackColor = true;
             // 
+            // resetbutton
+            // 
+            this.resetbutton.Location = new System.Drawing.Point(184, 189);
+            this.resetbutton.Name = "resetbutton";
+            this.resetbutton.Size = new System.Drawing.Size(148, 58);
+            this.resetbutton.TabIndex = 12;
+            this.resetbutton.Text = "Reset";
+            this.resetbutton.UseVisualStyleBackColor = true;
+            this.resetbutton.Visible = false;
+            this.resetbutton.Click += new System.EventHandler(this.resetbutton_Click);
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.resetbutton);
             this.Controls.Add(this.OptionsPanel);
             this.Controls.Add(this.HighscoresPanel);
             this.Controls.Add(this.SetsLabel);
@@ -258,6 +271,7 @@
         private System.Windows.Forms.Label OptionsLabel;
         private System.Windows.Forms.Button BackToMainButton02;
         private System.Windows.Forms.Label MainLabelText;
+        private System.Windows.Forms.Button resetbutton;
     }
 }
 
