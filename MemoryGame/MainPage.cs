@@ -34,7 +34,7 @@ namespace MemoryGame
             
             SoundPlayer = new SoundPlayer(Properties.Resources.ClickButton);
             //SoundPlayer.Load();
-            //SoundPlayer.Play();
+            //SoundPlayer.Play(); 
             MainPanel.Location = new Point(0, 0);
             StartGameButton.Click += new EventHandler(this.StartGame);
             HighscoresButton.Click += new EventHandler(this.OpenHighScores);
@@ -46,7 +46,7 @@ namespace MemoryGame
             BackToMainButton03.Click += new EventHandler(this.Back);
 
             RandomizeCards();
-
+                        
             for (int i = 0; i < ButtonArray.Length; i++)
             {
                 ButtonArray[i] = new MemoryButton();
@@ -183,6 +183,10 @@ namespace MemoryGame
         private void OnGameCompleted()
         {
             WinCondition = 0;
+
+            CreateHighscores();
+            OpenHighScores(this, new EventArgs());
+            Reset(this, new EventArgs());
         }
 #endregion
 
@@ -192,17 +196,30 @@ namespace MemoryGame
 
         #region Menu Functions
 
+        private void CreateHighscores()
+        {
+            Panel panel = new Panel() { Size = new Size(500, 50) };
+            Label nameLabel = new Label() { Text =  "Name = " + UsernameLabel.Text};
+            Label scoreLabel = new Label() { Text = "Sets =" + Sets /2 };
+            panel.Controls.Add(nameLabel);
+            panel.Controls.Add(scoreLabel);
+            nameLabel.Location = new Point(0, 0);
+            scoreLabel.Location = new Point(100, 0);
+
+            HighscorePanel.Controls.Add(panel);
+
+        }
+
         public void OpenHighScores(object sender, EventArgs e)
         {
-            SoundPlayer.Play();
-            MainPanel.Visible = false;
+            HideAll();
             HighscoresPanel.Visible = true;
             HighscoresPanel.Location = new Point(0, 0);
         }
 
         public void OpenOptions(object sender, EventArgs e)
         {
-            SoundPlayer.Play();
+            HideAll();
             MainPanel.Visible = false;
             OptionsPanel.Visible = true;
             OptionsPanel.Location = new Point(0, 0);
@@ -210,7 +227,7 @@ namespace MemoryGame
 
         public void StartGame(object sender, EventArgs e)
         {
-            MainPanel.Visible = false;
+            HideAll();
             SetsLabel.Visible = true;
             UsernameLabel.Visible = true;
             ResetButton.Visible = true;
@@ -218,16 +235,19 @@ namespace MemoryGame
 
         public void Back(object sender, EventArgs e)
         {
-            SoundPlayer = new SoundPlayer(Properties.Resources.ClickButton);
-            //SoundPlayer.Load();
-            SoundPlayer.Play();
+            HideAll();
+            MainPanel.Visible = true;
+            MainPanel.Location = new Point(0, 0);
+        }
+
+        private void HideAll()
+        {
+            MainPanel.Visible = false;
             ResetButton.Visible = false;
             HighscoresPanel.Visible = false;
             SetsLabel.Visible = false;
             OptionsPanel.Visible = false;
             UsernameLabel.Visible = false;
-            MainPanel.Visible = true;
-            MainPanel.Location = new Point(0, 0);
         }
 
         public void QuitGame(object sender, EventArgs e)

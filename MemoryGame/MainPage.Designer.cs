@@ -48,6 +48,7 @@
             this.BackToMainButton02 = new System.Windows.Forms.Button();
             this.ResetButton = new System.Windows.Forms.Button();
             this.UsernameLabel = new System.Windows.Forms.Label();
+            this.HighscorePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.MainPanel.SuspendLayout();
             this.HighscoresPanel.SuspendLayout();
             this.OptionsPanel.SuspendLayout();
@@ -180,9 +181,10 @@
             // 
             this.HighscoresPanel.BackColor = System.Drawing.SystemColors.ControlDark;
             this.HighscoresPanel.BackgroundImage = global::MemoryGame.Properties.Resources.StarWars_Background;
+            this.HighscoresPanel.Controls.Add(this.HighscorePanel);
             this.HighscoresPanel.Controls.Add(this.label1);
             this.HighscoresPanel.Controls.Add(this.BackToMainButton01);
-            this.HighscoresPanel.Location = new System.Drawing.Point(272, 292);
+            this.HighscoresPanel.Location = new System.Drawing.Point(366, 136);
             this.HighscoresPanel.Name = "HighscoresPanel";
             this.HighscoresPanel.Size = new System.Drawing.Size(1267, 720);
             this.HighscoresPanel.TabIndex = 10;
@@ -262,6 +264,13 @@
             this.UsernameLabel.Text = "UsernameHere";
             this.UsernameLabel.Visible = false;
             // 
+            // HighscorePanel
+            // 
+            this.HighscorePanel.Location = new System.Drawing.Point(327, 106);
+            this.HighscorePanel.Name = "HighscorePanel";
+            this.HighscorePanel.Size = new System.Drawing.Size(801, 554);
+            this.HighscorePanel.TabIndex = 5;
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -311,6 +320,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox FirstUsernameBox;
         private System.Windows.Forms.Label UsernameLabel;
+        private System.Windows.Forms.FlowLayoutPanel HighscorePanel;
     }
 }
 
