@@ -45,20 +45,7 @@ namespace MemoryGame
             BackToMainButton02.Click += new EventHandler(this.Back);
             BackToMainButton03.Click += new EventHandler(this.Back);
 
-            for (int i = 0; i < MemoryItems; i++)
-            {
-                if (i < 8)
-                {
-                    Types[i] = (MemoryType)i;
-                }
-                else
-                {
-                    Types[i] = (MemoryType)i - MemoryItems / 2;
-                }
-            }
-
-            Random rnd = new Random();
-            Types = Types.OrderBy(x => rnd.Next()).ToArray();
+            RandomizeCards();
 
             for (int i = 0; i < ButtonArray.Length; i++)
             {
@@ -82,6 +69,7 @@ namespace MemoryGame
             }    
         }
 
+        #region CardFunctions
         public void ClickedCard(object sender, EventArgs e)
         {      
             for (int i = 0; i < MemoryItems; i++)
@@ -161,12 +149,32 @@ namespace MemoryGame
 
         }
 
+        private void RandomizeCards()
+        {
+            for (int i = 0; i < MemoryItems; i++)
+            {
+                if (i < 8)
+                {
+                    Types[i] = (MemoryType)i;
+                }
+                else
+                {
+                    Types[i] = (MemoryType)i - MemoryItems / 2;
+                }
+            }
+
+            Random rnd = new Random();
+            Types = Types.OrderBy(x => rnd.Next()).ToArray();
+        }
+
         private void Reset(object sender, EventArgs e)
         {
+            RandomizeCards();
             for (int i = 0; i < MemoryItems; i++)
             {
                 ButtonArray[i].Button.BackgroundImage = Properties.Resources.BS;
                 ButtonArray[i].Succes = false;
+                ButtonArray[i].Type = Types[i];
                 Sets = 0;
                 SetsLabel.Text = "0";
             }
@@ -176,11 +184,11 @@ namespace MemoryGame
         {
             WinCondition = 0;
         }
+#endregion
 
         private void Form1_Load(object sender, EventArgs e)
         {
         }
-
 
         #region Menu Functions
 
