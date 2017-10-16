@@ -130,7 +130,34 @@ namespace MemoryGame
                 if (sender == ButtonArray[i].Button)
                 {
                     ButtonArray[i].Button.BackColor = Color.MediumVioletRed;
-                    ButtonArray[i].Button.Text = ButtonArray[i].Type.ToString();
+
+                    switch(ButtonArray[i].Type)
+                    {
+                        case MemoryType.Bart:
+                            ButtonArray[i].Button.BackgroundImage = Properties.Resources.KA;
+                            break;
+                        case MemoryType.Casper:
+                            ButtonArray[i].Button.BackgroundImage = Properties.Resources.KJ;
+                            break;
+                        case MemoryType.DieEneGozer:
+                            ButtonArray[i].Button.BackgroundImage = Properties.Resources.KQ;
+                            break;
+                        case MemoryType.Harro:
+                            ButtonArray[i].Button.BackgroundImage = Properties.Resources.KK;
+                            break;
+                        case MemoryType.Keanu:
+                            ButtonArray[i].Button.BackgroundImage = Properties.Resources.SA;
+                            break;
+                        case MemoryType.Kevin:
+                            ButtonArray[i].Button.BackgroundImage = Properties.Resources.SJ;
+                            break;
+                        case MemoryType.Pim:
+                            ButtonArray[i].Button.BackgroundImage = Properties.Resources.SQ;
+                            break;
+                        case MemoryType.StarWars:
+                            ButtonArray[i].Button.BackgroundImage = Properties.Resources.SK;
+                            break;
+                    }
 
                     if (ButtonArray[i].Succes) return;
 

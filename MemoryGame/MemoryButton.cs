@@ -16,8 +16,7 @@ namespace MemoryGame
         Keanu = 4,
         Casper = 5,
         StarWars = 6,
-        DieEneGozer = 7,
-        DieAndereKnul = 8
+        DieEneGozer = 7
     }
 
     class MemoryButton
