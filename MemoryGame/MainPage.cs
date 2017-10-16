@@ -132,6 +132,8 @@ namespace MemoryGame
                     ButtonArray[i].Button.BackColor = Color.MediumVioletRed;
                     ButtonArray[i].Button.Text = ButtonArray[i].Type.ToString();
 
+                    if (ButtonArray[i].Succes) return;
+
                     if (FirstButton == null)
                     {
                         FirstButton = ButtonArray[i];
@@ -148,9 +150,9 @@ namespace MemoryGame
                         if (FirstButton.Type == secondButton.Type)
                         {
                             FirstButton.Button.BackColor = Color.Yellow;
-                            FirstButton.Button = null;
+                            FirstButton.Succes = true;
                             secondButton.Button.BackColor = Color.Yellow;
-                            secondButton.Button = null;
+                            secondButton.Succes = true;
                         }
                         else
                         {
@@ -172,18 +174,13 @@ namespace MemoryGame
         {
         }
 
-        private void StartGameButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void resetbutton_Click(object sender, EventArgs e)
         {
             for(int count = 0; count < 16; count++)
             {
                 ButtonArray[count].Button.BackColor = Color.Gray;
                 ButtonArray[count].Button.Text = null;
-                Sets = 0
+                Sets = 0;
             }
         }
     }

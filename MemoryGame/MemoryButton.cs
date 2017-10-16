@@ -24,5 +24,6 @@ namespace MemoryGame
     {
         internal Button Button = null;
         internal MemoryType Type;
+        internal bool Succes = false;
     }
 }
