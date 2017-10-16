@@ -21,8 +21,8 @@ namespace MemoryGame
         
         internal MemoryType[] Types = new MemoryType[MemoryItems];
         internal SoundPlayer SoundPlayer;
-
-        int num = 0;
+        int Win = 0;
+        int Num = 0;
 
         public MainPage()
         {
@@ -65,15 +65,15 @@ namespace MemoryGame
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    ButtonArray[num].Button = new Button() { Text = null,
+                    ButtonArray[Num].Button = new Button() { Text = null,
                         BackColor = Color.Gray,
                         BackgroundImage = Properties.Resources.BS,
                         Width = 100, Height = 150 };
-                        ButtonArray[num].Button.Click += new EventHandler(this.ClickedCard);
-                        ButtonArray[num].Type = Types[num];
+                        ButtonArray[Num].Button.Click += new EventHandler(this.ClickedCard);
+                        ButtonArray[Num].Type = Types[Num];
 
-                    GridPanel.Controls.Add(ButtonArray[num].Button);
-                    num++;
+                    GridPanel.Controls.Add(ButtonArray[Num].Button);
+                    Num++;
                 }  
             }    
         }
@@ -178,6 +178,8 @@ namespace MemoryGame
                         {
                             FirstButton.Succes = true;
                             secondButton.Succes = true;
+                            //word nog veranderen bij lan
+                            Win++;
                         }
                         else
                         {
@@ -188,10 +190,18 @@ namespace MemoryGame
                     }
                     SetsLabel.Text = ((Sets+1)/2).ToString();
                     Sets++;
+                    if (Win == 8)
+                    {
+                        //wat er gebeurt als je hebt gewonnen
+                        Win = 0;
+                    }
                     break;
                 }
-            }            
+            } 
+           
         }
+        
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
