@@ -19,7 +19,8 @@ namespace MemoryGame
         #region private VARS
         private MemoryButton[] ButtonArray = new MemoryButton[MemoryItems];       
         private MemoryType[] Types = new MemoryType[MemoryItems];
-        private MemoryButton FirstButton;        
+        private MemoryButton FirstButton;
+        private List<Score> Scores = new List<Score>();
         
         private int Sets = 0;
         private int WinCondition = 0;
@@ -198,16 +199,16 @@ namespace MemoryGame
 
         private void CreateHighscores()
         {
-            Panel panel = new Panel() { Size = new Size(500, 50) };
-            Label nameLabel = new Label() { Text =  "Name = " + UsernameLabel.Text};
-            Label scoreLabel = new Label() { Text = "Sets =" + Sets /2 };
-            panel.Controls.Add(nameLabel);
-            panel.Controls.Add(scoreLabel);
-            nameLabel.Location = new Point(0, 0);
-            scoreLabel.Location = new Point(100, 0);
+            Score score = new Score(
+                 new Panel() { Size = new Size(500, 50) },
+                 new Label() { Text = "Name = " + UsernameLabel.Text, Location = new Point(0, 0) },
+                 new Label() { Text = "Sets =" + Sets / 2 , Location = new Point(100, 0) },
+                 UsernameLabel.Text,
+                 Sets);
 
-            HighscorePanel.Controls.Add(panel);
 
+            HighscorePanel.Controls.Add(score.ScorePanel);
+            Scores.Add(score);
         }
 
         public void OpenHighScores(object sender, EventArgs e)
