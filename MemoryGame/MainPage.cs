@@ -98,6 +98,7 @@ namespace MemoryGame
         {
             MainPanel.Visible  = false;
             SetsLabel.Visible = true;
+            UsernameLabel.Visible = true;
             resetbutton.Visible = true;
         }
 
@@ -110,6 +111,7 @@ namespace MemoryGame
             HighscoresPanel.Visible = false;
             SetsLabel.Visible = false;
             OptionsPanel.Visible = false;
+            UsernameLabel.Visible = false;
             MainPanel.Visible = true;
             MainPanel.Location = new Point(0, 0);
         }
@@ -129,9 +131,9 @@ namespace MemoryGame
 
                 if (sender == ButtonArray[i].Button)
                 {
-                    ButtonArray[i].Button.BackColor = Color.MediumVioletRed;
+                    if (ButtonArray[i].Succes) return;
 
-                    switch(ButtonArray[i].Type)
+                    switch (ButtonArray[i].Type)
                     {
                         case MemoryType.Bart:
                             ButtonArray[i].Button.BackgroundImage = Properties.Resources.KA;
@@ -158,9 +160,7 @@ namespace MemoryGame
                             ButtonArray[i].Button.BackgroundImage = Properties.Resources.SK;
                             break;
                     }
-
-                    if (ButtonArray[i].Succes) return;
-
+                    
                     if (FirstButton == null)
                     {
                         FirstButton = ButtonArray[i];
@@ -176,17 +176,13 @@ namespace MemoryGame
 
                         if (FirstButton.Type == secondButton.Type)
                         {
-                            FirstButton.Button.BackColor = Color.Yellow;
                             FirstButton.Succes = true;
-                            secondButton.Button.BackColor = Color.Yellow;
                             secondButton.Succes = true;
                         }
                         else
                         {
-                            secondButton.Button.BackColor = Color.Gray;
-                            secondButton.Button.Text = string.Empty;
-                            FirstButton.Button.BackColor = Color.Gray;
-                            FirstButton.Button.Text = string.Empty;
+                            secondButton.Button.BackgroundImage = Properties.Resources.BS;
+                            FirstButton.Button.BackgroundImage = Properties.Resources.BS;
                         }
                         FirstButton = null;
                     }
@@ -205,11 +201,15 @@ namespace MemoryGame
         {
             for(int count = 0; count < 16; count++)
             {
-                ButtonArray[count].Button.BackColor = Color.Gray;
-                ButtonArray[count].Button.Text = null;
+                ButtonArray[count].Button.BackgroundImage = Properties.Resources.BS;
                 Sets = 0;
                 SetsLabel.Text = "0";
             }
+        }
+
+        private void FirstUsernameBox_TextChanged(object sender, EventArgs e)
+        {
+            UsernameLabel.Text = FirstUsernameBox.Text;
         }
     }
 }
