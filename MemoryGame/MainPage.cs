@@ -197,6 +197,8 @@ namespace MemoryGame
 
         private void Reset(object sender, EventArgs e)
         {
+
+            CreateHighscores();
             RandomizeCards();
             for (int i = 0; i < MemoryItems; i++)
             {
@@ -226,13 +228,17 @@ namespace MemoryGame
 
         private void CreateHighscores()
         {
+            if (Scores.Count >= 5)
+            {
+                return;
+            }
+            
             Score score = new Score(
                  new Panel() { Size = new Size(500, 50) },
                  new Label() { Text = "Name = " + UsernameLabel.Text, Location = new Point(0, 0) },
                  new Label() { Text = "Sets =" + Sets / 2 , Location = new Point(100, 0) },
                  UsernameLabel.Text,
                  Sets);
-
 
             HighscorePanel.Controls.Add(score.ScorePanel);
             Scores.Add(score);
