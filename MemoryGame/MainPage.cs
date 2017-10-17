@@ -27,13 +27,15 @@ namespace MemoryGame
         private int WinCondition = 0;
         private int Num = 0;
 
-
+        private SoundPlayer SoundPlayer;
 #endregion
 
         public MainPage()
         {
             InitializeComponent();
- 
+            
+            SoundPlayer = new SoundPlayer(Properties.Resources.ClickButton);
+            UsernameLabel.Text = "Bard is kut";
             MainPanel.Location = new Point(0, 0);
             StartGameButton.Click += new EventHandler(this.StartGame);
             HighscoresButton.Click += new EventHandler(this.OpenHighScores);
@@ -43,9 +45,6 @@ namespace MemoryGame
             BackToMainButton01.Click += new EventHandler(this.Back);
             BackToMainButton02.Click += new EventHandler(this.Back);
             BackToMainButton03.Click += new EventHandler(this.Back);
-
-            new SoundPlayer(Properties.Resources.BackgroundMusic).PlayLooping();
-
 
             RandomizeCards();
                         
@@ -134,13 +133,11 @@ namespace MemoryGame
                         {
                             FirstButton.Succes = true;
                             secondButton.Succes = true;
-                            new System.Media.SoundPlayer(Properties.Resources.CorrectCardsCombined).Play();
                             //word nog veranderen bij lan
                             WinCondition++;
                         }
                         else
                         {
-                            new System.Media.SoundPlayer(Properties.Resources.Fail).Play();
                             secondButton.Button.BackgroundImage = Properties.Resources.BS;
                             FirstButton.Button.BackgroundImage = Properties.Resources.BS;
                         }
@@ -214,7 +211,6 @@ namespace MemoryGame
                 ButtonArray[i].Type = Types[i];
                 Sets = 0;
                 SetsLabel.Text = "0";
-               
             }
         }
 
@@ -222,13 +218,16 @@ namespace MemoryGame
         {
             WinCondition = 0;
 
+            Sets = Sets / 2;
             CreateHighscores();
             OpenHighScores(this, new EventArgs());
             Reset(this, new EventArgs());
         }
 #endregion
 
-       
+        private void Form1_Load(object sender, EventArgs e)
+        {
+        }
 
         #region Menu Functions
 
@@ -265,7 +264,7 @@ namespace MemoryGame
             Score score = new Score(
                  new Panel() { Size = new Size(500, 50)},
                  new Label() { Text = "Name = " + UsernameLabel.Text, Location = new Point(0, 0) },
-                 new Label() { Text = "Sets = " + Sets / 2 , Location = new Point(100, 0) },
+                 new Label() { Text = "Sets = " + Sets , Location = new Point(100, 0) },
                  UsernameLabel.Text,
                  Sets);
             
@@ -286,7 +285,6 @@ namespace MemoryGame
 
         public void OpenHighScores(object sender, EventArgs e)
         {
-            new System.Media.SoundPlayer(Properties.Resources.MenuClick).Play();
             HideAll();
             HighscoresPanel.Visible = true;
             HighscoresPanel.Location = new Point(0, 0);
@@ -294,7 +292,6 @@ namespace MemoryGame
 
         public void OpenOptions(object sender, EventArgs e)
         {
-            new System.Media.SoundPlayer(Properties.Resources.MenuClick).Play();
             HideAll();
             MainPanel.Visible = false;
             OptionsPanel.Visible = true;
@@ -303,12 +300,10 @@ namespace MemoryGame
 
         public void StartGame(object sender, EventArgs e)
         {
-            new System.Media.SoundPlayer(Properties.Resources.MenuClick).Play();
             HideAll();
             SetsLabel.Visible = true;
             UsernameLabel.Visible = true;
             ResetButton.Visible = true;
-            PlayerLabel.Visible = true;
         }
 
         public void Back(object sender, EventArgs e)
@@ -326,7 +321,6 @@ namespace MemoryGame
             SetsLabel.Visible = false;
             OptionsPanel.Visible = false;
             UsernameLabel.Visible = false;
-            PlayerLabel.Visible = false;
         }
 
         public void QuitGame(object sender, EventArgs e)
@@ -334,26 +328,10 @@ namespace MemoryGame
             Application.Exit();
         }
 
-        
         public void SetUsername(object sender, EventArgs e)
         {
-            if (FirstUsernameBox != null)
-            {
-                UsernameLabel.Text = FirstUsernameBox.Text;
-            }
+            UsernameLabel.Text = FirstUsernameBox.Text;
         }
-        private void SetUsernameTwo(object sender, EventArgs e)
-        {
-            if (SecondUsernameBox != null)
-            {
-                PlayerLabel.Text = SecondUsernameBox.Text;
-            }
-        }     
-
-
-
         #endregion
-
-
     }
 }
