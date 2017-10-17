@@ -95,5 +95,26 @@
   <ItemGroup>
     <None Include="Art\BS.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bear_growl_y.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackgroundMusic.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CorrectCardsCombined.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fail.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MenuClick.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NoMatch.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WilhelmScream.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
