@@ -98,7 +98,7 @@
             this.MainPanel.Controls.Add(this.OptionsButton);
             this.MainPanel.Controls.Add(this.HighscoresButton);
             this.MainPanel.Controls.Add(this.StartGameButton);
-            this.MainPanel.Location = new System.Drawing.Point(1378, 18);
+            this.MainPanel.Location = new System.Drawing.Point(1374, 18);
             this.MainPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(1900, 1108);
@@ -128,6 +128,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label2.Location = new System.Drawing.Point(260, 84);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
@@ -139,6 +140,7 @@
             // 
             this.MainLabelText.AutoSize = true;
             this.MainLabelText.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainLabelText.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.MainLabelText.Location = new System.Drawing.Point(783, 77);
             this.MainLabelText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MainLabelText.Name = "MainLabelText";
