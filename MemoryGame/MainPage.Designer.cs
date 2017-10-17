@@ -51,6 +51,7 @@
             this.ResetButton = new System.Windows.Forms.Button();
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.PlayerLabel = new System.Windows.Forms.Label();
+            this.MultiplayerBeurt = new System.Windows.Forms.Label();
             this.MainPanel.SuspendLayout();
             this.HighscoresPanel.SuspendLayout();
             this.OptionsPanel.SuspendLayout();
@@ -195,7 +196,7 @@
             // SetsLabel
             // 
             this.SetsLabel.AutoSize = true;
-            this.SetsLabel.Location = new System.Drawing.Point(404, 235);
+            this.SetsLabel.Location = new System.Drawing.Point(399, 199);
             this.SetsLabel.Name = "SetsLabel";
             this.SetsLabel.Size = new System.Drawing.Size(18, 20);
             this.SetsLabel.TabIndex = 5;
@@ -297,31 +298,40 @@
             // 
             this.UsernameLabel.AutoSize = true;
             this.UsernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameLabel.Location = new System.Drawing.Point(266, 18);
+            this.UsernameLabel.Location = new System.Drawing.Point(280, 19);
             this.UsernameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.UsernameLabel.Name = "UsernameLabel";
-            this.UsernameLabel.Size = new System.Drawing.Size(155, 38);
+            this.UsernameLabel.Size = new System.Drawing.Size(0, 38);
             this.UsernameLabel.TabIndex = 13;
-            this.UsernameLabel.Text = "Player 1: ";
             this.UsernameLabel.Visible = false;
             // 
             // PlayerLabel
             // 
             this.PlayerLabel.AutoSize = true;
             this.PlayerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PlayerLabel.Location = new System.Drawing.Point(266, 56);
+            this.PlayerLabel.Location = new System.Drawing.Point(280, 57);
             this.PlayerLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PlayerLabel.Name = "PlayerLabel";
-            this.PlayerLabel.Size = new System.Drawing.Size(146, 38);
+            this.PlayerLabel.Size = new System.Drawing.Size(0, 38);
             this.PlayerLabel.TabIndex = 13;
-            this.PlayerLabel.Text = "Player2: ";
             this.PlayerLabel.Visible = false;
+            // 
+            // MultiplayerBeurt
+            // 
+            this.MultiplayerBeurt.AutoSize = true;
+            this.MultiplayerBeurt.Location = new System.Drawing.Point(292, 427);
+            this.MultiplayerBeurt.Name = "MultiplayerBeurt";
+            this.MultiplayerBeurt.Size = new System.Drawing.Size(36, 20);
+            this.MultiplayerBeurt.TabIndex = 14;
+            this.MultiplayerBeurt.Text = "123";
+            this.MultiplayerBeurt.Visible = false;
             // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1896, 1038);
+            this.Controls.Add(this.MultiplayerBeurt);
             this.Controls.Add(this.PlayerLabel);
             this.Controls.Add(this.UsernameLabel);
             this.Controls.Add(this.ResetButton);
@@ -370,6 +380,7 @@
         private System.Windows.Forms.TextBox FirstUsernameBox;
         private System.Windows.Forms.Label PlayerLabel;
         private System.Windows.Forms.TextBox SecondUsernameBox;
+        private System.Windows.Forms.Label MultiplayerBeurt;
     }
 }
 

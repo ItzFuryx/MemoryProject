@@ -22,6 +22,15 @@ namespace MemoryGame
         private MemoryType[] Types = new MemoryType[MemoryItems];
         private MemoryButton FirstButton;
         private List<Score> Scores = new List<Score>();
+
+        //lan multiplayer
+        private int BeurtPlayer1 = 0;
+        private int Beurtplayer2 = 0;
+         
+        private int MemoriesPlayer1 = 0;
+        private int MemoriesPlayer2 = 0;
+        private int SetsPlayer1 = 0;
+        private int SetsPlayer2 = 0;
         
         private int Sets = 0;
         private int WinCondition = 0;
@@ -34,7 +43,6 @@ namespace MemoryGame
             InitializeComponent();
 
             new SoundPlayer(Properties.Resources.BackgroundMusic).PlayLooping();
-            UsernameLabel.Text = "Bard is kut";
             MainPanel.Location = new Point(0, 0);
             StartGameButton.Click += new EventHandler(this.StartGame);
             HighscoresButton.Click += new EventHandler(this.OpenHighScores);
@@ -76,7 +84,9 @@ namespace MemoryGame
 
         #region CardFunctions
         public void ClickedCard(object sender, EventArgs e)
-        {      
+        {
+        
+
             for (int i = 0; i < MemoryItems; i++)
             {
                 if(FirstButton != null)
@@ -130,19 +140,49 @@ namespace MemoryGame
 
                         if (FirstButton.Type == secondButton.Type)
                         {
-                            FirstButton.Succes = true;
-                            secondButton.Succes = true;
-
-                            new SoundPlayer(Properties.Resources.CorrectCardsCombined).Play();
-                            //word nog veranderen bij lan
-                            WinCondition++;
+                            //lan
+                            if(SecondUsernameBox == null)
+                            {
+                                FirstButton.Succes = true;
+                                secondButton.Succes = true;
+                                WinCondition++;
+                                new SoundPlayer(Properties.Resources.CorrectCardsCombined).Play();
+                            }
+                            else {
+                                if(MultiplayerBeurt.Text == UsernameLabel.Text)
+                                {
+                                    MemoriesPlayer1++;
+                                }
+                                else
+                                {
+                                    MemoriesPlayer2++;
+                                }
+                                new SoundPlayer(Properties.Resources.CorrectCardsCombined).Play();
+                            }
                         }
                         else
                         {
-
-                            new SoundPlayer(Properties.Resources.Fail).Play();
-                            secondButton.Button.BackgroundImage = Properties.Resources.BS;
-                            FirstButton.Button.BackgroundImage = Properties.Resources.BS;
+                            if (SecondUsernameBox == null)
+                            {
+                                new SoundPlayer(Properties.Resources.Fail).Play();
+                                secondButton.Button.BackgroundImage = Properties.Resources.BS;
+                                FirstButton.Button.BackgroundImage = Properties.Resources.BS;
+                            }
+                            else
+                            {
+                                new SoundPlayer(Properties.Resources.Fail).Play();
+                                secondButton.Button.BackgroundImage = Properties.Resources.BS;
+                                FirstButton.Button.BackgroundImage = Properties.Resources.BS;
+                                
+                                if(MultiplayerBeurt.Text == UsernameLabel.Text)
+                                {
+                                    MultiplayerBeurt.Text = PlayerLabel.Text;
+                                }
+                                else
+                                {
+                                    MultiplayerBeurt.Text = UsernameLabel.Text;
+                                }
+                            }
                         }
                         FirstButton = null;
                     }
@@ -306,6 +346,7 @@ namespace MemoryGame
             SetsLabel.Visible = true;
             UsernameLabel.Visible = true;
             PlayerLabel.Visible = true;
+            MultiplayerBeurt.Visible = true;
             ResetButton.Visible = true;
         }
 
@@ -326,6 +367,7 @@ namespace MemoryGame
             OptionsPanel.Visible = false;
             UsernameLabel.Visible = false;
             PlayerLabel.Visible = false;
+            MultiplayerBeurt.Visible = false;
         }
 
         public void QuitGame(object sender, EventArgs e)
@@ -333,15 +375,25 @@ namespace MemoryGame
             Application.Exit();
         }
 
-        public void SetUsername(object sender, EventArgs e)
-        {
-            UsernameLabel.Text = FirstUsernameBox.Text;
-        }
-
         public void SetUsernameTwo(object sender, EventArgs e)
         {
             PlayerLabel.Text = SecondUsernameBox.Text;
         }
+
+        public void SetUsername(object sender, EventArgs e)
+        {
+            UsernameLabel.Text = FirstUsernameBox.Text;
+            if(PlayerLabel.Text != string.Empty)
+            {
+                MultiplayerBeurt.Text = UsernameLabel.Text;
+            }
+            else
+            {
+                MultiplayerBeurt.Visible = false;
+            }
+        }
+
+       
         #endregion
     }
 }
