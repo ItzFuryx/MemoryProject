@@ -61,6 +61,15 @@ namespace MemoryGame.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream BackgroundMusic {
+            get {
+                return ResourceManager.GetStream("BackgroundMusic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap BS {
@@ -73,9 +82,18 @@ namespace MemoryGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream ClickButton {
+        internal static System.IO.UnmanagedMemoryStream CorrectCardsCombined {
             get {
-                return ResourceManager.GetStream("ClickButton", resourceCulture);
+                return ResourceManager.GetStream("CorrectCardsCombined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Fail {
+            get {
+                return ResourceManager.GetStream("Fail", resourceCulture);
             }
         }
         
@@ -116,6 +134,24 @@ namespace MemoryGame.Properties {
             get {
                 object obj = ResourceManager.GetObject("KQ", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream MenuClick {
+            get {
+                return ResourceManager.GetStream("MenuClick", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream NoMatch {
+            get {
+                return ResourceManager.GetStream("NoMatch", resourceCulture);
             }
         }
         
@@ -166,6 +202,15 @@ namespace MemoryGame.Properties {
             get {
                 object obj = ResourceManager.GetObject("StarWars_Background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream WilhelmScream {
+            get {
+                return ResourceManager.GetStream("WilhelmScream", resourceCulture);
             }
         }
     }

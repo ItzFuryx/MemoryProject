@@ -87,7 +87,7 @@
             // 
             // MainPanel
             // 
-            this.MainPanel.BackColor = System.Drawing.Color.DimGray;
+            this.MainPanel.BackColor = System.Drawing.Color.Transparent;
             this.MainPanel.BackgroundImage = global::MemoryGame.Properties.Resources.StarWars_Background;
             this.MainPanel.Controls.Add(this.SecondUsernameBox);
             this.MainPanel.Controls.Add(this.FirstUsernameBox);
