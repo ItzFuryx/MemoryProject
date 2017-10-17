@@ -287,6 +287,7 @@ namespace MemoryGame
         public void OpenHighScores(object sender, EventArgs e)
         {
             HideAll();
+            new SoundPlayer(Properties.Resources.Highscore).Play();
             HighscoresPanel.Visible = true;
             HighscoresPanel.Location = new Point(0, 0);
         }
@@ -317,7 +318,7 @@ namespace MemoryGame
 
         private void HideAll()
         {
-            //new SoundPlayer(Properties.Resources.MenuClick).Play();
+            new SoundPlayer(Properties.Resources.MenuClick).Play();
             MainPanel.Visible = false;
             ResetButton.Visible = false;
             HighscoresPanel.Visible = false;

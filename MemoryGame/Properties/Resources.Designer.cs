@@ -91,6 +91,15 @@ namespace MemoryGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Cantina {
+            get {
+                return ResourceManager.GetStream("Cantina", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream ClickButton {
             get {
                 return ResourceManager.GetStream("ClickButton", resourceCulture);
@@ -112,6 +121,24 @@ namespace MemoryGame.Properties {
         internal static System.IO.UnmanagedMemoryStream Fail {
             get {
                 return ResourceManager.GetStream("Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream flag {
+            get {
+                return ResourceManager.GetStream("flag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Highscore {
+            get {
+                return ResourceManager.GetStream("Highscore", resourceCulture);
             }
         }
         
@@ -220,6 +247,15 @@ namespace MemoryGame.Properties {
             get {
                 object obj = ResourceManager.GetObject("StarWars_Background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream starwars3 {
+            get {
+                return ResourceManager.GetStream("starwars3", resourceCulture);
             }
         }
         
