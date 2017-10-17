@@ -36,9 +36,10 @@ namespace MemoryGame
 
         internal void SetNewScore(string name, int sets)
         {
-            Name = NameLabel.Text = name;
+            Name = name;
             Sets = sets;
-            SetsLabel.Text = "Sets =" + sets.ToString();
+            NameLabel.Text = "Name = " + Name;
+            SetsLabel.Text = "Sets = " + sets.ToString();
         }
     }
 }

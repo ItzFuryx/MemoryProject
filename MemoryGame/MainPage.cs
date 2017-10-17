@@ -263,7 +263,7 @@ namespace MemoryGame
             Score score = new Score(
                  new Panel() { Size = new Size(500, 50)},
                  new Label() { Text = "Name = " + UsernameLabel.Text, Location = new Point(0, 0) },
-                 new Label() { Text = "Sets =" + Sets / 2 , Location = new Point(100, 0) },
+                 new Label() { Text = "Sets = " + Sets / 2 , Location = new Point(100, 0) },
                  UsernameLabel.Text,
                  Sets);
             
