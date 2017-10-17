@@ -32,6 +32,7 @@
             this.StartGameButton = new System.Windows.Forms.Button();
             this.BackToMainButton03 = new System.Windows.Forms.Button();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.SecondUsernameBox = new System.Windows.Forms.TextBox();
             this.FirstUsernameBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.MainLabelText = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             this.ResetButton = new System.Windows.Forms.Button();
             this.UsernameLabel = new System.Windows.Forms.Label();
             this.PlayerLabel = new System.Windows.Forms.Label();
-            this.SecondUsernameBox = new System.Windows.Forms.TextBox();
             this.MainPanel.SuspendLayout();
             this.HighscoresPanel.SuspendLayout();
             this.OptionsPanel.SuspendLayout();
@@ -103,6 +103,16 @@
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(1900, 1108);
             this.MainPanel.TabIndex = 9;
+            // 
+            // SecondUsernameBox
+            // 
+            this.SecondUsernameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SecondUsernameBox.Location = new System.Drawing.Point(260, 181);
+            this.SecondUsernameBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SecondUsernameBox.Name = "SecondUsernameBox";
+            this.SecondUsernameBox.Size = new System.Drawing.Size(177, 44);
+            this.SecondUsernameBox.TabIndex = 15;
+            this.SecondUsernameBox.TextChanged += new System.EventHandler(this.SetUsernameTwo);
             // 
             // FirstUsernameBox
             // 
@@ -288,9 +298,9 @@
             this.UsernameLabel.Location = new System.Drawing.Point(266, 18);
             this.UsernameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.UsernameLabel.Name = "UsernameLabel";
-            this.UsernameLabel.Size = new System.Drawing.Size(281, 38);
+            this.UsernameLabel.Size = new System.Drawing.Size(155, 38);
             this.UsernameLabel.TabIndex = 13;
-            this.UsernameLabel.Text = "SetFirstUsername";
+            this.UsernameLabel.Text = "Player 1: ";
             this.UsernameLabel.Visible = false;
             // 
             // PlayerLabel
@@ -300,20 +310,10 @@
             this.PlayerLabel.Location = new System.Drawing.Point(266, 56);
             this.PlayerLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.PlayerLabel.Name = "PlayerLabel";
-            this.PlayerLabel.Size = new System.Drawing.Size(328, 38);
+            this.PlayerLabel.Size = new System.Drawing.Size(146, 38);
             this.PlayerLabel.TabIndex = 13;
-            this.PlayerLabel.Text = "SetSecondUsername";
+            this.PlayerLabel.Text = "Player2: ";
             this.PlayerLabel.Visible = false;
-            // 
-            // SecondUsernameBox
-            // 
-            this.SecondUsernameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SecondUsernameBox.Location = new System.Drawing.Point(260, 181);
-            this.SecondUsernameBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.SecondUsernameBox.Name = "SecondUsernameBox";
-            this.SecondUsernameBox.Size = new System.Drawing.Size(177, 44);
-            this.SecondUsernameBox.TabIndex = 15;
-            this.SecondUsernameBox.TextChanged += new System.EventHandler(this.SetUsernameTwo);
             // 
             // MainPage
             // 

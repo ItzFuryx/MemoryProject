@@ -306,6 +306,7 @@ namespace MemoryGame
             HideAll();
             SetsLabel.Visible = true;
             UsernameLabel.Visible = true;
+            PlayerLabel.Visible = true;
             ResetButton.Visible = true;
         }
 
@@ -325,6 +326,7 @@ namespace MemoryGame
             SetsLabel.Visible = false;
             OptionsPanel.Visible = false;
             UsernameLabel.Visible = false;
+            PlayerLabel.Visible = false;
         }
 
         public void QuitGame(object sender, EventArgs e)
