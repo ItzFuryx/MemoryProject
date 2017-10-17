@@ -26,15 +26,14 @@ namespace MemoryGame
         private int Sets = 0;
         private int WinCondition = 0;
         private int Num = 0;
-
-        private SoundPlayer SoundPlayer;
+        
 #endregion
 
         public MainPage()
         {
             InitializeComponent();
-            
-            SoundPlayer = new SoundPlayer(Properties.Resources.ClickButton);
+
+            new SoundPlayer(Properties.Resources.BackgroundMusic).PlayLooping();
             UsernameLabel.Text = "Bard is kut";
             MainPanel.Location = new Point(0, 0);
             StartGameButton.Click += new EventHandler(this.StartGame);
@@ -133,11 +132,15 @@ namespace MemoryGame
                         {
                             FirstButton.Succes = true;
                             secondButton.Succes = true;
+
+                            new SoundPlayer(Properties.Resources.CorrectCardsCombined).Play();
                             //word nog veranderen bij lan
                             WinCondition++;
                         }
                         else
                         {
+
+                            new SoundPlayer(Properties.Resources.Fail).Play();
                             secondButton.Button.BackgroundImage = Properties.Resources.BS;
                             FirstButton.Button.BackgroundImage = Properties.Resources.BS;
                         }
@@ -315,6 +318,7 @@ namespace MemoryGame
 
         private void HideAll()
         {
+            new SoundPlayer(Properties.Resources.MenuClick).Play();
             MainPanel.Visible = false;
             ResetButton.Visible = false;
             HighscoresPanel.Visible = false;
@@ -331,6 +335,11 @@ namespace MemoryGame
         public void SetUsername(object sender, EventArgs e)
         {
             UsernameLabel.Text = FirstUsernameBox.Text;
+        }
+
+        public void SetUsernameTwo(object sender, EventArgs e)
+        {
+            PlayerLabel.Text = SecondUsernameBox.Text;
         }
         #endregion
     }
