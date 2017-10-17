@@ -38,7 +38,7 @@ namespace MemoryGame
         {
             Name = NameLabel.Text = name;
             Sets = sets;
-            SetsLabel.Text = sets.ToString();
+            SetsLabel.Text = "Sets =" + sets.ToString();
         }
     }
 }
