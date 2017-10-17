@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Media;
 using System.Windows.Forms;
+using System.IO;
 
 namespace MemoryGame
 {
@@ -67,7 +68,12 @@ namespace MemoryGame
                     GridPanel.Controls.Add(ButtonArray[Num].Button);
                     Num++;
                 }  
-            }    
+            }
+            if(!File.Exists("memory.sav"))
+            {
+                var stream1 = File.Create("memory.sav");
+                stream1.Close();
+            }
         }
 
         #region CardFunctions
@@ -147,7 +153,28 @@ namespace MemoryGame
                     break;
                 }
             }
+            Save();
+        }
 
+        private void Save()
+        {
+            int count = 0;
+            string[] savelines = new string[22];
+            foreach (MemoryButton but in ButtonArray)
+            {
+                savelines[count] = Convert.ToString(but.Succes);
+                count++;
+            }                                               
+            if(UsernameLabel.Text == "UsernameHere")
+            {
+                savelines[16] = "No Name";
+            }
+            else
+            {
+                savelines[16] = UsernameLabel.Text;
+            }
+            savelines[18] = SetsLabel.Text;
+            File.WriteAllLines("memory.sav", savelines);
         }
 
         private void RandomizeCards()
@@ -256,7 +283,7 @@ namespace MemoryGame
             Application.Exit();
         }
 
-        private void SetUsername(object sender, EventArgs e)
+        public void SetUsername(object sender, EventArgs e)
         {
             UsernameLabel.Text = FirstUsernameBox.Text;
         }
