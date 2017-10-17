@@ -235,18 +235,52 @@ namespace MemoryGame
         {
             if (Scores.Count >= 5)
             {
+                Score newScore = new Score();
+                for(int i =0; i < Scores.Count; i++)
+                {
+                    if(Scores[i].Sets >= Sets)
+                    {
+                        if(newScore.Name != string.Empty)
+                        {
+                            if (newScore.Sets >= Scores[i].Sets)
+                                newScore = Scores[i];
+                        }
+                        else
+                        {
+                            newScore = Scores[i];
+                        }
+                    }
+                }
+
+                if(newScore.Name != string.Empty)
+                {
+                    newScore.SetNewScore(UsernameLabel.Text, Sets);
+
+                    SortHighscores();
+                }
                 return;
             }
             
             Score score = new Score(
-                 new Panel() { Size = new Size(500, 50) },
+                 new Panel() { Size = new Size(500, 50)},
                  new Label() { Text = "Name = " + UsernameLabel.Text, Location = new Point(0, 0) },
                  new Label() { Text = "Sets =" + Sets / 2 , Location = new Point(100, 0) },
                  UsernameLabel.Text,
                  Sets);
-
-            HighscorePanel.Controls.Add(score.ScorePanel);
+            
             Scores.Add(score);
+            SortHighscores();
+        }
+
+        public void SortHighscores()
+        {
+            HighscorePanel.Controls.Clear();
+            Scores = Scores.OrderBy(p => p.Sets).ToList();
+
+            foreach (Score setScore in Scores)
+            {
+                HighscorePanel.Controls.Add(setScore.ScorePanel);
+            }
         }
 
         public void OpenHighScores(object sender, EventArgs e)

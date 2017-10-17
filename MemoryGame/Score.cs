@@ -16,6 +16,11 @@ namespace MemoryGame
         public string Name = "";
         public int Sets = 0;
 
+        public Score()
+        {
+
+        }
+
         public Score(Panel scorePanel, Label nameLabel, Label setsLabel, string name, int sets)
         {
             ScorePanel = scorePanel;
@@ -26,6 +31,14 @@ namespace MemoryGame
                         
             ScorePanel.Controls.Add(NameLabel);
             ScorePanel.Controls.Add(SetsLabel);
+        }
+
+
+        internal void SetNewScore(string name, int sets)
+        {
+            Name = NameLabel.Text = name;
+            Sets = sets;
+            SetsLabel.Text = sets.ToString();
         }
     }
 }
