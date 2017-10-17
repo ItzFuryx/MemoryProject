@@ -159,21 +159,26 @@ namespace MemoryGame
         private void Save()
         {
             int count = 0;
-            string[] savelines = new string[22];
+            string[] savelines = new string[32];
             foreach (MemoryButton but in ButtonArray)
             {
                 savelines[count] = Convert.ToString(but.Succes);
                 count++;
-            }                                               
-            if(UsernameLabel.Text == "UsernameHere")
-            {
-                savelines[16] = "No Name";
             }
-            else
-            {
-                savelines[16] = UsernameLabel.Text;
-            }
+            savelines[16] = UsernameLabel.Text;
             savelines[18] = SetsLabel.Text;
+            int count1 = 22;
+            foreach(Score score in Scores)
+            {
+                savelines[count1] = score.Name;
+                count1++;
+            }
+            count1 = 27;
+            foreach(Score score in Scores)
+            {
+                savelines[count1] = Convert.ToString(score.Sets);
+                count1++;
+            }
             File.WriteAllLines("memory.sav", savelines);
         }
 
