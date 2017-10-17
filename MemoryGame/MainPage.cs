@@ -204,8 +204,6 @@ namespace MemoryGame
 
         private void Reset(object sender, EventArgs e)
         {
-
-            CreateHighscores();
             RandomizeCards();
             for (int i = 0; i < MemoryItems; i++)
             {
@@ -319,7 +317,7 @@ namespace MemoryGame
 
         private void HideAll()
         {
-            new SoundPlayer(Properties.Resources.MenuClick).Play();
+            //new SoundPlayer(Properties.Resources.MenuClick).Play();
             MainPanel.Visible = false;
             ResetButton.Visible = false;
             HighscoresPanel.Visible = false;
