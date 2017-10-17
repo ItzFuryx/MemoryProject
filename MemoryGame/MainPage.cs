@@ -212,6 +212,7 @@ namespace MemoryGame
                 ButtonArray[i].Type = Types[i];
                 Sets = 0;
                 SetsLabel.Text = "0";
+               
             }
         }
 
@@ -225,9 +226,7 @@ namespace MemoryGame
         }
 #endregion
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-        }
+       
 
         #region Menu Functions
 
@@ -304,6 +303,7 @@ namespace MemoryGame
             SetsLabel.Visible = true;
             UsernameLabel.Visible = true;
             ResetButton.Visible = true;
+            PlayerLabel.Visible = true;
         }
 
         public void Back(object sender, EventArgs e)
@@ -321,6 +321,7 @@ namespace MemoryGame
             SetsLabel.Visible = false;
             OptionsPanel.Visible = false;
             UsernameLabel.Visible = false;
+            PlayerLabel.Visible = false;
         }
 
         public void QuitGame(object sender, EventArgs e)
@@ -328,10 +329,26 @@ namespace MemoryGame
             Application.Exit();
         }
 
+        
         public void SetUsername(object sender, EventArgs e)
         {
-            UsernameLabel.Text = FirstUsernameBox.Text;
+            if (FirstUsernameBox != null)
+            {
+                UsernameLabel.Text = FirstUsernameBox.Text;
+            }
         }
+        private void SetUsernameTwo(object sender, EventArgs e)
+        {
+            if (SecondUsernameBox != null)
+            {
+                PlayerLabel.Text = SecondUsernameBox.Text;
+            }
+        }     
+
+
+
         #endregion
+
+
     }
 }

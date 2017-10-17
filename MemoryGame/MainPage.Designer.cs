@@ -32,8 +32,8 @@
             this.StartGameButton = new System.Windows.Forms.Button();
             this.BackToMainButton03 = new System.Windows.Forms.Button();
             this.MainPanel = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.FirstUsernameBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.MainLabelText = new System.Windows.Forms.Label();
             this.LoadGameButton = new System.Windows.Forms.Button();
             this.ExitButton = new System.Windows.Forms.Button();
@@ -41,6 +41,7 @@
             this.HighscoresButton = new System.Windows.Forms.Button();
             this.SetsLabel = new System.Windows.Forms.Label();
             this.HighscoresPanel = new System.Windows.Forms.Panel();
+            this.HighscorePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.BackToMainButton01 = new System.Windows.Forms.Button();
             this.OptionsPanel = new System.Windows.Forms.Panel();
@@ -48,7 +49,8 @@
             this.BackToMainButton02 = new System.Windows.Forms.Button();
             this.ResetButton = new System.Windows.Forms.Button();
             this.UsernameLabel = new System.Windows.Forms.Label();
-            this.HighscorePanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.PlayerLabel = new System.Windows.Forms.Label();
+            this.SecondUsernameBox = new System.Windows.Forms.TextBox();
             this.MainPanel.SuspendLayout();
             this.HighscoresPanel.SuspendLayout();
             this.OptionsPanel.SuspendLayout();
@@ -56,26 +58,29 @@
             // 
             // GridPanel
             // 
-            this.GridPanel.Location = new System.Drawing.Point(396, 12);
+            this.GridPanel.Location = new System.Drawing.Point(594, 18);
+            this.GridPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GridPanel.Name = "GridPanel";
-            this.GridPanel.Size = new System.Drawing.Size(495, 657);
+            this.GridPanel.Size = new System.Drawing.Size(742, 1011);
             this.GridPanel.TabIndex = 0;
             // 
             // StartGameButton
             // 
             this.StartGameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.StartGameButton.Location = new System.Drawing.Point(538, 124);
+            this.StartGameButton.Location = new System.Drawing.Point(807, 191);
+            this.StartGameButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.StartGameButton.Name = "StartGameButton";
-            this.StartGameButton.Size = new System.Drawing.Size(148, 58);
+            this.StartGameButton.Size = new System.Drawing.Size(222, 89);
             this.StartGameButton.TabIndex = 1;
             this.StartGameButton.Text = "Start Game";
             this.StartGameButton.UseVisualStyleBackColor = true;
             // 
             // BackToMainButton03
             // 
-            this.BackToMainButton03.Location = new System.Drawing.Point(184, 65);
+            this.BackToMainButton03.Location = new System.Drawing.Point(276, 100);
+            this.BackToMainButton03.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BackToMainButton03.Name = "BackToMainButton03";
-            this.BackToMainButton03.Size = new System.Drawing.Size(148, 58);
+            this.BackToMainButton03.Size = new System.Drawing.Size(222, 89);
             this.BackToMainButton03.TabIndex = 2;
             this.BackToMainButton03.Text = "Back";
             this.BackToMainButton03.UseVisualStyleBackColor = true;
@@ -84,54 +89,60 @@
             // 
             this.MainPanel.BackColor = System.Drawing.Color.DimGray;
             this.MainPanel.BackgroundImage = global::MemoryGame.Properties.Resources.StarWars_Background;
-            this.MainPanel.Controls.Add(this.label2);
+            this.MainPanel.Controls.Add(this.SecondUsernameBox);
             this.MainPanel.Controls.Add(this.FirstUsernameBox);
+            this.MainPanel.Controls.Add(this.label2);
             this.MainPanel.Controls.Add(this.MainLabelText);
             this.MainPanel.Controls.Add(this.LoadGameButton);
             this.MainPanel.Controls.Add(this.ExitButton);
             this.MainPanel.Controls.Add(this.OptionsButton);
             this.MainPanel.Controls.Add(this.HighscoresButton);
             this.MainPanel.Controls.Add(this.StartGameButton);
-            this.MainPanel.Location = new System.Drawing.Point(908, 12);
+            this.MainPanel.Location = new System.Drawing.Point(1378, 18);
+            this.MainPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(1267, 720);
+            this.MainPanel.Size = new System.Drawing.Size(1900, 1108);
             this.MainPanel.TabIndex = 9;
+            // 
+            // FirstUsernameBox
+            // 
+            this.FirstUsernameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FirstUsernameBox.Location = new System.Drawing.Point(260, 127);
+            this.FirstUsernameBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.FirstUsernameBox.Name = "FirstUsernameBox";
+            this.FirstUsernameBox.Size = new System.Drawing.Size(176, 44);
+            this.FirstUsernameBox.TabIndex = 14;
+            this.FirstUsernameBox.TextChanged += new System.EventHandler(this.SetUsername);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(173, 67);
+            this.label2.Location = new System.Drawing.Point(260, 84);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 26);
+            this.label2.Size = new System.Drawing.Size(177, 38);
             this.label2.TabIndex = 8;
             this.label2.Text = "Username:";
-            // 
-            // FirstUsernameBox
-            // 
-            this.FirstUsernameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FirstUsernameBox.Location = new System.Drawing.Point(173, 124);
-            this.FirstUsernameBox.Name = "FirstUsernameBox";
-            this.FirstUsernameBox.Size = new System.Drawing.Size(119, 32);
-            this.FirstUsernameBox.TabIndex = 7;
-            this.FirstUsernameBox.TextChanged += new System.EventHandler(this.SetUsername);
             // 
             // MainLabelText
             // 
             this.MainLabelText.AutoSize = true;
             this.MainLabelText.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MainLabelText.Location = new System.Drawing.Point(522, 50);
+            this.MainLabelText.Location = new System.Drawing.Point(783, 77);
+            this.MainLabelText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.MainLabelText.Name = "MainLabelText";
-            this.MainLabelText.Size = new System.Drawing.Size(191, 31);
+            this.MainLabelText.Size = new System.Drawing.Size(292, 47);
             this.MainLabelText.TabIndex = 6;
             this.MainLabelText.Text = "Memory Game";
             // 
             // LoadGameButton
             // 
             this.LoadGameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoadGameButton.Location = new System.Drawing.Point(538, 188);
+            this.LoadGameButton.Location = new System.Drawing.Point(807, 289);
+            this.LoadGameButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.LoadGameButton.Name = "LoadGameButton";
-            this.LoadGameButton.Size = new System.Drawing.Size(148, 58);
+            this.LoadGameButton.Size = new System.Drawing.Size(222, 89);
             this.LoadGameButton.TabIndex = 5;
             this.LoadGameButton.Text = "Load Game";
             this.LoadGameButton.UseVisualStyleBackColor = true;
@@ -139,9 +150,10 @@
             // ExitButton
             // 
             this.ExitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ExitButton.Location = new System.Drawing.Point(538, 380);
+            this.ExitButton.Location = new System.Drawing.Point(807, 585);
+            this.ExitButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ExitButton.Name = "ExitButton";
-            this.ExitButton.Size = new System.Drawing.Size(148, 58);
+            this.ExitButton.Size = new System.Drawing.Size(222, 89);
             this.ExitButton.TabIndex = 4;
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = true;
@@ -149,9 +161,10 @@
             // OptionsButton
             // 
             this.OptionsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OptionsButton.Location = new System.Drawing.Point(538, 316);
+            this.OptionsButton.Location = new System.Drawing.Point(807, 486);
+            this.OptionsButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OptionsButton.Name = "OptionsButton";
-            this.OptionsButton.Size = new System.Drawing.Size(148, 58);
+            this.OptionsButton.Size = new System.Drawing.Size(222, 89);
             this.OptionsButton.TabIndex = 3;
             this.OptionsButton.Text = "Options";
             this.OptionsButton.UseVisualStyleBackColor = true;
@@ -159,9 +172,10 @@
             // HighscoresButton
             // 
             this.HighscoresButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HighscoresButton.Location = new System.Drawing.Point(538, 252);
+            this.HighscoresButton.Location = new System.Drawing.Point(807, 388);
+            this.HighscoresButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HighscoresButton.Name = "HighscoresButton";
-            this.HighscoresButton.Size = new System.Drawing.Size(148, 58);
+            this.HighscoresButton.Size = new System.Drawing.Size(222, 89);
             this.HighscoresButton.TabIndex = 2;
             this.HighscoresButton.Text = "Highscores";
             this.HighscoresButton.UseVisualStyleBackColor = true;
@@ -169,10 +183,9 @@
             // SetsLabel
             // 
             this.SetsLabel.AutoSize = true;
-            this.SetsLabel.Location = new System.Drawing.Point(269, 153);
-            this.SetsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.SetsLabel.Location = new System.Drawing.Point(404, 235);
             this.SetsLabel.Name = "SetsLabel";
-            this.SetsLabel.Size = new System.Drawing.Size(13, 13);
+            this.SetsLabel.Size = new System.Drawing.Size(18, 20);
             this.SetsLabel.TabIndex = 5;
             this.SetsLabel.Text = "0";
             this.SetsLabel.Visible = false;
@@ -184,28 +197,39 @@
             this.HighscoresPanel.Controls.Add(this.HighscorePanel);
             this.HighscoresPanel.Controls.Add(this.label1);
             this.HighscoresPanel.Controls.Add(this.BackToMainButton01);
-            this.HighscoresPanel.Location = new System.Drawing.Point(366, 136);
+            this.HighscoresPanel.Location = new System.Drawing.Point(549, 209);
+            this.HighscoresPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.HighscoresPanel.Name = "HighscoresPanel";
-            this.HighscoresPanel.Size = new System.Drawing.Size(1267, 720);
+            this.HighscoresPanel.Size = new System.Drawing.Size(1900, 1108);
             this.HighscoresPanel.TabIndex = 10;
             this.HighscoresPanel.Visible = false;
+            // 
+            // HighscorePanel
+            // 
+            this.HighscorePanel.Location = new System.Drawing.Point(490, 163);
+            this.HighscorePanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.HighscorePanel.Name = "HighscorePanel";
+            this.HighscorePanel.Size = new System.Drawing.Size(1202, 852);
+            this.HighscorePanel.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(527, 31);
+            this.label1.Location = new System.Drawing.Point(790, 48);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 26);
+            this.label1.Size = new System.Drawing.Size(182, 38);
             this.label1.TabIndex = 4;
             this.label1.Text = "Highscores";
             // 
             // BackToMainButton01
             // 
             this.BackToMainButton01.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BackToMainButton01.Location = new System.Drawing.Point(18, 17);
+            this.BackToMainButton01.Location = new System.Drawing.Point(27, 26);
+            this.BackToMainButton01.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BackToMainButton01.Name = "BackToMainButton01";
-            this.BackToMainButton01.Size = new System.Drawing.Size(148, 58);
+            this.BackToMainButton01.Size = new System.Drawing.Size(222, 89);
             this.BackToMainButton01.TabIndex = 3;
             this.BackToMainButton01.Text = "Back";
             this.BackToMainButton01.UseVisualStyleBackColor = true;
@@ -216,9 +240,10 @@
             this.OptionsPanel.BackgroundImage = global::MemoryGame.Properties.Resources.StarWars_Background;
             this.OptionsPanel.Controls.Add(this.OptionsLabel);
             this.OptionsPanel.Controls.Add(this.BackToMainButton02);
-            this.OptionsPanel.Location = new System.Drawing.Point(164, 433);
+            this.OptionsPanel.Location = new System.Drawing.Point(246, 666);
+            this.OptionsPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.OptionsPanel.Name = "OptionsPanel";
-            this.OptionsPanel.Size = new System.Drawing.Size(1267, 720);
+            this.OptionsPanel.Size = new System.Drawing.Size(1900, 1108);
             this.OptionsPanel.TabIndex = 11;
             this.OptionsPanel.Visible = false;
             // 
@@ -226,27 +251,30 @@
             // 
             this.OptionsLabel.AutoSize = true;
             this.OptionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OptionsLabel.Location = new System.Drawing.Point(527, 31);
+            this.OptionsLabel.Location = new System.Drawing.Point(790, 48);
+            this.OptionsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.OptionsLabel.Name = "OptionsLabel";
-            this.OptionsLabel.Size = new System.Drawing.Size(87, 26);
+            this.OptionsLabel.Size = new System.Drawing.Size(130, 38);
             this.OptionsLabel.TabIndex = 4;
             this.OptionsLabel.Text = "Options";
             // 
             // BackToMainButton02
             // 
             this.BackToMainButton02.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BackToMainButton02.Location = new System.Drawing.Point(18, 17);
+            this.BackToMainButton02.Location = new System.Drawing.Point(27, 26);
+            this.BackToMainButton02.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.BackToMainButton02.Name = "BackToMainButton02";
-            this.BackToMainButton02.Size = new System.Drawing.Size(148, 58);
+            this.BackToMainButton02.Size = new System.Drawing.Size(222, 89);
             this.BackToMainButton02.TabIndex = 3;
             this.BackToMainButton02.Text = "Back";
             this.BackToMainButton02.UseVisualStyleBackColor = true;
             // 
             // ResetButton
             // 
-            this.ResetButton.Location = new System.Drawing.Point(184, 189);
+            this.ResetButton.Location = new System.Drawing.Point(276, 291);
+            this.ResetButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ResetButton.Name = "ResetButton";
-            this.ResetButton.Size = new System.Drawing.Size(148, 58);
+            this.ResetButton.Size = new System.Drawing.Size(222, 89);
             this.ResetButton.TabIndex = 12;
             this.ResetButton.Text = "Reset";
             this.ResetButton.UseVisualStyleBackColor = true;
@@ -257,25 +285,42 @@
             // 
             this.UsernameLabel.AutoSize = true;
             this.UsernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UsernameLabel.Location = new System.Drawing.Point(177, 12);
+            this.UsernameLabel.Location = new System.Drawing.Point(266, 18);
+            this.UsernameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.UsernameLabel.Name = "UsernameLabel";
-            this.UsernameLabel.Size = new System.Drawing.Size(160, 26);
+            this.UsernameLabel.Size = new System.Drawing.Size(281, 38);
             this.UsernameLabel.TabIndex = 13;
-            this.UsernameLabel.Text = "UsernameHere";
+            this.UsernameLabel.Text = "SetFirstUsername";
             this.UsernameLabel.Visible = false;
             // 
-            // HighscorePanel
+            // PlayerLabel
             // 
-            this.HighscorePanel.Location = new System.Drawing.Point(327, 106);
-            this.HighscorePanel.Name = "HighscorePanel";
-            this.HighscorePanel.Size = new System.Drawing.Size(801, 554);
-            this.HighscorePanel.TabIndex = 5;
+            this.PlayerLabel.AutoSize = true;
+            this.PlayerLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlayerLabel.Location = new System.Drawing.Point(266, 56);
+            this.PlayerLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.PlayerLabel.Name = "PlayerLabel";
+            this.PlayerLabel.Size = new System.Drawing.Size(328, 38);
+            this.PlayerLabel.TabIndex = 13;
+            this.PlayerLabel.Text = "SetSecondUsername";
+            this.PlayerLabel.Visible = false;
+            // 
+            // SecondUsernameBox
+            // 
+            this.SecondUsernameBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SecondUsernameBox.Location = new System.Drawing.Point(260, 181);
+            this.SecondUsernameBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.SecondUsernameBox.Name = "SecondUsernameBox";
+            this.SecondUsernameBox.Size = new System.Drawing.Size(177, 44);
+            this.SecondUsernameBox.TabIndex = 15;
+            this.SecondUsernameBox.TextChanged += new System.EventHandler(this.SetUsernameTwo);
             // 
             // MainPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.ClientSize = new System.Drawing.Size(1896, 1038);
+            this.Controls.Add(this.PlayerLabel);
             this.Controls.Add(this.UsernameLabel);
             this.Controls.Add(this.ResetButton);
             this.Controls.Add(this.OptionsPanel);
@@ -284,9 +329,9 @@
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.BackToMainButton03);
             this.Controls.Add(this.GridPanel);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "MainPage";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();
             this.HighscoresPanel.ResumeLayout(false);
@@ -318,9 +363,11 @@
         private System.Windows.Forms.Label MainLabelText;
         private System.Windows.Forms.Button ResetButton;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox FirstUsernameBox;
         private System.Windows.Forms.Label UsernameLabel;
         private System.Windows.Forms.FlowLayoutPanel HighscorePanel;
+        private System.Windows.Forms.TextBox FirstUsernameBox;
+        private System.Windows.Forms.Label PlayerLabel;
+        private System.Windows.Forms.TextBox SecondUsernameBox;
     }
 }
 
