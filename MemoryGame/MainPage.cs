@@ -84,9 +84,7 @@ namespace MemoryGame
 
         #region CardFunctions
         public void ClickedCard(object sender, EventArgs e)
-        {
-        
-
+        {       
             for (int i = 0; i < MemoryItems; i++)
             {
                 if(FirstButton != null)
@@ -141,15 +139,16 @@ namespace MemoryGame
                         if (FirstButton.Type == secondButton.Type)
                         {
                             //lan
-                            if(SecondUsernameBox == null)
+                            if(string.IsNullOrEmpty(SecondUsernameBox.Text))
                             {
                                 FirstButton.Succes = true;
                                 secondButton.Succes = true;
                                 WinCondition++;
                                 new SoundPlayer(Properties.Resources.CorrectCardsCombined).Play();
                             }
-                            else {
-                                if(MultiplayerBeurt.Text == UsernameLabel.Text)
+                            else
+                            {
+                                if(MultiplayerBeurt.Text == PlayerOneNameLabel.Text)
                                 {
                                     MemoriesPlayer1++;
                                 }
@@ -174,13 +173,13 @@ namespace MemoryGame
                                 secondButton.Button.BackgroundImage = Properties.Resources.BS;
                                 FirstButton.Button.BackgroundImage = Properties.Resources.BS;
                                 
-                                if(MultiplayerBeurt.Text == UsernameLabel.Text)
+                                if(MultiplayerBeurt.Text == PlayerOneNameLabel.Text)
                                 {
-                                    MultiplayerBeurt.Text = PlayerLabel.Text;
+                                    MultiplayerBeurt.Text = PlayerTwoNameLabel.Text;
                                 }
                                 else
                                 {
-                                    MultiplayerBeurt.Text = UsernameLabel.Text;
+                                    MultiplayerBeurt.Text = PlayerOneNameLabel.Text;
                                 }
                             }
                         }
@@ -207,7 +206,7 @@ namespace MemoryGame
                 savelines[count] = Convert.ToString(but.Succes);
                 count++;
             }
-            savelines[16] = UsernameLabel.Text;
+            savelines[16] = PlayerOneNameLabel.Text;
             savelines[18] = SetsLabel.Text;
             int count1 = 22;
             foreach(Score score in Scores)
@@ -295,7 +294,7 @@ namespace MemoryGame
 
                 if(newScore.Name != string.Empty)
                 {
-                    newScore.SetNewScore(UsernameLabel.Text, Sets);
+                    newScore.SetNewScore(PlayerOneNameLabel.Text, Sets);
 
                     SortHighscores();
                 }
@@ -304,9 +303,9 @@ namespace MemoryGame
             
             Score score = new Score(
                  new Panel() { Size = new Size(500, 50)},
-                 new Label() { Text = "Name = " + UsernameLabel.Text, Location = new Point(0, 0) },
+                 new Label() { Text = "Name = " + PlayerOneNameLabel.Text, Location = new Point(0, 0) },
                  new Label() { Text = "Sets = " + Sets , Location = new Point(100, 0) },
-                 UsernameLabel.Text,
+                 PlayerOneNameLabel.Text,
                  Sets);
             
             Scores.Add(score);
@@ -344,10 +343,19 @@ namespace MemoryGame
         {
             HideAll();
             SetsLabel.Visible = true;
-            UsernameLabel.Visible = true;
-            PlayerLabel.Visible = true;
+            PlayerOneNameLabel.Visible = true;
+            PlayerTwoNameLabel.Visible = true;
             MultiplayerBeurt.Visible = true;
             ResetButton.Visible = true;
+
+            if (PlayerTwoNameLabel.Text != string.Empty)
+            {
+                MultiplayerBeurt.Text = PlayerOneNameLabel.Text;
+            }
+            else
+            {
+                MultiplayerBeurt.Visible = false;
+            }
         }
 
         public void Back(object sender, EventArgs e)
@@ -365,8 +373,8 @@ namespace MemoryGame
             HighscoresPanel.Visible = false;
             SetsLabel.Visible = false;
             OptionsPanel.Visible = false;
-            UsernameLabel.Visible = false;
-            PlayerLabel.Visible = false;
+            PlayerOneNameLabel.Visible = false;
+            PlayerTwoNameLabel.Visible = false;
             MultiplayerBeurt.Visible = false;
         }
 
@@ -377,23 +385,16 @@ namespace MemoryGame
 
         public void SetUsernameTwo(object sender, EventArgs e)
         {
-            PlayerLabel.Text = SecondUsernameBox.Text;
+            PlayerTwoNameLabel.Text = SecondUsernameBox.Text;
         }
 
         public void SetUsername(object sender, EventArgs e)
         {
-            UsernameLabel.Text = FirstUsernameBox.Text;
-            if(PlayerLabel.Text != string.Empty)
-            {
-                MultiplayerBeurt.Text = UsernameLabel.Text;
-            }
-            else
-            {
-                MultiplayerBeurt.Visible = false;
-            }
+            PlayerOneNameLabel.Text = FirstUsernameBox.Text;
         }
 
-       
+
         #endregion
+
     }
 }
