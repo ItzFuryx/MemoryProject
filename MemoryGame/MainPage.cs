@@ -178,7 +178,7 @@ namespace MemoryGame
             count1 = 27;
             foreach(Score score in Scores)
             {
-                savelines[count1] = Convert.ToString(score.Sets);
+                savelines[count1] = (score.Sets / 2).ToString();
                 count1++;
             }
             File.WriteAllLines("memory.sav", savelines);
