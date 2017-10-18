@@ -170,7 +170,6 @@ namespace MemoryGame
                             {
                                 FirstButton.Succes = true;
                                 secondButton.Succes = true;
-                                WinCondition++;
                                 new SoundPlayer(Properties.Resources.CorrectCardsCombined).Play();
                             }
                             else
@@ -187,9 +186,9 @@ namespace MemoryGame
                                 FirstButton.Succes = true;
                                 secondButton.Succes = true;
                                 LabelMemoriesPlayer1.Text = PlayerOne.Memories.ToString();
-                                LabelMemoriesPlayer2.Text = PlayerTwo.Memories.ToString();
-                                WinCondition++;
+                                LabelMemoriesPlayer2.Text = PlayerTwo.Memories.ToString();  
                             }
+                            WinCondition++;
                         }
                         else
                         {
