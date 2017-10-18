@@ -11,6 +11,7 @@ using System.Media;
 using System.Windows.Forms;
 using System.IO;
 using WMPLib;
+using System.Security.Cryptography;
 
 namespace MemoryGame
 {
@@ -45,8 +46,7 @@ namespace MemoryGame
             path = Path.GetFullPath(@"..\..\Resources/BackgroundMusic.wav");
             Player = new WindowsMediaPlayer();
             Player.URL = path;
-            Player.settings.setMode("loop", true);
-            
+            Player.settings.setMode("loop", true);            
 
             MainPanel.Location = new Point(0, 0);
             StartGameButton.Click += new EventHandler(this.StartGame);
@@ -225,6 +225,7 @@ namespace MemoryGame
 
         private void Save()
         {
+
             int count = 0;
             string[] savelines = new string[48];
             foreach (MemoryButton but in ButtonArray)
@@ -252,6 +253,13 @@ namespace MemoryGame
                 savelines[count1] = (score.Sets).ToString();
                 count1++;
             }
+
+            for(int i = 0; i < savelines.Length; i++)
+            {
+                savelines[i] = Encryption.Encrypt(savelines[i], "MemGamePass");
+            }
+
+            
             File.WriteAllLines("memory.sav", savelines);
         }
 
@@ -311,6 +319,12 @@ namespace MemoryGame
             PlayerTwoNameLabel.Visible = true;
             ResetButton.Visible = true;
             string[] loadlines = File.ReadAllLines("memory.sav");
+
+            for (int i = 0; i < loadlines.Length; i++)
+            {
+                loadlines[i] = Encryption.Decrypt(loadlines[i], "MemGamePass");
+            }
+
             PlayerOneNameLabel.Text = loadlines[32];
             PlayerTwoNameLabel.Text = loadlines[33];
             Sets = Convert.ToInt32(loadlines[34]) * 2;
@@ -494,10 +508,8 @@ namespace MemoryGame
             PlayerOneNameLabel.Text = FirstUsernameBox.Text;
         }
 
-
         #endregion
 
 
-   
     }
 }
