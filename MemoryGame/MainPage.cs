@@ -249,7 +249,6 @@ namespace MemoryGame
                 savelines[count1] = score.Name;
                 count1++;
             }
-            count1 = 45;
             foreach(Score score in Scores)
             {
                 savelines[count1] = (score.Sets).ToString();
@@ -294,6 +293,15 @@ namespace MemoryGame
                 Sets = 0;
                 SetsLabel.Text = "0";
             }
+            PlayerOne.Sets = 0;
+            LabelSetsPlayer1.Text = "0";
+            PlayerTwo.Sets = 0;
+            LabelSetsPlayer2.Text = "0";
+            PlayerOne.Memories = 0;
+            LabelMemoriesPlayer1.Text = "0";
+            PlayerTwo.Memories = 0;
+            LabelMemoriesPlayer2.Text = "0";
+            MultiplayerTurn.Text = PlayerOneNameLabel.Text;
         }
 
         private void OnGameCompleted()
@@ -327,10 +335,7 @@ namespace MemoryGame
                 loadlines[i] = Encryption.Decrypt(loadlines[i], "MemGamePass");
             }
 
-            PlayerOneNameLabel.Text = loadlines[32];
-            PlayerTwoNameLabel.Text = loadlines[33];
-            Sets = Convert.ToInt32(loadlines[34]) * 2;
-            SetsLabel.Text = ((Sets + 1) / 2).ToString();
+            
             for (int count = 0; count < 16; count++)
             {
                 ButtonArray[count].Type = (MemoryType)Convert.ToInt32(loadlines[count + 16]);
@@ -365,6 +370,29 @@ namespace MemoryGame
                             break;
                     }
                 }
+            }
+            PlayerOneNameLabel.Text = loadlines[32];
+            PlayerTwoNameLabel.Text = loadlines[33];
+            PlayerOne.Sets = Convert.ToInt32(loadlines[34]);
+            LabelSetsPlayer1.Text = loadlines[34];
+            PlayerOne.Memories = Convert.ToInt32(loadlines[35]);
+            LabelMemoriesPlayer1.Text = loadlines[35];
+            PlayerTwo.Sets = Convert.ToInt32(loadlines[36]);
+            LabelSetsPlayer2.Text = loadlines[36];
+            PlayerTwo.Memories = Convert.ToInt32(loadlines[37]);
+            LabelMemoriesPlayer2.Text = loadlines[37];
+            MultiplayerTurn.Text = loadlines[38];
+
+            int count1 = 40;
+            foreach (Score score in Scores)
+            {
+                score.Name = loadlines[count1];
+                count1++;
+            }
+            foreach (Score score in Scores)
+            {
+                score.Sets = Convert.ToInt32(loadlines[count1]);
+                count1++;
             }
         }
 
