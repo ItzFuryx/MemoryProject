@@ -227,7 +227,7 @@ namespace MemoryGame
         {
 
             int count = 0;
-            string[] savelines = new string[48];
+            string[] savelines = new string[50];
             foreach (MemoryButton but in ButtonArray)
             {
                 savelines[count] = Convert.ToString(but.Succes);
@@ -240,14 +240,18 @@ namespace MemoryGame
             }
             savelines[32] = PlayerOneNameLabel.Text;
             savelines[33] = PlayerTwoNameLabel.Text;
-            savelines[34] = SetsLabel.Text;
-            int count1 = 38;
+            savelines[34] = Convert.ToString(PlayerOne.Sets);
+            savelines[35] = Convert.ToString(PlayerOne.Memories);
+            savelines[36] = Convert.ToString(PlayerTwo.Sets);
+            savelines[37] = Convert.ToString(PlayerTwo.Memories);
+            savelines[38] = MultiplayerTurn.Text;
+            int count1 = 40;
             foreach(Score score in Scores)
             {
                 savelines[count1] = score.Name;
                 count1++;
             }
-            count1 = 43;
+            count1 = 45;
             foreach(Score score in Scores)
             {
                 savelines[count1] = (score.Sets).ToString();
