@@ -32,19 +32,32 @@ namespace MemoryGame
         private int Sets = 0;
         private int WinCondition = 0;
         private int Num = 0;
-
-        private WindowsMediaPlayer Player = null;
+        //sound variables
+        private WindowsMediaPlayer BackgroundSound = null;
         private string path = String.Empty;
-#endregion
+        private WindowsMediaPlayer MenuSound = null;
+        private string pathMenu = String.Empty;
+        private WindowsMediaPlayer Succes = null;
+        private string pathSucces = String.Empty;
+        private WindowsMediaPlayer Fail = null;
+        private string pathFail = String.Empty;
+        #endregion
 
         public MainPage()
         {
             InitializeComponent();
-
+            //Sound settings
             path = Path.GetFullPath(@"..\..\Resources/BackgroundMusic.wav");
-            Player = new WindowsMediaPlayer();
-            Player.URL = path;
-            Player.settings.setMode("loop", true);            
+            pathMenu = Path.GetFullPath(@"..\..\Resources/MenuClick.wav");
+            pathSucces = Path.GetFullPath(@"..\..\Resources/CorrectCardsCombined.wav");
+            pathFail = Path.GetFullPath(@"..\..\Resources/Fail.wav");
+            BackgroundSound = new WindowsMediaPlayer();
+            MenuSound = new WindowsMediaPlayer();
+            Succes = new WindowsMediaPlayer();
+            Fail = new WindowsMediaPlayer();
+
+            BackgroundSound.URL = path;
+            BackgroundSound.settings.setMode("loop", true);            
 
             MainPanel.Location = new Point(0, 0);
             StartGameButton.Click += new EventHandler(this.StartGame);
@@ -502,7 +515,9 @@ namespace MemoryGame
 
         private void HideAll()
         {
-            new SoundPlayer(Properties.Resources.MenuClick).Play();
+            //new SoundPlayer(Properties.Resources.MenuClick).Play();
+            MenuSound.URL = pathMenu;
+
             MainPanel.Visible = false;
             ResetButton.Visible = false;
             HighscoresPanel.Visible = false;
@@ -544,13 +559,21 @@ namespace MemoryGame
 
         private void OnVolumeChanged(object sender, EventArgs e)
         {
-            Console.WriteLine(SoundComboBox.Text);
             int volume = 0;
             Int32.TryParse(SoundComboBox.Text, out volume);
             Console.WriteLine(volume);
-            Player.settings.volume = volume;
+            BackgroundSound.settings.volume = volume;
             
         }
 
+        private void OnSFXVolumeChanged(object sender, EventArgs e)
+        {
+            int sfxVolume = 0;
+            Int32.TryParse(SetSFXVolume.Text, out sfxVolume);
+            Console.WriteLine(sfxVolume);
+            MenuSound.settings.volume = sfxVolume;
+            Succes.settings.volume = sfxVolume;
+            Fail.settings.volume = sfxVolume;
+        }
     }
 }

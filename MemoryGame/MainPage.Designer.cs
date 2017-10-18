@@ -64,6 +64,8 @@
             this.LabelSetsPlayer2 = new System.Windows.Forms.Label();
             this.LabelMemories2 = new System.Windows.Forms.Label();
             this.LabelMemoriesPlayer2 = new System.Windows.Forms.Label();
+            this.SFXLabel = new System.Windows.Forms.Label();
+            this.SetSFXVolume = new System.Windows.Forms.ComboBox();
             this.MainPanel.SuspendLayout();
             this.HighscoresPanel.SuspendLayout();
             this.OptionsPanel.SuspendLayout();
@@ -276,6 +278,8 @@
             // 
             this.OptionsPanel.BackColor = System.Drawing.SystemColors.ControlDark;
             this.OptionsPanel.BackgroundImage = global::MemoryGame.Properties.Resources.StarWars_Background;
+            this.OptionsPanel.Controls.Add(this.SFXLabel);
+            this.OptionsPanel.Controls.Add(this.SetSFXVolume);
             this.OptionsPanel.Controls.Add(this.SetVolumeLabel);
             this.OptionsPanel.Controls.Add(this.SoundComboBox);
             this.OptionsPanel.Controls.Add(this.OptionsLabel);
@@ -286,6 +290,16 @@
             this.OptionsPanel.Size = new System.Drawing.Size(1900, 1108);
             this.OptionsPanel.TabIndex = 11;
             this.OptionsPanel.Visible = false;
+            // 
+            // SetVolumeLabel
+            // 
+            this.SetVolumeLabel.AutoSize = true;
+            this.SetVolumeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SetVolumeLabel.Location = new System.Drawing.Point(310, 264);
+            this.SetVolumeLabel.Name = "SetVolumeLabel";
+            this.SetVolumeLabel.Size = new System.Drawing.Size(126, 26);
+            this.SetVolumeLabel.TabIndex = 6;
+            this.SetVolumeLabel.Text = "Set Volume";
             // 
             // SetVolumeLabel
             // 
@@ -479,6 +493,37 @@
             this.LabelMemoriesPlayer2.Text = "0";
             this.LabelMemoriesPlayer2.Visible = false;
             // 
+            // SFXLabel
+            // 
+            this.SFXLabel.AutoSize = true;
+            this.SFXLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SFXLabel.Location = new System.Drawing.Point(310, 339);
+            this.SFXLabel.Name = "SFXLabel";
+            this.SFXLabel.Size = new System.Drawing.Size(94, 26);
+            this.SFXLabel.TabIndex = 8;
+            this.SFXLabel.Text = "Set SFX";
+            // 
+            // SetSFXVolume
+            // 
+            this.SetSFXVolume.FormattingEnabled = true;
+            this.SetSFXVolume.Items.AddRange(new object[] {
+            "100",
+            "90",
+            "80",
+            "70",
+            "60",
+            "50",
+            "40",
+            "30",
+            "20",
+            "10",
+            "0"});
+            this.SetSFXVolume.Location = new System.Drawing.Point(307, 371);
+            this.SetSFXVolume.Name = "SetSFXVolume";
+            this.SetSFXVolume.Size = new System.Drawing.Size(129, 21);
+            this.SetSFXVolume.TabIndex = 7;
+            this.SetSFXVolume.SelectedIndexChanged += new System.EventHandler(this.OnSFXVolumeChanged);
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -555,6 +600,8 @@
         private System.Windows.Forms.Label LabelMemoriesPlayer2;
         private System.Windows.Forms.ComboBox SoundComboBox;
         private System.Windows.Forms.Label SetVolumeLabel;
+        private System.Windows.Forms.Label SFXLabel;
+        private System.Windows.Forms.ComboBox SetSFXVolume;
     }
 }
 
