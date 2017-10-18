@@ -12,7 +12,6 @@ using System.Windows.Forms;
 using System.IO;
 using WMPLib;
 using System.Security.Cryptography;
-using System.Runtime.InteropServices;
 
 namespace MemoryGame
 {
@@ -21,12 +20,6 @@ namespace MemoryGame
         internal const int MemoryItems = 16;
 
         #region private VARS
-        //sound controls
-        [DllImport("user32.dll")]
-        static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, int dwExtraInfo);
-        //keybd_event((byte) Keys.VolumeUp, 0, 0, 0); // increase volume
-        //keybd_event((byte) Keys.VolumeDown, 0, 0, 0); // decrease volume
-
         private MemoryButton[] ButtonArray = new MemoryButton[MemoryItems];       
         private MemoryType[] Types = new MemoryType[MemoryItems];
         private MemoryButton FirstButton;
@@ -527,6 +520,8 @@ namespace MemoryGame
             int volume = 0;
             Int32.TryParse(SoundComboBox.Text, out volume);
             Console.WriteLine(volume);
+            Player.settings.volume = volume;
+            
         }
 
     }
