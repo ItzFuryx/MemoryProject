@@ -335,8 +335,23 @@ namespace MemoryGame
 
         private void LoadGame(object sender, EventArgs e)
         {
+            
+            
+
+
             HideAll();
-            SetsLabel.Visible = true;
+            MultiplayerTurn.Visible = true;
+            MultiplayerTurn.Text = PlayerOneNameLabel.Text;
+                BeurtSpeler.Visible = true;
+                LabelSet1.Visible = true;
+                LabelSet2.Visible = true;
+                LabelMemories1.Visible = true;
+                LabelMemories2.Visible = true;
+                LabelSetsPlayer1.Visible = true;
+                LabelSetsPlayer2.Visible = true;
+                LabelMemoriesPlayer1.Visible = true;
+                LabelMemoriesPlayer2.Visible = true;
+            
             PlayerOneNameLabel.Visible = true;
             PlayerTwoNameLabel.Visible = true;
             ResetButton.Visible = true;
