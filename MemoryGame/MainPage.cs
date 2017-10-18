@@ -523,7 +523,10 @@ namespace MemoryGame
 
         private void OnVolumeChanged(object sender, EventArgs e)
         {
-
+            Console.WriteLine(SoundComboBox.Text);
+            int volume = 0;
+            Int32.TryParse(SoundComboBox.Text, out volume);
+            Console.WriteLine(volume);
         }
 
     }

@@ -47,6 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BackToMainButton01 = new System.Windows.Forms.Button();
             this.OptionsPanel = new System.Windows.Forms.Panel();
+            this.SoundComboBox = new System.Windows.Forms.ComboBox();
             this.OptionsLabel = new System.Windows.Forms.Label();
             this.BackToMainButton02 = new System.Windows.Forms.Button();
             this.ResetButton = new System.Windows.Forms.Button();
@@ -62,7 +63,7 @@
             this.LabelSetsPlayer2 = new System.Windows.Forms.Label();
             this.LabelMemories2 = new System.Windows.Forms.Label();
             this.LabelMemoriesPlayer2 = new System.Windows.Forms.Label();
-            this.SoundComboBox = new System.Windows.Forms.ComboBox();
+            this.SetVolumeLabel = new System.Windows.Forms.Label();
             this.MainPanel.SuspendLayout();
             this.HighscoresPanel.SuspendLayout();
             this.OptionsPanel.SuspendLayout();
@@ -259,6 +260,7 @@
             // 
             this.OptionsPanel.BackColor = System.Drawing.SystemColors.ControlDark;
             this.OptionsPanel.BackgroundImage = global::MemoryGame.Properties.Resources.StarWars_Background;
+            this.OptionsPanel.Controls.Add(this.SetVolumeLabel);
             this.OptionsPanel.Controls.Add(this.SoundComboBox);
             this.OptionsPanel.Controls.Add(this.OptionsLabel);
             this.OptionsPanel.Controls.Add(this.BackToMainButton02);
@@ -267,6 +269,27 @@
             this.OptionsPanel.Size = new System.Drawing.Size(1267, 720);
             this.OptionsPanel.TabIndex = 11;
             this.OptionsPanel.Visible = false;
+            // 
+            // SoundComboBox
+            // 
+            this.SoundComboBox.FormattingEnabled = true;
+            this.SoundComboBox.Items.AddRange(new object[] {
+            "100",
+            "90",
+            "80",
+            "70",
+            "60",
+            "50",
+            "40",
+            "30",
+            "20",
+            "10",
+            "0"});
+            this.SoundComboBox.Location = new System.Drawing.Point(307, 296);
+            this.SoundComboBox.Name = "SoundComboBox";
+            this.SoundComboBox.Size = new System.Drawing.Size(129, 21);
+            this.SoundComboBox.TabIndex = 5;
+            this.SoundComboBox.SelectedIndexChanged += new System.EventHandler(this.OnVolumeChanged);
             // 
             // OptionsLabel
             // 
@@ -430,14 +453,15 @@
             this.LabelMemoriesPlayer2.Text = "0";
             this.LabelMemoriesPlayer2.Visible = false;
             // 
-            // SoundComboBox
+            // SetVolumeLabel
             // 
-            this.SoundComboBox.FormattingEnabled = true;
-            this.SoundComboBox.Location = new System.Drawing.Point(311, 296);
-            this.SoundComboBox.Name = "SoundComboBox";
-            this.SoundComboBox.Size = new System.Drawing.Size(121, 21);
-            this.SoundComboBox.TabIndex = 5;
-            this.SoundComboBox.SelectedIndexChanged += new System.EventHandler(this.OnVolumeChanged);
+            this.SetVolumeLabel.AutoSize = true;
+            this.SetVolumeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SetVolumeLabel.Location = new System.Drawing.Point(310, 264);
+            this.SetVolumeLabel.Name = "SetVolumeLabel";
+            this.SetVolumeLabel.Size = new System.Drawing.Size(126, 26);
+            this.SetVolumeLabel.TabIndex = 6;
+            this.SetVolumeLabel.Text = "Set Volume";
             // 
             // MainPage
             // 
@@ -513,6 +537,7 @@
         private System.Windows.Forms.Label LabelMemories2;
         private System.Windows.Forms.Label LabelMemoriesPlayer2;
         private System.Windows.Forms.ComboBox SoundComboBox;
+        private System.Windows.Forms.Label SetVolumeLabel;
     }
 }
 
