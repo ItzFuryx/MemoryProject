@@ -414,13 +414,13 @@ namespace MemoryGame
             MultiplayerBeurt.Visible = true;
             ResetButton.Visible = true;
 
-            if (PlayerTwoNameLabel.Text != string.Empty)
+            if (PlayerTwoNameLabel.Text == string.Empty)
             {
-                MultiplayerBeurt.Text = PlayerOneNameLabel.Text;
+                MultiplayerBeurt.Visible = false;
             }
             else
             {
-                MultiplayerBeurt.Visible = false;
+                MultiplayerBeurt.Text = PlayerOneNameLabel.Text;
             }
         }
 
