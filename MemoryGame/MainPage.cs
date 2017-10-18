@@ -25,14 +25,9 @@ namespace MemoryGame
         private List<Score> Scores = new List<Score>();
 
         //lan multiplayer
-        private int BeurtPlayer1 = 0;
-        private int Beurtplayer2 = 0;
-         
-        private int MemoriesPlayer1 = 0;
-        private int MemoriesPlayer2 = 0;
-        private int SetsPlayer1 = 0;
-        private int SetsPlayer2 = 0;
-        
+        PlayerVars PlayerOne = new PlayerVars();
+        PlayerVars PlayerTwo = new PlayerVars();
+
         private int Sets = 0;
         private int WinCondition = 0;
         private int Num = 0;
@@ -171,18 +166,21 @@ namespace MemoryGame
                             {
                                 if(MultiplayerBeurt.Text == PlayerOneNameLabel.Text)
                                 {
-                                    MemoriesPlayer1++;
+                                    PlayerOne.Memories++;
                                 }
                                 else
                                 {
-                                    MemoriesPlayer2++;
+                                    PlayerTwo.Memories++;
                                 }
                                 new SoundPlayer(Properties.Resources.CorrectCardsCombined).Play();
+                                FirstButton.Succes = true;
+                                secondButton.Succes = true;
+                                WinCondition++;
                             }
                         }
                         else
                         {
-                            if (SecondUsernameBox == null)
+                            if (string.IsNullOrEmpty(SecondUsernameBox.Text))
                             {
                                 new SoundPlayer(Properties.Resources.Fail).Play();
                                 secondButton.Button.BackgroundImage = Properties.Resources.BS;
@@ -196,11 +194,13 @@ namespace MemoryGame
                                 
                                 if(MultiplayerBeurt.Text == PlayerOneNameLabel.Text)
                                 {
+                                    PlayerOne.Sets++;
                                     MultiplayerBeurt.Text = PlayerTwoNameLabel.Text;
                                 }
                                 else
                                 {
-                                    MultiplayerBeurt.Text = PlayerOneNameLabel.Text;
+                                    PlayerTwo.Sets++;
+                                    MultiplayerBeurt.Text = PlayerOneNameLabel.Text; 
                                 }
                             }
                         }
@@ -430,6 +430,7 @@ namespace MemoryGame
             else
             {
                 MultiplayerBeurt.Text = PlayerOneNameLabel.Text;
+                BeurtSpeler.Visible = true;
             }
         }
 
@@ -451,6 +452,7 @@ namespace MemoryGame
             PlayerOneNameLabel.Visible = false;
             PlayerTwoNameLabel.Visible = false;
             MultiplayerBeurt.Visible = false;
+            BeurtSpeler.Visible = false;
         }
 
         public void QuitGame(object sender, EventArgs e)

@@ -349,9 +349,9 @@
             this.BeurtSpeler.Location = new System.Drawing.Point(269, 406);
             this.BeurtSpeler.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.BeurtSpeler.Name = "BeurtSpeler";
-            this.BeurtSpeler.Size = new System.Drawing.Size(95, 38);
+            this.BeurtSpeler.Size = new System.Drawing.Size(104, 38);
             this.BeurtSpeler.TabIndex = 15;
-            this.BeurtSpeler.Text = "Beurt";
+            this.BeurtSpeler.Text = "Beurt:";
             this.BeurtSpeler.Visible = false;
             // 
             // MainPage
