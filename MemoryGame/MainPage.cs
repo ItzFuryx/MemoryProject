@@ -508,8 +508,12 @@ namespace MemoryGame
             PlayerOneNameLabel.Text = FirstUsernameBox.Text;
         }
 
+
         #endregion
 
+        private void OnVolumeChange(object sender, EventArgs e)
+        {
 
+        }
     }
 }
