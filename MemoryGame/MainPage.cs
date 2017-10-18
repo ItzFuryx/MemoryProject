@@ -48,34 +48,15 @@ namespace MemoryGame
             HighscoresButton.Click += new EventHandler(this.OpenHighScores);
             OptionsButton.Click += new EventHandler(this.OpenOptions);
             ExitButton.Click += new EventHandler(this.QuitGame);
+            LoadGameButton.Click += new EventHandler(this.LoadGame);
 
             BackToMainButton01.Click += new EventHandler(this.Back);
             BackToMainButton02.Click += new EventHandler(this.Back);
             BackToMainButton03.Click += new EventHandler(this.Back);
 
-            RandomizeCards();
-                        
-            for (int i = 0; i < ButtonArray.Length; i++)
-            {
-                ButtonArray[i] = new MemoryButton();
-            }
-           
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    ButtonArray[Num].Button = new Button() { Text = null,
-                        BackColor = Color.Gray,
-                        BackgroundImage = Properties.Resources.BS,
-                        Width = 100, Height = 150 };
-                        ButtonArray[Num].Button.Click += new EventHandler(this.ClickedCard);
-                        ButtonArray[Num].Type = Types[Num];
+            CreateCards(true);
 
-                    GridPanel.Controls.Add(ButtonArray[Num].Button);
-                    Num++;
-                }  
-            }
-            if(!File.Exists("memory.sav"))
+            if (!File.Exists("memory.sav"))
             {
                 var stream1 = File.Create("memory.sav");
                 stream1.Close();
@@ -83,6 +64,36 @@ namespace MemoryGame
         }
 
         #region CardFunctions
+        private void CreateCards(bool shuffleCards)
+        {
+            if(shuffleCards) RandomizeCards();
+
+            for (int i = 0; i < ButtonArray.Length; i++)
+            {
+                ButtonArray[i] = new MemoryButton();
+            }
+
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    ButtonArray[Num].Button = new Button()
+                    {
+                        Text = null,
+                        BackColor = Color.Gray,
+                        BackgroundImage = Properties.Resources.BS,
+                        Width = 100,
+                        Height = 150
+                    };
+                    ButtonArray[Num].Button.Click += new EventHandler(this.ClickedCard);
+                    ButtonArray[Num].Type = Types[Num];
+
+                    GridPanel.Controls.Add(ButtonArray[Num].Button);
+                    Num++;
+                }
+            }
+        }
+
         public void ClickedCard(object sender, EventArgs e)
         {       
             for (int i = 0; i < MemoryItems; i++)
@@ -200,24 +211,30 @@ namespace MemoryGame
         private void Save()
         {
             int count = 0;
-            string[] savelines = new string[32];
+            string[] savelines = new string[48];
             foreach (MemoryButton but in ButtonArray)
             {
                 savelines[count] = Convert.ToString(but.Succes);
                 count++;
             }
-            savelines[16] = PlayerOneNameLabel.Text;
-            savelines[18] = SetsLabel.Text;
-            int count1 = 22;
+            foreach (MemoryButton but in ButtonArray)
+            {
+                savelines[count] = Convert.ToString((int)but.Type);
+                count++;
+            }
+            savelines[32] = PlayerOneNameLabel.Text;
+            savelines[33] = PlayerTwoNameLabel.Text;
+            savelines[34] = SetsLabel.Text;
+            int count1 = 38;
             foreach(Score score in Scores)
             {
                 savelines[count1] = score.Name;
                 count1++;
             }
-            count1 = 27;
+            count1 = 43;
             foreach(Score score in Scores)
             {
-                savelines[count1] = (score.Sets / 2).ToString();
+                savelines[count1] = (score.Sets).ToString();
                 count1++;
             }
             File.WriteAllLines("memory.sav", savelines);
@@ -270,6 +287,55 @@ namespace MemoryGame
         }
 
         #region Menu Functions
+
+        private void LoadGame(object sender, EventArgs e)
+        {
+            HideAll();
+            SetsLabel.Visible = true;
+            PlayerOneNameLabel.Visible = true;
+            PlayerTwoNameLabel.Visible = true;
+            ResetButton.Visible = true;
+            string[] loadlines = File.ReadAllLines("memory.sav");
+            PlayerOneNameLabel.Text = loadlines[32];
+            PlayerTwoNameLabel.Text = loadlines[33];
+            Sets = Convert.ToInt32(loadlines[34]) * 2;
+            SetsLabel.Text = ((Sets + 1) / 2).ToString();
+            for (int count = 0; count < 16; count++)
+            {
+                ButtonArray[count].Type = (MemoryType)Convert.ToInt32(loadlines[count + 16]);
+                ButtonArray[count].Succes = loadlines[count] == "True" ? true : false;
+                if (ButtonArray[count].Succes)
+                {
+                    switch (ButtonArray[count].Type)
+                    {
+                        case MemoryType.Bart:
+                            ButtonArray[count].Button.BackgroundImage = Properties.Resources.KA;
+                            break;
+                        case MemoryType.Casper:
+                            ButtonArray[count].Button.BackgroundImage = Properties.Resources.KJ;
+                            break;
+                        case MemoryType.DieEneGozer:
+                            ButtonArray[count].Button.BackgroundImage = Properties.Resources.KQ;
+                            break;
+                        case MemoryType.Harro:
+                            ButtonArray[count].Button.BackgroundImage = Properties.Resources.KK;
+                            break;
+                        case MemoryType.Keanu:
+                            ButtonArray[count].Button.BackgroundImage = Properties.Resources.SA;
+                            break;
+                        case MemoryType.Kevin:
+                            ButtonArray[count].Button.BackgroundImage = Properties.Resources.SJ;
+                            break;
+                        case MemoryType.Pim:
+                            ButtonArray[count].Button.BackgroundImage = Properties.Resources.SQ;
+                            break;
+                        case MemoryType.StarWars:
+                            ButtonArray[count].Button.BackgroundImage = Properties.Resources.SK;
+                            break;
+                    }
+                }
+            }
+        }
 
         private void CreateHighscores()
         {
@@ -396,5 +462,7 @@ namespace MemoryGame
 
         #endregion
 
+
+   
     }
 }
