@@ -10,6 +10,7 @@ using System.Threading;
 using System.Media;
 using System.Windows.Forms;
 using System.IO;
+using WMPLib;
 
 namespace MemoryGame
 {
@@ -35,14 +36,23 @@ namespace MemoryGame
         private int Sets = 0;
         private int WinCondition = 0;
         private int Num = 0;
-        
+
+        private WindowsMediaPlayer Player = null;
+        private string path = String.Empty;
 #endregion
 
         public MainPage()
         {
             InitializeComponent();
 
-            new SoundPlayer(Properties.Resources.BackgroundMusic).PlayLooping();
+            //new SoundPlayer(Properties.Resources.BackgroundMusic).PlayLooping();
+            //new WindowsMediaPlayer();
+            path = Path.GetFullPath(@"..\..\Resources/BackgroundMusic.wav");
+            Player = new WindowsMediaPlayer();
+            Player.URL = path;
+            Player.settings.setMode("loop", true);
+            
+
             MainPanel.Location = new Point(0, 0);
             StartGameButton.Click += new EventHandler(this.StartGame);
             HighscoresButton.Click += new EventHandler(this.OpenHighScores);
@@ -392,7 +402,6 @@ namespace MemoryGame
         public void OpenHighScores(object sender, EventArgs e)
         {
             HideAll();
-            new SoundPlayer(Properties.Resources.Highscore).Play();
             HighscoresPanel.Visible = true;
             HighscoresPanel.Location = new Point(0, 0);
         }
