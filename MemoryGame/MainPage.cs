@@ -164,7 +164,7 @@ namespace MemoryGame
                             }
                             else
                             {
-                                if(MultiplayerBeurt.Text == PlayerOneNameLabel.Text)
+                                if(MultiplayerTurn.Text == PlayerOneNameLabel.Text)
                                 {
                                     PlayerOne.Memories++;
                                 }
@@ -194,16 +194,16 @@ namespace MemoryGame
                                 secondButton.Button.BackgroundImage = Properties.Resources.BS;
                                 FirstButton.Button.BackgroundImage = Properties.Resources.BS;
                                 
-                                if(MultiplayerBeurt.Text == PlayerOneNameLabel.Text)
+                                if(MultiplayerTurn.Text == PlayerOneNameLabel.Text)
                                 {
                                     PlayerOne.Sets++;
-                                    MultiplayerBeurt.Text = PlayerTwoNameLabel.Text;
+                                    MultiplayerTurn.Text = PlayerTwoNameLabel.Text;
                                     
                                 }
                                 else
                                 {
                                     PlayerTwo.Sets++;
-                                    MultiplayerBeurt.Text = PlayerOneNameLabel.Text; 
+                                    MultiplayerTurn.Text = PlayerOneNameLabel.Text; 
                                 }
                                 LabelSetsPlayer1.Text = PlayerOne.Sets.ToString();
                                 LabelSetsPlayer2.Text = PlayerTwo.Sets.ToString();
@@ -260,7 +260,7 @@ namespace MemoryGame
 
             for(int i = 0; i < savelines.Length; i++)
             {
-                savelines[i] = Encryption.Encrypt(savelines[i], "MemGamePass");
+               savelines[i] = Encryption.Encrypt(savelines[i], "MemGamePass");
             }
 
             
@@ -443,17 +443,17 @@ namespace MemoryGame
             SetsLabel.Visible = true;
             PlayerOneNameLabel.Visible = true;
             PlayerTwoNameLabel.Visible = true;
-            MultiplayerBeurt.Visible = true;
+            MultiplayerTurn.Visible = true;
             ResetButton.Visible = true;
 
             if (PlayerTwoNameLabel.Text == string.Empty)
             {
-                MultiplayerBeurt.Visible = false;
+                MultiplayerTurn.Visible = false;
                 
             }
             else
             {
-                MultiplayerBeurt.Text = PlayerOneNameLabel.Text;
+                MultiplayerTurn.Text = PlayerOneNameLabel.Text;
                 BeurtSpeler.Visible = true;
                 SetsLabel.Visible = false;
                 LabelSet1.Visible = true;
@@ -484,7 +484,7 @@ namespace MemoryGame
             OptionsPanel.Visible = false;
             PlayerOneNameLabel.Visible = false;
             PlayerTwoNameLabel.Visible = false;
-            MultiplayerBeurt.Visible = false;
+            MultiplayerTurn.Visible = false;
             BeurtSpeler.Visible = false;
             //lan
             LabelSet1.Visible = false;
@@ -495,6 +495,7 @@ namespace MemoryGame
             LabelSetsPlayer2.Visible = false;
             LabelMemoriesPlayer1.Visible = false;
             LabelMemoriesPlayer2.Visible = false;
+            
         }
 
         public void QuitGame(object sender, EventArgs e)

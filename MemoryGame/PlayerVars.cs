@@ -8,7 +8,6 @@ namespace MemoryGame
 {
     class PlayerVars
     {
-        internal int Beurt = 0;
         internal int Memories = 0;
         internal int Sets = 0;
     }
