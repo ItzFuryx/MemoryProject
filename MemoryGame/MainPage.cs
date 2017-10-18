@@ -175,6 +175,8 @@ namespace MemoryGame
                                 new SoundPlayer(Properties.Resources.CorrectCardsCombined).Play();
                                 FirstButton.Succes = true;
                                 secondButton.Succes = true;
+                                LabelMemoriesPlayer1.Text = PlayerOne.Memories.ToString();
+                                LabelMemoriesPlayer2.Text = PlayerTwo.Memories.ToString();
                                 WinCondition++;
                             }
                         }
@@ -196,12 +198,15 @@ namespace MemoryGame
                                 {
                                     PlayerOne.Sets++;
                                     MultiplayerBeurt.Text = PlayerTwoNameLabel.Text;
+                                    
                                 }
                                 else
                                 {
                                     PlayerTwo.Sets++;
                                     MultiplayerBeurt.Text = PlayerOneNameLabel.Text; 
                                 }
+                                LabelSetsPlayer1.Text = PlayerOne.Sets.ToString();
+                                LabelSetsPlayer2.Text = PlayerTwo.Sets.ToString();
                             }
                         }
                         FirstButton = null;
@@ -426,11 +431,21 @@ namespace MemoryGame
             if (PlayerTwoNameLabel.Text == string.Empty)
             {
                 MultiplayerBeurt.Visible = false;
+                
             }
             else
             {
                 MultiplayerBeurt.Text = PlayerOneNameLabel.Text;
                 BeurtSpeler.Visible = true;
+                SetsLabel.Visible = false;
+                LabelSet1.Visible = true;
+                LabelSet2.Visible = true;
+                LabelMemories1.Visible = true;
+                LabelMemories2.Visible = true;
+                LabelSetsPlayer1.Visible = true;
+                LabelSetsPlayer2.Visible = true;
+                LabelMemoriesPlayer1.Visible = true;
+                LabelMemoriesPlayer2.Visible = true;
             }
         }
 
@@ -453,6 +468,15 @@ namespace MemoryGame
             PlayerTwoNameLabel.Visible = false;
             MultiplayerBeurt.Visible = false;
             BeurtSpeler.Visible = false;
+            //lan
+            LabelSet1.Visible = false;
+            LabelSet2.Visible = false;
+            LabelMemories1.Visible = false;
+            LabelMemories2.Visible = false;
+            LabelSetsPlayer1.Visible = false;
+            LabelSetsPlayer2.Visible = false;
+            LabelMemoriesPlayer1.Visible = false;
+            LabelMemoriesPlayer2.Visible = false;
         }
 
         public void QuitGame(object sender, EventArgs e)

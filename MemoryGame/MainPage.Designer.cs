@@ -54,6 +54,14 @@
             this.PlayerTwoNameLabel = new System.Windows.Forms.Label();
             this.MultiplayerBeurt = new System.Windows.Forms.Label();
             this.BeurtSpeler = new System.Windows.Forms.Label();
+            this.LabelSet1 = new System.Windows.Forms.Label();
+            this.LabelSetsPlayer1 = new System.Windows.Forms.Label();
+            this.LabelMemories1 = new System.Windows.Forms.Label();
+            this.LabelMemoriesPlayer1 = new System.Windows.Forms.Label();
+            this.LabelSet2 = new System.Windows.Forms.Label();
+            this.LabelSetsPlayer2 = new System.Windows.Forms.Label();
+            this.LabelMemories2 = new System.Windows.Forms.Label();
+            this.LabelMemoriesPlayer2 = new System.Windows.Forms.Label();
             this.MainPanel.SuspendLayout();
             this.HighscoresPanel.SuspendLayout();
             this.OptionsPanel.SuspendLayout();
@@ -354,11 +362,99 @@
             this.BeurtSpeler.Text = "Beurt:";
             this.BeurtSpeler.Visible = false;
             // 
+            // LabelSet1
+            // 
+            this.LabelSet1.AutoSize = true;
+            this.LabelSet1.Location = new System.Drawing.Point(272, 65);
+            this.LabelSet1.Name = "LabelSet1";
+            this.LabelSet1.Size = new System.Drawing.Size(50, 20);
+            this.LabelSet1.TabIndex = 16;
+            this.LabelSet1.Text = "Sets: ";
+            this.LabelSet1.Visible = false;
+            // 
+            // LabelSetsPlayer1
+            // 
+            this.LabelSetsPlayer1.AutoSize = true;
+            this.LabelSetsPlayer1.Location = new System.Drawing.Point(329, 65);
+            this.LabelSetsPlayer1.Name = "LabelSetsPlayer1";
+            this.LabelSetsPlayer1.Size = new System.Drawing.Size(18, 20);
+            this.LabelSetsPlayer1.TabIndex = 17;
+            this.LabelSetsPlayer1.Text = "0";
+            this.LabelSetsPlayer1.Visible = false;
+            // 
+            // LabelMemories1
+            // 
+            this.LabelMemories1.AutoSize = true;
+            this.LabelMemories1.Location = new System.Drawing.Point(417, 65);
+            this.LabelMemories1.Name = "LabelMemories1";
+            this.LabelMemories1.Size = new System.Drawing.Size(86, 20);
+            this.LabelMemories1.TabIndex = 18;
+            this.LabelMemories1.Text = "Memories: ";
+            this.LabelMemories1.Visible = false;
+            // 
+            // LabelMemoriesPlayer1
+            // 
+            this.LabelMemoriesPlayer1.AutoSize = true;
+            this.LabelMemoriesPlayer1.Location = new System.Drawing.Point(501, 65);
+            this.LabelMemoriesPlayer1.Name = "LabelMemoriesPlayer1";
+            this.LabelMemoriesPlayer1.Size = new System.Drawing.Size(18, 20);
+            this.LabelMemoriesPlayer1.TabIndex = 19;
+            this.LabelMemoriesPlayer1.Text = "0";
+            this.LabelMemoriesPlayer1.Visible = false;
+            // 
+            // LabelSet2
+            // 
+            this.LabelSet2.AutoSize = true;
+            this.LabelSet2.Location = new System.Drawing.Point(1357, 82);
+            this.LabelSet2.Name = "LabelSet2";
+            this.LabelSet2.Size = new System.Drawing.Size(50, 20);
+            this.LabelSet2.TabIndex = 20;
+            this.LabelSet2.Text = "Sets: ";
+            this.LabelSet2.Visible = false;
+            // 
+            // LabelSetsPlayer2
+            // 
+            this.LabelSetsPlayer2.AutoSize = true;
+            this.LabelSetsPlayer2.Location = new System.Drawing.Point(1405, 82);
+            this.LabelSetsPlayer2.Name = "LabelSetsPlayer2";
+            this.LabelSetsPlayer2.Size = new System.Drawing.Size(18, 20);
+            this.LabelSetsPlayer2.TabIndex = 21;
+            this.LabelSetsPlayer2.Text = "0";
+            this.LabelSetsPlayer2.Visible = false;
+            // 
+            // LabelMemories2
+            // 
+            this.LabelMemories2.AutoSize = true;
+            this.LabelMemories2.Location = new System.Drawing.Point(1475, 82);
+            this.LabelMemories2.Name = "LabelMemories2";
+            this.LabelMemories2.Size = new System.Drawing.Size(86, 20);
+            this.LabelMemories2.TabIndex = 22;
+            this.LabelMemories2.Text = "Memories: ";
+            this.LabelMemories2.Visible = false;
+            // 
+            // LabelMemoriesPlayer2
+            // 
+            this.LabelMemoriesPlayer2.AutoSize = true;
+            this.LabelMemoriesPlayer2.Location = new System.Drawing.Point(1541, 82);
+            this.LabelMemoriesPlayer2.Name = "LabelMemoriesPlayer2";
+            this.LabelMemoriesPlayer2.Size = new System.Drawing.Size(18, 20);
+            this.LabelMemoriesPlayer2.TabIndex = 23;
+            this.LabelMemoriesPlayer2.Text = "0";
+            this.LabelMemoriesPlayer2.Visible = false;
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1896, 1038);
+            this.Controls.Add(this.LabelMemoriesPlayer2);
+            this.Controls.Add(this.LabelMemories2);
+            this.Controls.Add(this.LabelSetsPlayer2);
+            this.Controls.Add(this.LabelSet2);
+            this.Controls.Add(this.LabelMemoriesPlayer1);
+            this.Controls.Add(this.LabelMemories1);
+            this.Controls.Add(this.LabelSetsPlayer1);
+            this.Controls.Add(this.LabelSet1);
             this.Controls.Add(this.BeurtSpeler);
             this.Controls.Add(this.MultiplayerBeurt);
             this.Controls.Add(this.PlayerTwoNameLabel);
@@ -412,6 +508,14 @@
         private System.Windows.Forms.Label MultiplayerBeurt;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label BeurtSpeler;
+        private System.Windows.Forms.Label LabelSet1;
+        private System.Windows.Forms.Label LabelSetsPlayer1;
+        private System.Windows.Forms.Label LabelMemories1;
+        private System.Windows.Forms.Label LabelMemoriesPlayer1;
+        private System.Windows.Forms.Label LabelSet2;
+        private System.Windows.Forms.Label LabelSetsPlayer2;
+        private System.Windows.Forms.Label LabelMemories2;
+        private System.Windows.Forms.Label LabelMemoriesPlayer2;
     }
 }
 
