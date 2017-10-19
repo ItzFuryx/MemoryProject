@@ -24,14 +24,14 @@ namespace MemoryGame
         private MemoryType[] Types = new MemoryType[MemoryItems];
         private MemoryButton FirstButton;
         private List<Score> Scores = new List<Score>();
-        
-        private PlayerVars PlayerOne = new PlayerVars();
-        private PlayerVars PlayerTwo = new PlayerVars();
+
+        //lan multiplayer
+        PlayerVars PlayerOne = new PlayerVars();
+        PlayerVars PlayerTwo = new PlayerVars();
 
         private int Sets = 0;
         private int WinCondition = 0;
         private int Num = 0;
-
         //sound variables
         private WindowsMediaPlayer BackgroundSound = null;
         private string path = String.Empty;
@@ -60,7 +60,7 @@ namespace MemoryGame
             BackgroundSound.settings.setMode("loop", true);            
 
             MainPanel.Location = new Point(0, 0);
-            StartGameButton.Click += new EventHandler(this.StartGame);
+            NewGameButton.Click += new EventHandler(this.NewGame);
             HighscoresButton.Click += new EventHandler(this.OpenHighScores);
             OptionsButton.Click += new EventHandler(this.OpenOptions);
             ExitButton.Click += new EventHandler(this.QuitGame);
@@ -165,6 +165,7 @@ namespace MemoryGame
 
                         if (FirstButton.Type == secondButton.Type)
                         {
+                            //lan
                             if(string.IsNullOrEmpty(SecondUsernameBox.Text))
                             {
                                 FirstButton.Succes = true;
@@ -234,17 +235,19 @@ namespace MemoryGame
 
         private void Save()
         {
+
             int count = 0;
             string[] savelines = new string[50];
-
             foreach (MemoryButton but in ButtonArray)
             {
                 savelines[count] = Convert.ToString(but.Succes);
-
-                savelines[count+ 16] = Convert.ToString((int)but.Type);
                 count++;
             }
-
+            foreach (MemoryButton but in ButtonArray)
+            {
+                savelines[count] = Convert.ToString((int)but.Type);
+                count++;
+            }
             savelines[32] = PlayerOneNameLabel.Text;
             savelines[33] = PlayerTwoNameLabel.Text;
             savelines[34] = Convert.ToString(PlayerOne.Sets);
@@ -252,21 +255,23 @@ namespace MemoryGame
             savelines[36] = Convert.ToString(PlayerTwo.Sets);
             savelines[37] = Convert.ToString(PlayerTwo.Memories);
             savelines[38] = MultiplayerTurn.Text;
-
-            count = 40;
-
+            int count1 = 40;
             foreach(Score score in Scores)
             {
-                savelines[count] = score.Name;
-
-                savelines[count+5] = (score.Sets).ToString();
-                count++;
+                savelines[count1] = score.Name;
+                count1++;
+            }
+            foreach(Score score in Scores)
+            {
+                savelines[count1] = (score.Sets).ToString();
+                count1++;
             }
 
-            for (int i = 0; i < savelines.Length; i++)
+            for(int i = 0; i < savelines.Length; i++)
             {
                savelines[i] = Encryption.Encrypt(savelines[i], "MemGamePass");
             }
+
             
             File.WriteAllLines("memory.sav", savelines);
         }
@@ -300,7 +305,7 @@ namespace MemoryGame
                 Sets = 0;
                 SetsLabel.Text = "0";
             }
-
+            WinCondition = 0;
             PlayerOne.Sets = 0;
             LabelSetsPlayer1.Text = "0";
             PlayerTwo.Sets = 0;
@@ -332,46 +337,49 @@ namespace MemoryGame
         private void LoadGame(object sender, EventArgs e)
         {
             HideAll();
-            StartGame(this, new EventArgs());
-
+            SetsLabel.Visible = true;
+            PlayerOneNameLabel.Visible = true;
+            PlayerTwoNameLabel.Visible = true;
+            ResetButton.Visible = true;
             string[] loadlines = File.ReadAllLines("memory.sav");
 
             for (int i = 0; i < loadlines.Length; i++)
             {
                 loadlines[i] = Encryption.Decrypt(loadlines[i], "MemGamePass");
             }
+
             
-            for (int i = 0; i < 16; i++)
+            for (int count = 0; count < 16; count++)
             {
-                ButtonArray[i].Type = (MemoryType)Convert.ToInt32(loadlines[i + 16]);
-                ButtonArray[i].Succes = loadlines[i] == "True" ? true : false;
-                if (ButtonArray[i].Succes)
+                ButtonArray[count].Type = (MemoryType)Convert.ToInt32(loadlines[count + 16]);
+                ButtonArray[count].Succes = loadlines[count] == "True" ? true : false;
+                if (ButtonArray[count].Succes)
                 {
-                    switch (ButtonArray[i].Type)
+                    switch (ButtonArray[count].Type)
                     {
                         case MemoryType.Bart:
-                            ButtonArray[i].Button.BackgroundImage = Properties.Resources.KA;
+                            ButtonArray[count].Button.BackgroundImage = Properties.Resources.KA;
                             break;
                         case MemoryType.Casper:
-                            ButtonArray[i].Button.BackgroundImage = Properties.Resources.KJ;
+                            ButtonArray[count].Button.BackgroundImage = Properties.Resources.KJ;
                             break;
                         case MemoryType.DieEneGozer:
-                            ButtonArray[i].Button.BackgroundImage = Properties.Resources.KQ;
+                            ButtonArray[count].Button.BackgroundImage = Properties.Resources.KQ;
                             break;
                         case MemoryType.Harro:
-                            ButtonArray[i].Button.BackgroundImage = Properties.Resources.KK;
+                            ButtonArray[count].Button.BackgroundImage = Properties.Resources.KK;
                             break;
                         case MemoryType.Keanu:
-                            ButtonArray[i].Button.BackgroundImage = Properties.Resources.SA;
+                            ButtonArray[count].Button.BackgroundImage = Properties.Resources.SA;
                             break;
                         case MemoryType.Kevin:
-                            ButtonArray[i].Button.BackgroundImage = Properties.Resources.SJ;
+                            ButtonArray[count].Button.BackgroundImage = Properties.Resources.SJ;
                             break;
                         case MemoryType.Pim:
-                            ButtonArray[i].Button.BackgroundImage = Properties.Resources.SQ;
+                            ButtonArray[count].Button.BackgroundImage = Properties.Resources.SQ;
                             break;
                         case MemoryType.StarWars:
-                            ButtonArray[i].Button.BackgroundImage = Properties.Resources.SK;
+                            ButtonArray[count].Button.BackgroundImage = Properties.Resources.SK;
                             break;
                     }
                 }
@@ -388,14 +396,17 @@ namespace MemoryGame
             LabelMemoriesPlayer2.Text = loadlines[37];
             MultiplayerTurn.Text = loadlines[38];
 
-            int count = 40;
+            int count1 = 40;
             foreach (Score score in Scores)
             {
-                score.Name = loadlines[count];
-                score.Sets = Convert.ToInt32(loadlines[count + 5]);
-                count++;
+                score.Name = loadlines[count1];
+                count1++;
             }
-            CreateHighscores();
+            foreach (Score score in Scores)
+            {
+                score.Sets = Convert.ToInt32(loadlines[count1]);
+                count1++;
+            }
         }
 
         private void CreateHighscores()
@@ -422,6 +433,7 @@ namespace MemoryGame
                 if(newScore.Name != string.Empty)
                 {
                     newScore.SetNewScore(PlayerOneNameLabel.Text, Sets);
+
                     SortHighscores();
                 }
                 return;
@@ -464,9 +476,28 @@ namespace MemoryGame
             OptionsPanel.Location = new Point(0, 0);
         }
 
-        public void StartGame(object sender, EventArgs e)
+        public void NewGame(object sender, EventArgs e)
         {
             HideAll();
+            RandomizeCards();
+            for (int i = 0; i < MemoryItems; i++)
+            {
+                ButtonArray[i].Button.BackgroundImage = Properties.Resources.BS;
+                ButtonArray[i].Succes = false;
+                ButtonArray[i].Type = Types[i];
+                Sets = 0;
+                SetsLabel.Text = "0";
+            }
+            WinCondition = 0;
+            PlayerOne.Sets = 0;
+            LabelSetsPlayer1.Text = "0";
+            PlayerTwo.Sets = 0;
+            LabelSetsPlayer2.Text = "0";
+            PlayerOne.Memories = 0;
+            LabelMemoriesPlayer1.Text = "0";
+            PlayerTwo.Memories = 0;
+            LabelMemoriesPlayer2.Text = "0";
+            MultiplayerTurn.Text = PlayerOneNameLabel.Text;
             SetsLabel.Visible = true;
             PlayerOneNameLabel.Visible = true;
             PlayerTwoNameLabel.Visible = true;
@@ -475,7 +506,8 @@ namespace MemoryGame
 
             if (PlayerTwoNameLabel.Text == string.Empty)
             {
-                MultiplayerTurn.Visible = false;                
+                MultiplayerTurn.Visible = false;
+                
             }
             else
             {
@@ -502,6 +534,7 @@ namespace MemoryGame
 
         private void HideAll()
         {
+            //new SoundPlayer(Properties.Resources.MenuClick).Play();
             MenuSound.URL = pathMenu;
 
             MainPanel.Visible = false;
@@ -513,7 +546,6 @@ namespace MemoryGame
             PlayerTwoNameLabel.Visible = false;
             MultiplayerTurn.Visible = false;
             BeurtSpeler.Visible = false;
-            //lan
             LabelSet1.Visible = false;
             LabelSet2.Visible = false;
             LabelMemories1.Visible = false;
@@ -548,7 +580,8 @@ namespace MemoryGame
             int volume = 0;
             Int32.TryParse(SoundComboBox.Text, out volume);
             Console.WriteLine(volume);
-            BackgroundSound.settings.volume = volume;            
+            BackgroundSound.settings.volume = volume;
+            
         }
 
         private void OnSFXVolumeChanged(object sender, EventArgs e)
