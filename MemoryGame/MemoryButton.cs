@@ -24,5 +24,38 @@ namespace MemoryGame
         internal Button Button = null;
         internal MemoryType Type;
         internal bool Succes = false;
+        internal System.Drawing.Image Image;
+
+        public void SetCardType(MemoryType type)
+        {
+            Type = type;
+            switch (Type)
+            {
+                case MemoryType.Bart:
+                    Image = Properties.Resources.KA;
+                    break;
+                case MemoryType.Casper:
+                    Image = Properties.Resources.KJ;
+                    break;
+                case MemoryType.DieEneGozer:
+                    Image = Properties.Resources.KQ;
+                    break;
+                case MemoryType.Harro:
+                    Image = Properties.Resources.KK;
+                    break;
+                case MemoryType.Keanu:
+                    Image = Properties.Resources.SA;
+                    break;
+                case MemoryType.Kevin:
+                    Image = Properties.Resources.SJ;
+                    break;
+                case MemoryType.Pim:
+                   Image = Properties.Resources.SQ;
+                    break;
+                case MemoryType.StarWars:
+                    Image = Properties.Resources.SK;
+                    break;
+            }
+        }
     }
 }
