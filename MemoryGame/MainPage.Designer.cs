@@ -43,7 +43,10 @@
             this.HighscoresButton = new System.Windows.Forms.Button();
             this.SetsLabel = new System.Windows.Forms.Label();
             this.HighscoresPanel = new System.Windows.Forms.Panel();
-            this.HighscorePanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.MultiplayerHighscoresButton = new System.Windows.Forms.Button();
+            this.SingleplayerHighscoresButton = new System.Windows.Forms.Button();
+            this.SingleHighscorePanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.MultiplayerHighscorePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.BackToMainButton01 = new System.Windows.Forms.Button();
             this.OptionsPanel = new System.Windows.Forms.Panel();
@@ -111,7 +114,7 @@
             this.MainPanel.Controls.Add(this.OptionsButton);
             this.MainPanel.Controls.Add(this.HighscoresButton);
             this.MainPanel.Controls.Add(this.NewGameButton);
-            this.MainPanel.Location = new System.Drawing.Point(1092, 12);
+            this.MainPanel.Location = new System.Drawing.Point(1188, 12);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(1267, 720);
             this.MainPanel.TabIndex = 9;
@@ -222,21 +225,53 @@
             // 
             this.HighscoresPanel.BackColor = System.Drawing.SystemColors.ControlDark;
             this.HighscoresPanel.BackgroundImage = global::MemoryGame.Properties.Resources.StarWars_Background;
-            this.HighscoresPanel.Controls.Add(this.HighscorePanel);
+            this.HighscoresPanel.Controls.Add(this.MultiplayerHighscorePanel);
+            this.HighscoresPanel.Controls.Add(this.MultiplayerHighscoresButton);
+            this.HighscoresPanel.Controls.Add(this.SingleplayerHighscoresButton);
+            this.HighscoresPanel.Controls.Add(this.SingleHighscorePanel);
             this.HighscoresPanel.Controls.Add(this.label1);
             this.HighscoresPanel.Controls.Add(this.BackToMainButton01);
-            this.HighscoresPanel.Location = new System.Drawing.Point(357, 289);
+            this.HighscoresPanel.Location = new System.Drawing.Point(88, 53);
             this.HighscoresPanel.Name = "HighscoresPanel";
             this.HighscoresPanel.Size = new System.Drawing.Size(1267, 720);
             this.HighscoresPanel.TabIndex = 10;
             this.HighscoresPanel.Visible = false;
             // 
-            // HighscorePanel
+            // MultiplayerHighscoresButton
             // 
-            this.HighscorePanel.Location = new System.Drawing.Point(327, 106);
-            this.HighscorePanel.Name = "HighscorePanel";
-            this.HighscorePanel.Size = new System.Drawing.Size(801, 554);
-            this.HighscorePanel.TabIndex = 5;
+            this.MultiplayerHighscoresButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MultiplayerHighscoresButton.Location = new System.Drawing.Point(654, 31);
+            this.MultiplayerHighscoresButton.Name = "MultiplayerHighscoresButton";
+            this.MultiplayerHighscoresButton.Size = new System.Drawing.Size(148, 58);
+            this.MultiplayerHighscoresButton.TabIndex = 7;
+            this.MultiplayerHighscoresButton.Text = "Multiplayer";
+            this.MultiplayerHighscoresButton.UseVisualStyleBackColor = true;
+            this.MultiplayerHighscoresButton.Click += new System.EventHandler(this.MultiplayerHighscoresButton_Click);
+            // 
+            // SingleplayerHighscoresButton
+            // 
+            this.SingleplayerHighscoresButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SingleplayerHighscoresButton.Location = new System.Drawing.Point(363, 31);
+            this.SingleplayerHighscoresButton.Name = "SingleplayerHighscoresButton";
+            this.SingleplayerHighscoresButton.Size = new System.Drawing.Size(148, 58);
+            this.SingleplayerHighscoresButton.TabIndex = 6;
+            this.SingleplayerHighscoresButton.Text = "Singleplayer";
+            this.SingleplayerHighscoresButton.UseVisualStyleBackColor = true;
+            this.SingleplayerHighscoresButton.Click += new System.EventHandler(this.SingleplayerHighscoresButton_Click);
+            // 
+            // SingleHighscorePanel
+            // 
+            this.SingleHighscorePanel.Location = new System.Drawing.Point(322, 106);
+            this.SingleHighscorePanel.Name = "SingleHighscorePanel";
+            this.SingleHighscorePanel.Size = new System.Drawing.Size(801, 554);
+            this.SingleHighscorePanel.TabIndex = 5;
+            // 
+            // MultiplayerHighscorePanel
+            // 
+            this.MultiplayerHighscorePanel.Location = new System.Drawing.Point(348, 95);
+            this.MultiplayerHighscorePanel.Name = "MultiplayerHighscorePanel";
+            this.MultiplayerHighscorePanel.Size = new System.Drawing.Size(801, 554);
+            this.MultiplayerHighscorePanel.TabIndex = 6;
             // 
             // label1
             // 
@@ -251,7 +286,7 @@
             // BackToMainButton01
             // 
             this.BackToMainButton01.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BackToMainButton01.Location = new System.Drawing.Point(18, 17);
+            this.BackToMainButton01.Location = new System.Drawing.Point(13, 22);
             this.BackToMainButton01.Name = "BackToMainButton01";
             this.BackToMainButton01.Size = new System.Drawing.Size(148, 58);
             this.BackToMainButton01.TabIndex = 3;
@@ -268,7 +303,7 @@
             this.OptionsPanel.Controls.Add(this.SoundComboBox);
             this.OptionsPanel.Controls.Add(this.OptionsLabel);
             this.OptionsPanel.Controls.Add(this.BackToMainButton02);
-            this.OptionsPanel.Location = new System.Drawing.Point(50, 42);
+            this.OptionsPanel.Location = new System.Drawing.Point(143, 615);
             this.OptionsPanel.Name = "OptionsPanel";
             this.OptionsPanel.Size = new System.Drawing.Size(1267, 720);
             this.OptionsPanel.TabIndex = 11;
@@ -301,7 +336,7 @@
             "10",
             "0"});
             this.SetSFXVolume.Location = new System.Drawing.Point(532, 359);
-            this.SetSFXVolume.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SetSFXVolume.Margin = new System.Windows.Forms.Padding(2);
             this.SetSFXVolume.Name = "SetSFXVolume";
             this.SetSFXVolume.Size = new System.Drawing.Size(87, 21);
             this.SetSFXVolume.TabIndex = 7;
@@ -558,7 +593,7 @@
         private System.Windows.Forms.Button ResetButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label PlayerOneNameLabel;
-        private System.Windows.Forms.FlowLayoutPanel HighscorePanel;
+        private System.Windows.Forms.FlowLayoutPanel SingleHighscorePanel;
         private System.Windows.Forms.TextBox FirstUsernameBox;
         private System.Windows.Forms.Label PlayerTwoNameLabel;
         private System.Windows.Forms.TextBox SecondUsernameBox;
@@ -577,6 +612,9 @@
         private System.Windows.Forms.Label SetVolumeLabel;
         private System.Windows.Forms.Label SFXLabel;
         private System.Windows.Forms.ComboBox SetSFXVolume;
+        private System.Windows.Forms.Button SingleplayerHighscoresButton;
+        private System.Windows.Forms.Button MultiplayerHighscoresButton;
+        private System.Windows.Forms.FlowLayoutPanel MultiplayerHighscorePanel;
     }
 }
 

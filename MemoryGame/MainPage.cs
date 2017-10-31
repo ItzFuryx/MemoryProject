@@ -23,25 +23,21 @@ namespace MemoryGame
         private MemoryButton[] ButtonArray = new MemoryButton[MemoryItems];       
         private MemoryType[] Types = new MemoryType[MemoryItems];
         private MemoryButton FirstButton;
-        private List<Score> Scores = new List<Score>();
+        private List<Score> ScoresSingle = new List<Score>();
+        private List<Multiscore> ScoresMulti = new List<Multiscore>();
+
         private System.Drawing.Image CardBackgroundImage = Properties.Resources.BS;
 
         //lan multiplayer.
         PlayerVars PlayerOne = new PlayerVars();
         PlayerVars PlayerTwo = new PlayerVars();
 
-        private int Sets = 0;
-        private int WinCondition = 0;
-        private int Num = 0;
+        private int Sets, WinCondition, Num = 0;
+
         //sound variables.
-        private WindowsMediaPlayer BackgroundSound = null;
-        private string path = String.Empty;
-        private WindowsMediaPlayer MenuSound = null;
-        private string pathMenu = String.Empty;
-        private WindowsMediaPlayer Succes = null;
-        private string pathSucces = String.Empty;
-        private WindowsMediaPlayer Fail = null;
-        private string pathFail = String.Empty;
+        private WindowsMediaPlayer BackgroundSound, MenuSound, Succes, Fail = null;
+        private string path, pathMenu, pathSucces, pathFail = String.Empty;
+
         #endregion
 
         public MainPage()
@@ -187,8 +183,7 @@ namespace MemoryGame
                             //Speel de fail sound
                             new SoundPlayer(Properties.Resources.Fail).Play();
                             //de image van de kaarten terug zetten naar de achterkant van de kaart.
-                            secondButton.Button.BackgroundImage = CardBackgroundImage;
-                            FirstButton.Button.BackgroundImage = CardBackgroundImage;
+                            secondButton.Button.BackgroundImage = FirstButton.Button.BackgroundImage = CardBackgroundImage;
 
                             //als het multiplayer is.
                             if (!string.IsNullOrEmpty(SecondUsernameBox.Text))
@@ -244,7 +239,7 @@ namespace MemoryGame
 
             int count = 40;
 
-            foreach(Score score in Scores)//highscore data setten.
+            foreach(Score score in ScoresSingle)//highscore data setten.
             {
                 savelines[count] = score.Name;
                 savelines[count+5] = (score.Sets).ToString();
@@ -281,6 +276,7 @@ namespace MemoryGame
 
         private void Reset(object sender, EventArgs e)
         {
+            CreateHighscores();
             //de kaarten randomize wanneer op reset klikt.(Deck shuffle idee)
             RandomizeCards();
             for (int i = 0; i < MemoryItems; i++)
@@ -292,21 +288,19 @@ namespace MemoryGame
                 SetsLabel.Text = "0";
             }
             //alle game data resetten naar default settings.
-            WinCondition = 0;
-            PlayerOne.Sets = 0;
-            LabelSetsPlayer1.Text = "0";
-            PlayerTwo.Sets = 0;
-            LabelSetsPlayer2.Text = "0";
-            PlayerOne.Memories = 0;
-            LabelMemoriesPlayer1.Text = "0";
-            PlayerTwo.Memories = 0;
-            LabelMemoriesPlayer2.Text = "0";
+            WinCondition = PlayerOne.Sets = PlayerTwo.Sets = PlayerOne.Memories = PlayerTwo.Memories = 0;
+
+
+            LabelSetsPlayer2.Text = LabelSetsPlayer1.Text = LabelMemoriesPlayer1.Text = LabelMemoriesPlayer2.Text = "0";
+
             MultiplayerTurn.Text = PlayerOneNameLabel.Text;
         }
 
+        /// <summary>
+        /// wanneer je alle memory's hebt naar highscores gaan en highscores maken
+        /// </summary>
         private void OnGameCompleted()
         {
-            //wanneer je alle memory's hebt naar highscores gaan en highscores maken
             WinCondition = 0;
 
             Sets = Sets / 2;
@@ -364,12 +358,12 @@ namespace MemoryGame
 
             int count1 = 40;
 
-            foreach (Score score in Scores)
+            foreach (Score score in ScoresSingle)
             {
                 score.Name = loadlines[count1];
                 count1++;
             }
-            foreach (Score score in Scores)
+            foreach (Score score in ScoresSingle)
             {
                 score.Sets = Convert.ToInt32(loadlines[count1]);
                 count1++;
@@ -378,27 +372,27 @@ namespace MemoryGame
 
         private void CreateHighscores()
         {
-            if (Scores.Count >= 5) // als de al bekende scores meer of gelijk zijn aan 5.
+            if (string.IsNullOrEmpty(PlayerTwoNameLabel.Text) && ScoresSingle.Count >= 5)
             {
                 //overschrijf laagste score en vervang deze met een nieuwe score.
                 Score newScore = new Score();
-                for(int i =0; i < Scores.Count; i++)
+                for (int i = 0; i < ScoresSingle.Count; i++)
                 {
-                    if(Scores[i].Sets >= Sets)
+                    if (ScoresSingle[i].Sets >= Sets)
                     {
-                        if(newScore.Name != string.Empty)
+                        if (newScore.Name != string.Empty)
                         {
-                            if (newScore.Sets >= Scores[i].Sets)
-                                newScore = Scores[i];
+                            if (newScore.Sets >= ScoresSingle[i].Sets)
+                                newScore = ScoresSingle[i];
                         }
                         else
                         {
-                            newScore = Scores[i];
+                            newScore = ScoresSingle[i];
                         }
                     }
                 }
 
-                if(newScore.Name != string.Empty)
+                if (newScore.Name != string.Empty)
                 {
                     newScore.SetNewScore(PlayerOneNameLabel.Text, Sets);
 
@@ -406,27 +400,95 @@ namespace MemoryGame
                 }
                 return;
             }
-            
-            //adds new highscore.
-            Score score = new Score(
-                 new Panel() { Size = new Size(500, 50)},
-                 new Label() { Text = "Name = " + PlayerOneNameLabel.Text, Location = new Point(0, 0) },
-                 new Label() { Text = "Sets = " + Sets , Location = new Point(100, 0) },
-                 PlayerOneNameLabel.Text,
-                 Sets);
-            
-            Scores.Add(score);
+            else if (ScoresMulti.Count >= 5)
+            {
+                //overschrijf laagste score en vervang deze met een nieuwe score.
+                Score newScore = new Score();
+                for (int i = 0; i < ScoresMulti.Count; i++)
+                {
+                    if (ScoresMulti[i].ScoreOne.Sets >= Sets)
+                    {
+                        if (newScore.Name != string.Empty)
+                        {
+                            if (newScore.Sets >= ScoresMulti[i].ScoreOne.Sets)
+                                newScore = ScoresMulti[i].ScoreOne;
+                        }
+                        else
+                        {
+                            newScore = ScoresMulti[i].ScoreOne;
+                        }
+                    }
+                }
+
+                if (newScore.Name != string.Empty)
+                {
+                    newScore.SetNewScore(PlayerOneNameLabel.Text, Sets);
+
+                    SortHighscores();
+                }
+                return;                
+            }
+
+            if (!string.IsNullOrEmpty(PlayerTwoNameLabel.Text))
+            {
+                Multiscore newScore = new Multiscore
+                {
+                    ScoreOne = new Score(
+                        new Panel() { Size = new Size(500, 50) },
+                        new Label() { Text = "Name = " + PlayerOneNameLabel.Text, Location = new Point(0, 0) },
+                        new Label() { Text = "Memories = " + PlayerOne.Memories, Location = new Point(100, 0) },
+                        PlayerOneNameLabel.Text,
+                        PlayerOne.Memories),
+                    ScoreTwo = new Score(
+                        new Panel() { Size = new Size(500, 50) },
+                        new Label() { Text = "Name = " + PlayerTwoNameLabel.Text, Location = new Point(200, 0) },
+                        new Label() { Text = "Memories = " + PlayerTwo.Memories, Location = new Point(300, 0) },
+                        PlayerTwoNameLabel.Text,
+                        PlayerTwo.Memories)
+                };
+
+                newScore.SetPanel();
+                ScoresMulti.Add(newScore);
+            }
+            else
+            {
+                //adds new highscore.
+                Score score = new Score(
+                     new Panel() { Size = new Size(500, 50) },
+                     new Label() { Text = "Name = " + PlayerOneNameLabel.Text, Location = new Point(0, 0) },
+                     new Label() { Text = "Sets = " + Sets, Location = new Point(100, 0) },
+                     PlayerOneNameLabel.Text,
+                     Sets);
+
+                ScoresSingle.Add(score);
+            }
             SortHighscores(); //sorteert de highscores zodat de hoogste score bovenaan staat en de laagste onderaan.
         }
 
         public void SortHighscores() // sorteer de highscores op score.
         {
-            HighscorePanel.Controls.Clear();
-            Scores = Scores.OrderBy(p => p.Sets).ToList();//sorteert de highscore op minst aantal sets(score).
-
-            foreach (Score setScore in Scores)
+            if (!string.IsNullOrEmpty(PlayerTwoNameLabel.Text))
             {
-                HighscorePanel.Controls.Add(setScore.ScorePanel);//de UI van de highscores toevoegen.
+                MultiplayerHighscoresButton_Click(this, new EventArgs());
+                MultiplayerHighscorePanel.Controls.Clear();
+                ScoresMulti = ScoresMulti.OrderBy(p => p.ScoreOne.Sets).ToList();//sorteert de highscore op minst aantal sets(score).
+
+                foreach (Multiscore setScore in ScoresMulti)
+                {
+                    MultiplayerHighscorePanel.Controls.Add(setScore.ScoreOne.ScorePanel);//de UI van de highscores toevoegen.
+                    if(setScore.ScoreTwo != null)
+                        MultiplayerHighscorePanel.Controls.Add(setScore.ScoreTwo.ScorePanel);//de UI van de highscores toevoegen.
+                }
+                return;
+            }
+
+            SingleplayerHighscoresButton_Click(this, new EventArgs());
+            SingleHighscorePanel.Controls.Clear();
+            ScoresSingle = ScoresSingle.OrderBy(p => p.Sets).ToList();//sorteert de highscore op minst aantal sets(score).
+
+            foreach (Score setScore in ScoresSingle)
+            {
+                SingleHighscorePanel.Controls.Add(setScore.ScorePanel);//de UI van de highscores toevoegen.
             }
         }
 
@@ -436,6 +498,18 @@ namespace MemoryGame
             HideAll();
             HighscoresPanel.Visible = true;
             HighscoresPanel.Location = new Point(0, 0);
+        }
+
+        private void SingleplayerHighscoresButton_Click(object sender, EventArgs e)
+        {
+            SingleHighscorePanel.Visible = true;
+            MultiplayerHighscorePanel.Visible = false;
+        }
+
+        private void MultiplayerHighscoresButton_Click(object sender, EventArgs e)
+        {
+            SingleHighscorePanel.Visible = false;
+            MultiplayerHighscorePanel.Visible = true;
         }
 
         public void OpenOptions(object sender, EventArgs e)
@@ -452,21 +526,11 @@ namespace MemoryGame
             //alle menu's hiden.
             HideAll();
 
-            WinCondition = 0;
-            PlayerOne.Sets = 0;
-            LabelSetsPlayer1.Text = "0";
-            PlayerTwo.Sets = 0;
-            LabelSetsPlayer2.Text = "0";
-            PlayerOne.Memories = 0;
-            LabelMemoriesPlayer1.Text = "0";
-            PlayerTwo.Memories = 0;
-            LabelMemoriesPlayer2.Text = "0";
+            WinCondition = PlayerOne.Sets = PlayerTwo.Sets = PlayerOne.Memories = PlayerTwo.Memories = 0;
+            LabelSetsPlayer1.Text = LabelSetsPlayer2.Text = LabelMemoriesPlayer1.Text = LabelMemoriesPlayer2.Text = "0";
+
             MultiplayerTurn.Text = PlayerOneNameLabel.Text;
-            SetsLabel.Visible = true;
-            PlayerOneNameLabel.Visible = true;
-            PlayerTwoNameLabel.Visible = true;
-            MultiplayerTurn.Visible = true;
-            ResetButton.Visible = true;
+            SetsLabel.Visible = PlayerOneNameLabel.Visible = PlayerTwoNameLabel.Visible = MultiplayerTurn.Visible = ResetButton.Visible = true;
 
             if (PlayerTwoNameLabel.Text == string.Empty)
             {
@@ -476,16 +540,11 @@ namespace MemoryGame
             else
             {
                 MultiplayerTurn.Text = PlayerOneNameLabel.Text;
-                BeurtSpeler.Visible = true;
-                SetsLabel.Visible = false;
-                LabelSet1.Visible = true;
-                LabelSet2.Visible = true;
-                LabelMemories1.Visible = true;
-                LabelMemories2.Visible = true;
-                LabelSetsPlayer1.Visible = true;
-                LabelSetsPlayer2.Visible = true;
-                LabelMemoriesPlayer1.Visible = true;
-                LabelMemoriesPlayer2.Visible = true;
+
+                BeurtSpeler.Visible = LabelSet1.Visible = LabelSet2.Visible = LabelMemories1.Visible = LabelMemories2.Visible = 
+                    LabelSetsPlayer1.Visible = LabelSetsPlayer2.Visible = LabelMemoriesPlayer1.Visible = LabelMemoriesPlayer2.Visible = true;
+
+                SetsLabel.Visible = false;    
             }
         }
 
@@ -496,27 +555,19 @@ namespace MemoryGame
             MainPanel.Location = new Point(0, 0);
         }
 
+        /// <summary>
+        /// Hide alle ui elementen
+        /// </summary>
         private void HideAll()
         {
             MenuSound.URL = pathMenu;
 
-            MainPanel.Visible = false;
-            ResetButton.Visible = false;
-            HighscoresPanel.Visible = false;
-            SetsLabel.Visible = false;
-            OptionsPanel.Visible = false;
-            PlayerOneNameLabel.Visible = false;
-            PlayerTwoNameLabel.Visible = false;
-            MultiplayerTurn.Visible = false;
-            BeurtSpeler.Visible = false;
-            LabelSet1.Visible = false;
-            LabelSet2.Visible = false;
-            LabelMemories1.Visible = false;
-            LabelMemories2.Visible = false;
-            LabelSetsPlayer1.Visible = false;
-            LabelSetsPlayer2.Visible = false;
-            LabelMemoriesPlayer1.Visible = false;
-            LabelMemoriesPlayer2.Visible = false;            
+            MainPanel.Visible = ResetButton.Visible = HighscoresPanel.Visible = SetsLabel.Visible = 
+                OptionsPanel.Visible = PlayerOneNameLabel.Visible = PlayerTwoNameLabel.Visible =
+                MultiplayerTurn.Visible = BeurtSpeler.Visible = LabelSet1.Visible = 
+                LabelSet2.Visible = LabelMemories1.Visible = LabelMemories2.Visible =
+                LabelSetsPlayer1.Visible = LabelSetsPlayer2.Visible = LabelMemoriesPlayer1.Visible = 
+                LabelMemoriesPlayer2.Visible = false;
         }
 
         public void QuitGame(object sender, EventArgs e)

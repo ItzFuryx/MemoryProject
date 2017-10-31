@@ -33,13 +33,26 @@ namespace MemoryGame
             ScorePanel.Controls.Add(SetsLabel);
         }
 
-
         internal void SetNewScore(string name, int sets)
         {
             Name = name;
             Sets = sets;
             NameLabel.Text = "Name = " + Name;
             SetsLabel.Text = "Sets = " + sets.ToString();
+        }
+    }
+
+    class Multiscore
+    {
+        public Score ScoreOne;
+        public Score ScoreTwo;
+
+        public void SetPanel()
+        {
+            ScoreTwo.ScorePanel = ScoreOne.ScorePanel;
+
+            ScoreTwo.ScorePanel.Controls.Add(ScoreTwo.NameLabel);
+            ScoreTwo.ScorePanel.Controls.Add(ScoreTwo.SetsLabel);
         }
     }
 }
