@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace MemoryGame
 {
+    /// <summary>
+    /// Gemaakt door Bart.
+    /// </summary>
     class PlayerVars
     {
         internal int Memories = 0;

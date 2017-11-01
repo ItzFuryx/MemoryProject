@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace MemoryGame
 {
+    /// <summary>
+    /// Gemaakt door Keanu.
+    /// </summary>
     class Score
     {
         public Panel ScorePanel;
@@ -53,6 +56,23 @@ namespace MemoryGame
 
             ScoreTwo.ScorePanel.Controls.Add(ScoreTwo.NameLabel);
             ScoreTwo.ScorePanel.Controls.Add(ScoreTwo.SetsLabel);
+        }
+
+        /// <summary>
+        /// return de hoogste score zodat hij daarop gesorteert kan worden.
+        /// </summary>
+        /// <returns></returns>
+        /// Gemaakt door Keanu.
+        public Score GetHighest()
+        {
+            if(ScoreOne.Sets > ScoreTwo.Sets)
+            {
+                return ScoreOne;
+            }
+            else
+            {
+                return ScoreTwo;
+            }
         }
     }
 }

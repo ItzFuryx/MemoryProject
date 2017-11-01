@@ -18,7 +18,9 @@ namespace MemoryGame
         StarWars = 6,
         DieEneGozer = 7
     }
-
+    /// <summary> 
+    /// Gemaakt door Keanu.
+    /// </summary>
     class MemoryButton
     {
         internal Button Button = null;
@@ -26,6 +28,10 @@ namespace MemoryGame
         internal bool Succes = false;
         internal System.Drawing.Image Image;
 
+        /// <summary>
+        /// Gemaakt door Keanu.
+        /// </summary>
+        /// <param name="type"></param>
         public void SetCardType(MemoryType type)
         {
             Type = type;

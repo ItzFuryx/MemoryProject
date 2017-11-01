@@ -27,42 +27,44 @@ namespace MemoryGame
         private List<Multiscore> ScoresMulti = new List<Multiscore>();
 
         private System.Drawing.Image CardBackgroundImage = Properties.Resources.BS;
-
-        //lan multiplayer.
+        
         PlayerVars PlayerOne = new PlayerVars();
         PlayerVars PlayerTwo = new PlayerVars();
 
+        private string[] LoadLines;
         private int Sets, WinCondition, Num = 0;
-
-        //sound variables.
+        
         private WindowsMediaPlayer BackgroundSound, MenuSound, Succes, Fail = null;
         private string path, pathMenu, pathSucces, pathFail = String.Empty;
 
         #endregion
 
+        /// <summary>
+        /// Laad alle geluiden en initialiseer de bijbehorende WindowsMediaPlayers.
+        /// Set de background muziek op looping.
+        /// MainPanel op 0.0 setten.
+        /// Alle menu knoppen aan een onclick eventhandler hangen.
+        /// Daarna de kaarten maken en checken of er al een save file bestaat zo niet maakt hij er één.
+        /// </summary>
+        /// Gemaakt door Casper, Keanu en Pim.
         public MainPage()
         {
             InitializeComponent();
-            //alle URLS van de geluiden ophalen.
             path = Path.GetFullPath(@"..\..\Resources/BackgroundMusic.wav");
             pathMenu = Path.GetFullPath(@"..\..\Resources/MenuClick.wav");
             pathSucces = Path.GetFullPath(@"..\..\Resources/CorrectCardsCombined.wav");
             pathFail = Path.GetFullPath(@"..\..\Resources/Fail.wav");
-
-            //de windows media players initialiseren voor de geluiden.
+            
             BackgroundSound = new WindowsMediaPlayer();
             MenuSound = new WindowsMediaPlayer();
             Succes = new WindowsMediaPlayer();
             Fail = new WindowsMediaPlayer();
-
-            //de path van de backgroundsound setten en loopend maken.
+            
             BackgroundSound.URL = path;
             BackgroundSound.settings.setMode("loop", true);            
-
-            //de locatie van de main panel setten.
+            
             MainPanel.Location = new Point(0, 0);
-
-            //wanneer je op een knop drukt wordt wat hierin staat aanroepen ().                                  
+                            
             NewGameButton.Click += new EventHandler(this.NewGame);
             HighscoresButton.Click += new EventHandler(this.OpenHighScores);
             OptionsButton.Click += new EventHandler(this.OpenOptions);
@@ -71,25 +73,39 @@ namespace MemoryGame
             BackToMainButton01.Click += new EventHandler(this.Back);
             BackToMainButton02.Click += new EventHandler(this.Back);
             BackToMainButton03.Click += new EventHandler(this.Back);
-
-            //de functie aanroepen om de kaarten te maken.
+            
             CreateCards(true);
-
-            //het save bestand maken als hij nog niet bestaat.
+            
             if (!File.Exists("memory.sav"))
             {
                 var stream1 = File.Create("memory.sav");
                 stream1.Close();
             }
+            else
+            {
+                LoadLines = File.ReadAllLines("memory.sav");
+
+                for (int i = 0; i < LoadLines.Length; i++)
+                {
+                    LoadLines[i] = Encryption.Decrypt(LoadLines[i], "MemGamePass");
+                }
+                LoadHighScores(LoadLines);
+            }
         }
 
         #region CardFunctions
+        /// <summary>
+        /// Wanneer shuffleCards true is alle kaarten randomizen.
+        /// 16 memory buttons aanmaken zodat we daar de informatie van de kaarten in kunnen verwerken.
+        /// Daarna maken we alle buttons en hangen we een eventhandler aan de onclick van de kaart zodat hij clickedcard aanroept wanneer erop geklikt is.
+        /// Daarna adden we deze knop aan de grid panel.
+        /// </summary>
+        /// <param name="shuffleCards"></param>
+        /// Gemaakt door Keanu.
         private void CreateCards(bool shuffleCards)
         {
-            //Als shufflecards true is de kaarten randomizen.
             if(shuffleCards) RandomizeCards();
-
-            //16 memory buttons aanmaken zodat we daar de kaarten in kunnen verwerken.
+            
             for (int i = 0; i < MemoryItems; i++)
             {
                 ButtonArray[i] = new MemoryButton();
@@ -97,104 +113,97 @@ namespace MemoryGame
 
             for (int i = 0; i < MemoryItems; i++)
             {
-                //Een button aanmaken zodat je op de kaarten kan klikken.
                 ButtonArray[Num].Button = new Button()
                 {                    
                     Text = null,
                     BackColor = Color.Gray,
-                    //de background image van de kaart setten.
                     BackgroundImage = CardBackgroundImage,
-                    //de grote setten van de kaart.
                     Width = 100,
                     Height = 150
                 };
-                //Wanneer er op de kaart geklikt word de functie clicked kaart aanroepen.
                 ButtonArray[Num].Button.Click += new EventHandler(this.ClickedCard);
-                //de type van de kaart setten en de image.
                 ButtonArray[Num].SetCardType(Types[Num]);
-                //de kaarten toevoegen aan de grid.
                 GridPanel.Controls.Add(ButtonArray[Num].Button);
                 Num++;            
             }
-        }       
+        }
 
+        /// <summary>
+        /// Wanneer er op een kaart gelikte word checken welke kaart het is wanneer het dezelfde kaart is als FirstButton niks doen.
+        /// Wanneer er op een andere kaart geklikt word kijken of hij al een memory is,
+        /// Ondertussen word de kaart gedraaid en word hij voor 1 seconden vertoond.
+        /// zo niet dan kijken of het t zelfde type heeft als eerste geselecteerde kaart.
+        /// Wanneer beide kaarten hetzelde type hebben maak het een memory en speel t memory geluidje af.
+        /// Elke keer dat er een kaart omgedraaid word ook de hele game gesaved.
+        /// Als alle kaarten een memory zijn Call function OnGameFinished.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// Gemaakt door Bart en Keanu.
         public void ClickedCard(object sender, EventArgs e)
         {                   
             for (int i = 0; i < MemoryItems; i++)
             {
-                //checken of je niet op de al geklikte knop drukt.
                 if(FirstButton != null)
                     if(sender == FirstButton.Button)
                         break;
-
-                //Als je de knop gevonden hebt waar je op geklikt hebt.
+                
                 if (sender == ButtonArray[i].Button)
                 {
-                    //Als hij al een memory is, niks doen.
                     if (ButtonArray[i].Succes) return;
-
-                    //De kaart omdraaien/ het plaatje laten zien.
+                    
                     ButtonArray[i].Button.BackgroundImage = ButtonArray[i].Image;
                     
-                    if (FirstButton == null)//check of er al een eerste kaart is geselecteerd.
+                    if (FirstButton == null)
                     {
-                        FirstButton = ButtonArray[i];//set de kaart als eerst geklikte button.
+                        FirstButton = ButtonArray[i];
                     }
                     else if(FirstButton != null)
                     {
-                        //set de kaart als tweede geklikte button.
                         MemoryButton secondButton = ButtonArray[i];
-
-                        //1 seconden wachten om te laten zien welke kaart er geklikt is.
+                        
                         var t = Task.Run(async delegate
                         {
                             await Task.Delay(TimeSpan.FromSeconds(1));
                         });
                         t.Wait();
-
-                        //als de beide kaarten hetzelfde type hebben.
+                        
                         if (FirstButton.Type == secondButton.Type)
                         {                            
-                            if(!string.IsNullOrEmpty(SecondUsernameBox.Text))//als het multiplayer.
+                            if(!string.IsNullOrEmpty(SecondUsernameBox.Text))
                             {
-                                if (MultiplayerTurn.Text == PlayerOneNameLabel.Text)//Als het player 1 is verhoog zijn memories met 1.
+                                if (MultiplayerTurn.Text == PlayerOneNameLabel.Text)
                                 {
                                     PlayerOne.Memories++;
                                 }
-                                else//Als het player 2 is verhoog zijn memories met 1.
+                                else
                                 {
                                     PlayerTwo.Memories++;
                                 }
-                                //Als het player 1 is verhoog zijn memories met 1.
                                 LabelMemoriesPlayer1.Text = PlayerOne.Memories.ToString();
                                 LabelMemoriesPlayer2.Text = PlayerTwo.Memories.ToString();
                             }
-
-                            //de kaarten op succes zetten zodat we weten dat het een memory is.
+                            
                             FirstButton.Succes = true;
                             secondButton.Succes = true;
-                            //het succes geluid afspelen.
                             new SoundPlayer(Properties.Resources.CorrectCardsCombined).Play();
                             
                             WinCondition++;    
                         }
-                        else//als de type van de kaarten niet gelijk zijn.
+                        else
                         {
-                            //Speel de fail sound
                             new SoundPlayer(Properties.Resources.Fail).Play();
-                            //de image van de kaarten terug zetten naar de achterkant van de kaart.
                             secondButton.Button.BackgroundImage = FirstButton.Button.BackgroundImage = CardBackgroundImage;
-
-                            //als het multiplayer is.
+                            
                             if (!string.IsNullOrEmpty(SecondUsernameBox.Text))
                             {
-                                if (MultiplayerTurn.Text == PlayerOneNameLabel.Text)// als het player 1 is zijn set verhogen en de turn overgeven aan player2.
+                                if (MultiplayerTurn.Text == PlayerOneNameLabel.Text)
                                 {
                                     PlayerOne.Sets++;
                                     LabelSetsPlayer1.Text = PlayerOne.Sets.ToString();
                                     MultiplayerTurn.Text = PlayerTwoNameLabel.Text;
                                 }
-                                else// als het player 2 is zijn set verhogen en de turn overgeven aan player1.
+                                else
                                 {
                                     PlayerTwo.Sets++;
                                     LabelSetsPlayer2.Text = PlayerTwo.Sets.ToString();
@@ -202,33 +211,35 @@ namespace MemoryGame
                                 }
                             }
                         }
-                        //first button null maken zodat je kan proberen de volgende memory te maken.
                         FirstButton = null;
                     }
-                    //De sets label setten en de set verhogen
                     SetsLabel.Text = ((Sets+1)/2).ToString();
                     Sets++;
-                    if (WinCondition == 8)// als je alle kaarten als memory hebt de game complete functie callen.
+                    if (WinCondition == 8)
                     {
                         OnGameCompleted();
                     }
                     break;
                 }
             }
-            Save(); // de kaarten saven. Dit gebeurd elke keer als laatste in de ClickedCard functie.
+            Save();
         }
 
+        /// <summary>
+        /// Er worden 50 savelines gemaakt om de game data in op te slaan.
+        /// Hier worden alle knoppen en highscores opgeslagen.
+        /// Wanneer dat klaar is word alles encrypted.
+        /// </summary>
+        /// Gemaakt door Pim.
         private void Save()
         {
-            //50 lines maken om data in op te slaan.
-            string[] savelines = new string[50];
+            string[] savelines = new string[100];
 
             for(int i = 0; i < MemoryItems; i++)
-            {//MemoryButton data setten.
+            {
                 savelines[i] = Convert.ToString(ButtonArray[i].Succes);
                 savelines[i + 16] = Convert.ToString((int)ButtonArray[i].Type);
             }
-            //ingame data setten.
             savelines[32] = PlayerOneNameLabel.Text;
             savelines[33] = PlayerTwoNameLabel.Text;
             savelines[34] = Convert.ToString(PlayerOne.Sets);
@@ -239,23 +250,37 @@ namespace MemoryGame
 
             int count = 40;
 
-            foreach(Score score in ScoresSingle)//highscore data setten.
+            foreach(Score score in ScoresSingle)
             {
                 savelines[count] = score.Name;
                 savelines[count+5] = (score.Sets).ToString();
                 count++;
             }
 
-            //alle save data encrypten.
+            count = 55;
+
+            foreach (Multiscore score in ScoresMulti)
+            {
+                savelines[count] = score.ScoreOne.Name;
+                savelines[count + 10] = (score.ScoreOne.Sets).ToString();
+                count++;
+                savelines[count] = score.ScoreTwo.Name;
+                savelines[count + 10] = (score.ScoreTwo.Sets).ToString();
+                count++;
+            }
+            
             for(int i = 0; i < savelines.Length; i++)
             {
                savelines[i] = Encryption.Encrypt(savelines[i], "MemGamePass");
             }
-            //de Data opslaan in een .sav bestand.
             File.WriteAllLines("memory.sav", savelines);
         }
 
-        private void RandomizeCards() //de Type kaarten in random order zetten.(Deck shuffle idee)
+        /// <summary>
+        /// de Type kaarten in random order zetten.(Deck shuffle idee)
+        /// </summary>
+        /// Gemaakt door Keanu.
+        private void RandomizeCards()
         {
             for (int i = 0; i < MemoryItems; i++)
             {
@@ -268,16 +293,21 @@ namespace MemoryGame
                     Types[i] = (MemoryType)i - MemoryItems / 2;
                 }
             }
-
-            //random rnd word hier aangemaakt.
+            
             Random rnd = new Random();
             Types = Types.OrderBy(x => rnd.Next()).ToArray();
         }
 
+        /// <summary>
+        /// de kaarten randomize wanneer je op reset klikt.(Deck shuffle idee)
+        /// alle game data resetten naar default settings.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// Gemaakt door Pim.
         private void Reset(object sender, EventArgs e)
         {
-            CreateHighscores();
-            //de kaarten randomize wanneer op reset klikt.(Deck shuffle idee)
+            CreateHighscores();            
             RandomizeCards();
             for (int i = 0; i < MemoryItems; i++)
             {
@@ -287,10 +317,8 @@ namespace MemoryGame
                 Sets = 0;
                 SetsLabel.Text = "0";
             }
-            //alle game data resetten naar default settings.
             WinCondition = PlayerOne.Sets = PlayerTwo.Sets = PlayerOne.Memories = PlayerTwo.Memories = 0;
-
-
+            
             LabelSetsPlayer2.Text = LabelSetsPlayer1.Text = LabelMemoriesPlayer1.Text = LabelMemoriesPlayer2.Text = "0";
 
             MultiplayerTurn.Text = PlayerOneNameLabel.Text;
@@ -299,6 +327,7 @@ namespace MemoryGame
         /// <summary>
         /// wanneer je alle memory's hebt naar highscores gaan en highscores maken
         /// </summary>
+        /// Gemaakt door Bart.
         private void OnGameCompleted()
         {
             WinCondition = 0;
@@ -316,65 +345,87 @@ namespace MemoryGame
 
         #region Menu Functions
 
+        /// <summary>
+        /// Hide alle menu's.
+        /// Decrypt de save file, laad highscore en game data.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// Gemaakt door Pim.
         private void LoadGame(object sender, EventArgs e)
         {
-            //hide alle menu's en de juiste menu openen.
             HideAll();
 
             SetsLabel.Visible = true;
             PlayerOneNameLabel.Visible = true;
             PlayerTwoNameLabel.Visible = true;
             ResetButton.Visible = true;
-            string[] loadlines = File.ReadAllLines("memory.sav");
             
-            //alle data decrypten.
-            for (int i = 0; i < loadlines.Length; i++)
-            {
-                loadlines[i] = Encryption.Decrypt(loadlines[i], "MemGamePass");
-            }
-
-            //alle data laden.
             for (int i = 0; i < 16; i++)
             {
-                ButtonArray[i].SetCardType((MemoryType)Convert.ToInt32(loadlines[i + 16]));
-                ButtonArray[i].Succes = loadlines[i] == "True" ? true : false;
+                ButtonArray[i].SetCardType((MemoryType)Convert.ToInt32(LoadLines[i + 16]));
+                ButtonArray[i].Succes = LoadLines[i] == "True" ? true : false;
                 if (ButtonArray[i].Succes)
                 {
                     ButtonArray[i].Button.BackgroundImage = ButtonArray[i].Image;
                 }
             }
 
-            PlayerOneNameLabel.Text = loadlines[32];
-            PlayerTwoNameLabel.Text = loadlines[33];
-            PlayerOne.Sets = Convert.ToInt32(loadlines[34]);
-            LabelSetsPlayer1.Text = loadlines[34];
-            PlayerOne.Memories = Convert.ToInt32(loadlines[35]);
-            LabelMemoriesPlayer1.Text = loadlines[35];
-            PlayerTwo.Sets = Convert.ToInt32(loadlines[36]);
-            LabelSetsPlayer2.Text = loadlines[36];
-            PlayerTwo.Memories = Convert.ToInt32(loadlines[37]);
-            LabelMemoriesPlayer2.Text = loadlines[37];
-            MultiplayerTurn.Text = loadlines[38];
-
-            int count1 = 40;
-
-            foreach (Score score in ScoresSingle)
-            {
-                score.Name = loadlines[count1];
-                count1++;
-            }
-            foreach (Score score in ScoresSingle)
-            {
-                score.Sets = Convert.ToInt32(loadlines[count1]);
-                count1++;
-            }
+            PlayerOneNameLabel.Text = LoadLines[32];
+            PlayerTwoNameLabel.Text = LoadLines[33];
+            PlayerOne.Sets = Convert.ToInt32(LoadLines[34]);
+            LabelSetsPlayer1.Text = LoadLines[34];
+            PlayerOne.Memories = Convert.ToInt32(LoadLines[35]);
+            LabelMemoriesPlayer1.Text = LoadLines[35];
+            PlayerTwo.Sets = Convert.ToInt32(LoadLines[36]);
+            LabelSetsPlayer2.Text = LoadLines[36];
+            PlayerTwo.Memories = Convert.ToInt32(LoadLines[37]);
+            LabelMemoriesPlayer2.Text = LoadLines[37];
+            MultiplayerTurn.Text = LoadLines[38];
         }
 
+        /// <summary>
+        /// Load highscores.
+        /// </summary>
+        private void LoadHighScores(string[] LoadLines)
+        {
+            int count = 40;
+
+            if (ScoresSingle.Count >= 1)
+                for (int i = 0; i < 5; i++)
+                {
+                    Score newScore = CreateScorePanel(LoadLines[count], Convert.ToInt32(LoadLines[count + 5]), "Sets", 0);
+
+                    ScoresSingle.Add(newScore);
+                    count++;
+                }
+
+            count = 55;
+
+            for (int i = 0; i < 5; i++)
+            {
+                Multiscore newScore = new Multiscore
+                {
+                    ScoreOne = CreateScorePanel(LoadLines[count], Convert.ToInt32(LoadLines[count + 10]), "Memories", 0),
+                    ScoreTwo = CreateScorePanel(LoadLines[count + 1], Convert.ToInt32(LoadLines[count + 11]), "Memories", 200)
+                };
+                newScore.SetPanel();
+                ScoresMulti.Add(newScore);
+                count += 2;
+            }
+            SortHighscores();
+        }
+
+        /// <summary>
+        /// Het maken van de multiplayer en singleplayer highscores. 
+        /// Wanneer er meer dan 5 highscores in de lijst zijn kijken of je beter hebt gescored dan de current highscores,
+        /// Zo niet gebeurt er niks en zo wel override de laagste score.
+        /// </summary>
+        /// Gemaakt door Keanu.
         private void CreateHighscores()
         {
             if (string.IsNullOrEmpty(PlayerTwoNameLabel.Text) && ScoresSingle.Count >= 5)
             {
-                //overschrijf laagste score en vervang deze met een nieuwe score.
                 Score newScore = new Score();
                 for (int i = 0; i < ScoresSingle.Count; i++)
                 {
@@ -402,7 +453,6 @@ namespace MemoryGame
             }
             else if (ScoresMulti.Count >= 5)
             {
-                //overschrijf laagste score en vervang deze met een nieuwe score.
                 Score newScore = new Score();
                 for (int i = 0; i < ScoresMulti.Count; i++)
                 {
@@ -433,18 +483,8 @@ namespace MemoryGame
             {
                 Multiscore newScore = new Multiscore
                 {
-                    ScoreOne = new Score(
-                        new Panel() { Size = new Size(500, 50) },
-                        new Label() { Text = "Name = " + PlayerOneNameLabel.Text, Location = new Point(0, 0) },
-                        new Label() { Text = "Memories = " + PlayerOne.Memories, Location = new Point(100, 0) },
-                        PlayerOneNameLabel.Text,
-                        PlayerOne.Memories),
-                    ScoreTwo = new Score(
-                        new Panel() { Size = new Size(500, 50) },
-                        new Label() { Text = "Name = " + PlayerTwoNameLabel.Text, Location = new Point(200, 0) },
-                        new Label() { Text = "Memories = " + PlayerTwo.Memories, Location = new Point(300, 0) },
-                        PlayerTwoNameLabel.Text,
-                        PlayerTwo.Memories)
+                    ScoreOne = CreateScorePanel(PlayerOneNameLabel.Text, PlayerOne.Memories, "Memories", 0),
+                    ScoreTwo = CreateScorePanel(PlayerTwoNameLabel.Text, PlayerTwo.Memories, "Memories", 200)
                 };
 
                 newScore.SetPanel();
@@ -452,46 +492,67 @@ namespace MemoryGame
             }
             else
             {
-                //adds new highscore.
-                Score score = new Score(
-                     new Panel() { Size = new Size(500, 50) },
-                     new Label() { Text = "Name = " + PlayerOneNameLabel.Text, Location = new Point(0, 0) },
-                     new Label() { Text = "Sets = " + Sets, Location = new Point(100, 0) },
-                     PlayerOneNameLabel.Text,
-                     Sets);
-
+                Score score = CreateScorePanel(PlayerOneNameLabel.Text, Sets, "Sets", 0);
                 ScoresSingle.Add(score);
             }
-            SortHighscores(); //sorteert de highscores zodat de hoogste score bovenaan staat en de laagste onderaan.
+            SortHighscores();
         }
 
-        public void SortHighscores() // sorteer de highscores op score.
+        /// <summary>
+        /// Het maken van een highcore paneel.
+        /// en het returnen van de score class om het te kunnen opslaan of overriden.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <param name="valueName"></param>
+        /// <param name="addPos"></param>
+        /// <returns></returns>
+        /// Gemaakt door Keanu.
+        private Score CreateScorePanel(string name, int value, string valueName ,int addPos)
         {
-            if (!string.IsNullOrEmpty(PlayerTwoNameLabel.Text))
-            {
-                MultiplayerHighscoresButton_Click(this, new EventArgs());
-                MultiplayerHighscorePanel.Controls.Clear();
-                ScoresMulti = ScoresMulti.OrderBy(p => p.ScoreOne.Sets).ToList();//sorteert de highscore op minst aantal sets(score).
+            Score score = new Score(
+                     new Panel() { Size = new Size(500, 50) },
+                     new Label() { Text = "Name = " + name, Location = new Point(0+ addPos, 0) },
+                     new Label() { Text = valueName+" = " + value, Location = new Point(100 + addPos, 0) },
+                     name,
+                     value);
 
-                foreach (Multiscore setScore in ScoresMulti)
-                {
-                    MultiplayerHighscorePanel.Controls.Add(setScore.ScoreOne.ScorePanel);//de UI van de highscores toevoegen.
-                    if(setScore.ScoreTwo != null)
-                        MultiplayerHighscorePanel.Controls.Add(setScore.ScoreTwo.ScorePanel);//de UI van de highscores toevoegen.
-                }
-                return;
+            return score;
+        }
+
+        /// <summary>
+        /// Hier gooi je het paneel leeg en vult hem met een gesorteerde lijst.
+        /// </summary>
+        /// Gemaakt door Keanu.
+        public void SortHighscores()
+        {
+            MultiplayerHighscoresButton_Click(this, new EventArgs());
+            MultiplayerHighscorePanel.Controls.Clear();
+            ScoresMulti = ScoresMulti.OrderBy(p => p.GetHighest().Sets).ToList();
+
+            foreach (Multiscore setScore in ScoresMulti)
+            {
+                MultiplayerHighscorePanel.Controls.Add(setScore.ScoreOne.ScorePanel);
+                if(setScore.ScoreTwo != null)
+                    MultiplayerHighscorePanel.Controls.Add(setScore.ScoreTwo.ScorePanel);
             }
 
             SingleplayerHighscoresButton_Click(this, new EventArgs());
             SingleHighscorePanel.Controls.Clear();
-            ScoresSingle = ScoresSingle.OrderBy(p => p.Sets).ToList();//sorteert de highscore op minst aantal sets(score).
+            ScoresSingle = ScoresSingle.OrderBy(p => p.Sets).ToList();
 
             foreach (Score setScore in ScoresSingle)
             {
-                SingleHighscorePanel.Controls.Add(setScore.ScorePanel);//de UI van de highscores toevoegen.
+                SingleHighscorePanel.Controls.Add(setScore.ScorePanel);
             }
         }
 
+        /// <summary>
+        /// Het openen van de highscores.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// Gemaakt door Keanu.
         public void OpenHighScores(object sender, EventArgs e)
         {
             //open de highscores.
@@ -500,30 +561,53 @@ namespace MemoryGame
             HighscoresPanel.Location = new Point(0, 0);
         }
 
+        /// <summary>
+        /// Singleplayer highscores zichtbaar maken.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// Gemaakt door Keanu.
         private void SingleplayerHighscoresButton_Click(object sender, EventArgs e)
         {
             SingleHighscorePanel.Visible = true;
             MultiplayerHighscorePanel.Visible = false;
         }
 
+        /// <summary>
+        /// Multiplayer highscores zichtbaar maken.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// Gemaakt door Keanu.
         private void MultiplayerHighscoresButton_Click(object sender, EventArgs e)
         {
             SingleHighscorePanel.Visible = false;
             MultiplayerHighscorePanel.Visible = true;
         }
 
+        /// <summary>
+        /// Hide alle andere menu's en laat options menu zien.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// Gemaakt door Keanu.
         public void OpenOptions(object sender, EventArgs e)
         {
-            // open de options menu.
             HideAll();
             MainPanel.Visible = false;
             OptionsPanel.Visible = true;
             OptionsPanel.Location = new Point(0, 0);
         }
 
+        /// <summary>
+        /// Hide alle menu's en reset alle labels.
+        /// zodra het multiplayer is alle multiplayer labels vertonen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// Gemaakt door Keanu en Bart.
         public void NewGame(object sender, EventArgs e)
         {
-            //alle menu's hiden.
             HideAll();
 
             WinCondition = PlayerOne.Sets = PlayerTwo.Sets = PlayerOne.Memories = PlayerTwo.Memories = 0;
@@ -534,8 +618,7 @@ namespace MemoryGame
 
             if (PlayerTwoNameLabel.Text == string.Empty)
             {
-                MultiplayerTurn.Visible = false;
-                
+                MultiplayerTurn.Visible = false;                
             }
             else
             {
@@ -548,6 +631,12 @@ namespace MemoryGame
             }
         }
 
+        /// <summary>
+        /// Hide alle panelen en ga terug naar main menu.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// Gemaakt door Keanu.
         public void Back(object sender, EventArgs e)
         {
             HideAll();
@@ -558,6 +647,7 @@ namespace MemoryGame
         /// <summary>
         /// Hide alle ui elementen
         /// </summary>
+        /// Gemaakt door Keanu.
         private void HideAll()
         {
             MenuSound.URL = pathMenu;
@@ -570,36 +660,63 @@ namespace MemoryGame
                 LabelMemoriesPlayer2.Visible = false;
         }
 
+        /// <summary>
+        /// Het spel afsluiten
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// Gemaakt door Keanu.
         public void QuitGame(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        public void SetUsernameTwo(object sender, EventArgs e)
-        {
-            PlayerTwoNameLabel.Text = SecondUsernameBox.Text;
-        }
-
+        /// <summary>
+        /// Set de naam van de eerste speler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// Gemaakt door Bart.
         public void SetUsername(object sender, EventArgs e)
         {
             PlayerOneNameLabel.Text = FirstUsernameBox.Text;
         }
 
-        private void OnVolumeChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Set de naam van de tweede speler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// Gemaakt door Bart.
+        public void SetUsernameTwo(object sender, EventArgs e)
         {
-            //standart the volume starts at 100%.
-            int volume = 0;
-            Int32.TryParse(SoundComboBox.Text, out volume); //here we set the volume to the selected volume by the player.
-            Console.WriteLine(volume);
-            BackgroundSound.settings.volume = volume;
-
+            PlayerTwoNameLabel.Text = SecondUsernameBox.Text;
         }
 
+        /// <summary>
+        /// Volume van de muziek veranderen naar het getal dat in de Music combobox geset is.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// Gemaakt door Casper.
+        private void OnVolumeChanged(object sender, EventArgs e)
+        {
+            int volume = 0;
+            Int32.TryParse(SoundComboBox.Text, out volume);
+            Console.WriteLine(volume);
+            BackgroundSound.settings.volume = volume;
+        }
+
+        /// <summary>
+        /// Volume van de SFX veranderen naar het getal dat in de SFX combobox geset is.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// Gemaakt door Casper.
         private void OnSFXVolumeChanged(object sender, EventArgs e)
         {
-            //standart the sfxvolume starts at 100%.
             int sfxVolume = 0;
-            Int32.TryParse(SetSFXVolume.Text, out sfxVolume);//here we set the sfxvolume to the selected volume by the player.
+            Int32.TryParse(SetSFXVolume.Text, out sfxVolume);
             Console.WriteLine(sfxVolume);
             MenuSound.settings.volume = sfxVolume;
             Succes.settings.volume = sfxVolume;
