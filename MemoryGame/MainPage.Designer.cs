@@ -43,10 +43,10 @@
             this.HighscoresButton = new System.Windows.Forms.Button();
             this.SetsLabel = new System.Windows.Forms.Label();
             this.HighscoresPanel = new System.Windows.Forms.Panel();
+            this.MultiplayerHighscorePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.MultiplayerHighscoresButton = new System.Windows.Forms.Button();
             this.SingleplayerHighscoresButton = new System.Windows.Forms.Button();
             this.SingleHighscorePanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.MultiplayerHighscorePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.BackToMainButton01 = new System.Windows.Forms.Button();
             this.OptionsPanel = new System.Windows.Forms.Panel();
@@ -114,7 +114,7 @@
             this.MainPanel.Controls.Add(this.OptionsButton);
             this.MainPanel.Controls.Add(this.HighscoresButton);
             this.MainPanel.Controls.Add(this.NewGameButton);
-            this.MainPanel.Location = new System.Drawing.Point(1188, 12);
+            this.MainPanel.Location = new System.Drawing.Point(1216, 27);
             this.MainPanel.Name = "MainPanel";
             this.MainPanel.Size = new System.Drawing.Size(1267, 720);
             this.MainPanel.TabIndex = 9;
@@ -231,11 +231,18 @@
             this.HighscoresPanel.Controls.Add(this.SingleHighscorePanel);
             this.HighscoresPanel.Controls.Add(this.label1);
             this.HighscoresPanel.Controls.Add(this.BackToMainButton01);
-            this.HighscoresPanel.Location = new System.Drawing.Point(88, 53);
+            this.HighscoresPanel.Location = new System.Drawing.Point(1008, 117);
             this.HighscoresPanel.Name = "HighscoresPanel";
             this.HighscoresPanel.Size = new System.Drawing.Size(1267, 720);
             this.HighscoresPanel.TabIndex = 10;
             this.HighscoresPanel.Visible = false;
+            // 
+            // MultiplayerHighscorePanel
+            // 
+            this.MultiplayerHighscorePanel.Location = new System.Drawing.Point(348, 95);
+            this.MultiplayerHighscorePanel.Name = "MultiplayerHighscorePanel";
+            this.MultiplayerHighscorePanel.Size = new System.Drawing.Size(801, 554);
+            this.MultiplayerHighscorePanel.TabIndex = 6;
             // 
             // MultiplayerHighscoresButton
             // 
@@ -265,13 +272,6 @@
             this.SingleHighscorePanel.Name = "SingleHighscorePanel";
             this.SingleHighscorePanel.Size = new System.Drawing.Size(801, 554);
             this.SingleHighscorePanel.TabIndex = 5;
-            // 
-            // MultiplayerHighscorePanel
-            // 
-            this.MultiplayerHighscorePanel.Location = new System.Drawing.Point(348, 95);
-            this.MultiplayerHighscorePanel.Name = "MultiplayerHighscorePanel";
-            this.MultiplayerHighscorePanel.Size = new System.Drawing.Size(801, 554);
-            this.MultiplayerHighscorePanel.TabIndex = 6;
             // 
             // label1
             // 
@@ -303,7 +303,7 @@
             this.OptionsPanel.Controls.Add(this.SoundComboBox);
             this.OptionsPanel.Controls.Add(this.OptionsLabel);
             this.OptionsPanel.Controls.Add(this.BackToMainButton02);
-            this.OptionsPanel.Location = new System.Drawing.Point(143, 615);
+            this.OptionsPanel.Location = new System.Drawing.Point(57, 46);
             this.OptionsPanel.Name = "OptionsPanel";
             this.OptionsPanel.Size = new System.Drawing.Size(1267, 720);
             this.OptionsPanel.TabIndex = 11;
@@ -311,14 +311,14 @@
             // 
             // SFXLabel
             // 
-            this.SFXLabel.AutoSize = true;
             this.SFXLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SFXLabel.Location = new System.Drawing.Point(527, 331);
+            this.SFXLabel.Location = new System.Drawing.Point(528, 265);
             this.SFXLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.SFXLabel.Name = "SFXLabel";
-            this.SFXLabel.Size = new System.Drawing.Size(94, 26);
+            this.SFXLabel.Size = new System.Drawing.Size(130, 25);
             this.SFXLabel.TabIndex = 8;
             this.SFXLabel.Text = "Set SFX";
+            this.SFXLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SetSFXVolume
             // 
@@ -335,22 +335,22 @@
             "20",
             "10",
             "0"});
-            this.SetSFXVolume.Location = new System.Drawing.Point(532, 359);
+            this.SetSFXVolume.Location = new System.Drawing.Point(528, 297);
             this.SetSFXVolume.Margin = new System.Windows.Forms.Padding(2);
             this.SetSFXVolume.Name = "SetSFXVolume";
-            this.SetSFXVolume.Size = new System.Drawing.Size(87, 21);
+            this.SetSFXVolume.Size = new System.Drawing.Size(130, 21);
             this.SetSFXVolume.TabIndex = 7;
             this.SetSFXVolume.SelectedIndexChanged += new System.EventHandler(this.OnSFXVolumeChanged);
             // 
             // SetVolumeLabel
             // 
-            this.SetVolumeLabel.AutoSize = true;
             this.SetVolumeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SetVolumeLabel.Location = new System.Drawing.Point(527, 172);
             this.SetVolumeLabel.Name = "SetVolumeLabel";
-            this.SetVolumeLabel.Size = new System.Drawing.Size(126, 26);
+            this.SetVolumeLabel.Size = new System.Drawing.Size(130, 25);
             this.SetVolumeLabel.TabIndex = 6;
             this.SetVolumeLabel.Text = "Set Volume";
+            this.SetVolumeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SoundComboBox
             // 
@@ -367,21 +367,21 @@
             "20",
             "10",
             "0"});
-            this.SoundComboBox.Location = new System.Drawing.Point(532, 201);
+            this.SoundComboBox.Location = new System.Drawing.Point(527, 206);
             this.SoundComboBox.Name = "SoundComboBox";
-            this.SoundComboBox.Size = new System.Drawing.Size(129, 21);
+            this.SoundComboBox.Size = new System.Drawing.Size(130, 21);
             this.SoundComboBox.TabIndex = 5;
             this.SoundComboBox.SelectedIndexChanged += new System.EventHandler(this.OnVolumeChanged);
             // 
             // OptionsLabel
             // 
-            this.OptionsLabel.AutoSize = true;
             this.OptionsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OptionsLabel.Location = new System.Drawing.Point(527, 31);
+            this.OptionsLabel.Location = new System.Drawing.Point(528, 36);
             this.OptionsLabel.Name = "OptionsLabel";
-            this.OptionsLabel.Size = new System.Drawing.Size(87, 26);
+            this.OptionsLabel.Size = new System.Drawing.Size(130, 25);
             this.OptionsLabel.TabIndex = 4;
             this.OptionsLabel.Text = "Options";
+            this.OptionsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BackToMainButton02
             // 
@@ -566,7 +566,6 @@
             this.HighscoresPanel.ResumeLayout(false);
             this.HighscoresPanel.PerformLayout();
             this.OptionsPanel.ResumeLayout(false);
-            this.OptionsPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
