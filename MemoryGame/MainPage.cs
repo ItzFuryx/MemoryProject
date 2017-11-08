@@ -410,6 +410,8 @@ namespace MemoryGame
 
             for (int i = 0; i < 5; i++)
             {
+                if (string.IsNullOrEmpty(LoadLines[count]))
+                    return;
                 Multiscore newScore = new Multiscore
                 {
                     ScoreOne = CreateScorePanel(LoadLines[count], Convert.ToInt32(LoadLines[count + 10]), "Memories", 0),
