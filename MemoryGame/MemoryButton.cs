@@ -15,14 +15,53 @@ namespace MemoryGame
         Pim = 3,
         Keanu = 4,
         Casper = 5,
-        hoi = 6,
-        fghh = 7,
-        asldkfj = 8
+        StarWars = 6,
+        DieEneGozer = 7
     }
-
+    /// <summary> 
+    /// Gemaakt door Keanu.
+    /// </summary>
     class MemoryButton
     {
         internal Button Button = null;
         internal MemoryType Type;
+        internal bool Succes = false;
+        internal System.Drawing.Image Image;
+
+        /// <summary>
+        /// Gemaakt door Keanu.
+        /// </summary>
+        /// <param name="type"></param>
+        public void SetCardType(MemoryType type)
+        {
+            Type = type;
+            switch (Type)
+            {
+                case MemoryType.Bart:
+                    Image = Properties.Resources.KA;
+                    break;
+                case MemoryType.Casper:
+                    Image = Properties.Resources.KJ;
+                    break;
+                case MemoryType.DieEneGozer:
+                    Image = Properties.Resources.KQ;
+                    break;
+                case MemoryType.Harro:
+                    Image = Properties.Resources.KK;
+                    break;
+                case MemoryType.Keanu:
+                    Image = Properties.Resources.SA;
+                    break;
+                case MemoryType.Kevin:
+                    Image = Properties.Resources.SJ;
+                    break;
+                case MemoryType.Pim:
+                   Image = Properties.Resources.SQ;
+                    break;
+                case MemoryType.StarWars:
+                    Image = Properties.Resources.SK;
+                    break;
+            }
+        }
     }
 }

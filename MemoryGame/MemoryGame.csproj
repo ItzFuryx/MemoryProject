@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Encryption.cs" />
     <Compile Include="MemoryButton.cs" />
     <Compile Include="MainPage.cs">
       <SubType>Form</SubType>
@@ -51,8 +52,10 @@
     <Compile Include="MainPage.Designer.cs">
       <DependentUpon>MainPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlayerVars.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Score.cs" />
     <EmbeddedResource Include="MainPage.resx">
       <DependentUpon>MainPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -64,6 +67,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -77,6 +81,82 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sound\ClickButton.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StarWars_Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StarWars_Background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Art\20151222_starwarsTFA_splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Art\BS.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bear_growl_y.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackgroundMusic.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CorrectCardsCombined.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Fail.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MenuClick.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NoMatch.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WilhelmScream.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sound\BackgroundMusic.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sound\bear_growl_y.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sound\CorrectCardsCombined.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sound\Fail.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sound\MenuClick.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sound\NoMatch.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Sound\WilhelmScream.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
