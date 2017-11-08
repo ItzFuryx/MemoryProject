@@ -10,6 +10,7 @@ using System.Threading;
 using System.Media;
 using System.Windows.Forms;
 using System.IO;
+using System.Reflection;
 using WMPLib;
 using System.Security.Cryptography;
 
@@ -38,7 +39,6 @@ namespace MemoryGame
         private string path, pathMenu, pathSucces, pathFail = String.Empty;
 
         #endregion
-
         /// <summary>
         /// Laad alle geluiden en initialiseer de bijbehorende WindowsMediaPlayers.
         /// Set de background muziek op looping.
@@ -50,10 +50,11 @@ namespace MemoryGame
         public MainPage()
         {
             InitializeComponent();
-            path = Path.GetFullPath(@"..\..\Resources/BackgroundMusic.wav");
-            pathMenu = Path.GetFullPath(@"..\..\Resources/MenuClick.wav");
-            pathSucces = Path.GetFullPath(@"..\..\Resources/CorrectCardsCombined.wav");
-            pathFail = Path.GetFullPath(@"..\..\Resources/Fail.wav");
+
+            path = Path.GetFullPath(@"Sounds/BackgroundMusic.wav");
+            pathMenu = Path.GetFullPath(@"Sounds/MenuClick.wav");
+            pathSucces = Path.GetFullPath(@"Sounds/CorrectCardsCombined.wav");
+            pathFail = Path.GetFullPath(@"Sounds/Fail.wav");
             
             BackgroundSound = new WindowsMediaPlayer();
             MenuSound = new WindowsMediaPlayer();
@@ -309,7 +310,8 @@ namespace MemoryGame
         /// <param name="e"></param>
         /// Gemaakt door Pim.
         private void Reset(object sender, EventArgs e)
-        {         
+        {
+            WinCondition = 0;
             RandomizeCards();
             for (int i = 0; i < MemoryItems; i++)
             {
@@ -332,8 +334,6 @@ namespace MemoryGame
         /// Gemaakt door Bart.
         private void OnGameCompleted()
         {
-            WinCondition = 0;
-
             Sets = Sets / 2;
             CreateHighscores();
             OpenHighScores(this, new EventArgs());
@@ -430,32 +430,37 @@ namespace MemoryGame
         /// Gemaakt door Keanu.
         private void CreateHighscores()
         {
-            if (string.IsNullOrEmpty(PlayerTwoNameLabel.Text) && ScoresSingle.Count >= 5)
+            if (string.IsNullOrEmpty(PlayerTwoNameLabel.Text))
             {
-                Score newScore = new Score();
-                for (int i = 0; i < ScoresSingle.Count; i++)
+                if(ScoresSingle.Count >= 5)
                 {
-                    if (ScoresSingle[i].Sets >= Sets)
+                    Score newScore = new Score();
+                    for (int i = 0; i < ScoresSingle.Count; i++)
                     {
-                        if (newScore.Name != string.Empty)
+                        if (ScoresSingle[i].Sets >= Sets)
                         {
-                            if (newScore.Sets >= ScoresSingle[i].Sets)
+                            if (newScore.Name != string.Empty)
+                            {
+                                if (newScore.Sets >= ScoresSingle[i].Sets)
+                                    newScore = ScoresSingle[i];
+                            }
+                            else
+                            {
                                 newScore = ScoresSingle[i];
-                        }
-                        else
-                        {
-                            newScore = ScoresSingle[i];
+                            }
                         }
                     }
-                }
 
-                if (newScore.Name != string.Empty)
+                    if (newScore.Name != string.Empty)
+                    {
+                        newScore.SetNewScore(PlayerOneNameLabel.Text, Sets);                        
+                    }
+                }
+                else
                 {
-                    newScore.SetNewScore(PlayerOneNameLabel.Text, Sets);
-
-                    SortHighscores();
+                    Score score = CreateScorePanel(PlayerOneNameLabel.Text, Sets, "Sets", 0);
+                    ScoresSingle.Add(score);
                 }
-                return;
             }
             else if (ScoresMulti.Count >= 5)
             {
@@ -478,14 +483,10 @@ namespace MemoryGame
 
                 if (newScore.Name != string.Empty)
                 {
-                    newScore.SetNewScore(PlayerOneNameLabel.Text, Sets);
-
-                    SortHighscores();
-                }
-                return;                
+                    newScore.SetNewScore(PlayerOneNameLabel.Text, Sets);                   
+                }             
             }
-
-            if (!string.IsNullOrEmpty(PlayerTwoNameLabel.Text))
+            else
             {
                 Multiscore newScore = new Multiscore
                 {
@@ -496,11 +497,7 @@ namespace MemoryGame
                 newScore.SetPanel();
                 ScoresMulti.Add(newScore);
             }
-            else
-            {
-                Score score = CreateScorePanel(PlayerOneNameLabel.Text, Sets, "Sets", 0);
-                ScoresSingle.Add(score);
-            }
+
             SortHighscores();
         }
 
@@ -731,4 +728,5 @@ namespace MemoryGame
 
         #endregion
     }
+    
 }
