@@ -247,6 +247,7 @@ namespace MemoryGame
             savelines[36] = Convert.ToString(PlayerTwo.Sets);
             savelines[37] = Convert.ToString(PlayerTwo.Memories);
             savelines[38] = MultiplayerTurn.Text;
+            savelines[39] = Sets.ToString();
 
             int count = 40;
 
@@ -382,6 +383,8 @@ namespace MemoryGame
             PlayerTwo.Memories = Convert.ToInt32(LoadLines[37]);
             LabelMemoriesPlayer2.Text = LoadLines[37];
             MultiplayerTurn.Text = LoadLines[38];
+            int.TryParse(LoadLines[39], out Sets);
+            SetsLabel.Text = (Sets/ 2).ToString();
         }
 
         /// <summary>
@@ -392,6 +395,7 @@ namespace MemoryGame
             int count = 40;
 
             if (ScoresSingle.Count >= 1)
+            {
                 for (int i = 0; i < 5; i++)
                 {
                     Score newScore = CreateScorePanel(LoadLines[count], Convert.ToInt32(LoadLines[count + 5]), "Sets", 0);
@@ -399,6 +403,7 @@ namespace MemoryGame
                     ScoresSingle.Add(newScore);
                     count++;
                 }
+            }
 
             count = 55;
 
