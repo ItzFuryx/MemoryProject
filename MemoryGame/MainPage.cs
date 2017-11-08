@@ -84,6 +84,8 @@ namespace MemoryGame
             else
             {
                 LoadLines = File.ReadAllLines("memory.sav");
+                if (LoadLines.Length <= 0)
+                    return;
 
                 for (int i = 0; i < LoadLines.Length; i++)
                 {
@@ -307,8 +309,7 @@ namespace MemoryGame
         /// <param name="e"></param>
         /// Gemaakt door Pim.
         private void Reset(object sender, EventArgs e)
-        {
-            CreateHighscores();            
+        {         
             RandomizeCards();
             for (int i = 0; i < MemoryItems; i++)
             {
